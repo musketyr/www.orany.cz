@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: Adding methods to groovlets and templates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: Adding methods to groovlets and templates</h1>
+	</div>
+
+	<p><em>15 březen 2013</em></p>
+
+	<p><p>Since <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> is build on the top of <a href="http://groovy.codehaus.org/Groovy+2.1+release+notes">Groovy 2.1 branch</a>,<br/>you can use <a href="http://docs.codehaus.org/display/GROOVY/Creating+an+extension+module">extension modules</a> to add useful methods to particular classes.<br/>As all <a href="http://groovy.codehaus.org/Groovlets">groovlets</a> and <a href="http://groovy.codehaus.org/Groovy+Templates">templates</a> are basically scripts,<br/>all of them extend <code>groovy.lang.Script</code> class.<br/>Every method added to <code>groovy.lang.Script</code> will be available in your groovlets and templates as well as other scripts and can be easily used<br/>nearly as easy as Grails tags.</p>
+<!--more--><h2>Simple Method</h2><p>If you create simple extension class like following</p><p><em>Extension class</em></p>
+<pre><code>package cz.orany.vladimir.gaelyk
+
+class GroovyTemplatesExtensions {
+
+    static String helloWorld(Script self) { &quot;Hello World&quot; }
+}
+</code></pre><p>and register it in <code>org.codehaus.groovy.runtime.ExtensionModule</code> file in the <code>META-INF/services</code> directory</p><p><em>Extension module descriptor</em></p>
+<pre><code>moduleName=gaelyk-scripts-module
+moduleVersion=1.0
+extensionClasses= cz.orany.vladimir.gaelyk.GroovyTemplatesExtension
+staticExtensionClasses=
+</code></pre><p>you will be able to call the method from your template, e.g. <code>test.gtpl</code></p><p><em>Example template</em></p>
+<pre><code>&lt;html&gt;
+   &lt;head&gt;&lt;title&gt;Test hello&lt;/title&gt;&lt;/head&gt;
+   &lt;body&gt;${helloWorld()}&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2>Advanced tag-like method</h2><p>Of course you can create more sofisticated methods which be close to <a href="http://grails.org/doc/latest/guide/theWebLayer.html#6.3+Tag+Libraries">Grails tags</a>.</p><p><em>Secured 'tag'</em></p>
+<pre><code>&lt;% secured { %&gt;
+     &lt;p&gt;This is only visible when the user is signed in&lt;/p&gt;
+&lt;% } %&gt;
+</code></pre><p>The usage is really simple, the implementation isn't difficult either. You basically write same code as you would write in the template:</p><p><em>Method implementation</em></p>
+<pre><code>static void secured(Script self, Closure body) {
+    self.with {
+        if(users.userLoggedIn){
+            body()
+        }
+    }
+}
+</code></pre><p>The core trick is using the context of current script by calling <code>self.with</code> method. In that case you get simply access to all the bindings available<br/>in the script itself.</p></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

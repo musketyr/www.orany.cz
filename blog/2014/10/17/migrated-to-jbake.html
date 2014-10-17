@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Vladimír Oraný</title>
+    <title>Blog Migrated to JBake</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -10,14 +10,14 @@
     <meta name="generator" content="JBake">
 
     <!-- Le styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/asciidoctor.css" rel="stylesheet">
-    <link href="css/base.css" rel="stylesheet">
-    <link href="css/prettify.css" rel="stylesheet">
+    <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link href="../../../../css/prettify.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
+      <script src="../../../../js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -25,12 +25,12 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../../../../favicon.ico">
   </head>
   <body onload="prettyPrint()">
     <div id="wrap">
    
-
+	
 		<!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -45,8 +45,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="about.html">About</a></li>
-            <li><a href="feed.xml">Subscribe</a></li>
+            <li><a href="../../../../about.html">About</a></li>
+            <li><a href="../../../../feed.xml">Subscribe</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -54,7 +54,7 @@
     <div class="container">
 	
 	<div class="page-header">
-		<h1>Vladimír Oraný</h1>
+		<h1>Blog Migrated to JBake</h1>
 	</div>
 
 	<p><em>17 říjen 2014</em></p>
@@ -62,15 +62,42 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vladimir is Independent Software Engineer and Gaelyk Project Lead. He is interested in domain specific languages, cloud computing and writing magical code using AST transformations.</p>
+<p>Thanks to great <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">Cédric Champeau&#8217;s blog post how to setup JBake on GitHub Pages</a>
+it was quite easy to migrate my previous <a href="http://jekyllrb.com/">Jekyll</a> blog to <a href="http://jbake.org">JBake</a>.</p>
 </div>
-<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-<script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/vladimirorany" data-format="inline" data-related="false"></script>
+<div class="paragraph">
+<p>Many thanks for such a great guide.</p>
+</div>
+<div class="paragraph">
+<p>As the guide is bit outdated, here&#8217;s few more steps you need to do:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You can use <a href="http://gvmtool.net/">Groovy enVironmental Manager</a> to install <a href="http://jbake.org">JBake</a></p>
+</li>
+<li>
+<p>You have to use Gradle 1.10 to make the Gradle script working (maybe few more versions are compatibile as well)</p>
+</li>
+<li>
+<p>You have to use stable version of the jbake plugin (<code>me.champeau.gradle:jbake-gradle-plugin:0.1</code> is working well for me)</p>
+</li>
+<li>
+<p>You have to create <code>gh-pages</code> branch first (<a href="http://bitflop.com/tutorials/how-to-create-a-new-and-empty-branch-in-git.html">orphan branch would do the best job</a>)</p>
+</li>
+<li>
+<p>You may want to use Groovy templates instead of FreeMarker ones (run <code>jbake -i groovy</code> instead of <code>jbake -i</code>)</p>
+</li>
+<li>
+<p>You may want to add dependency <code>publish.dependsOn(jbake)</code> for the publish task so the jbake will be executed before the publishing when needed</p>
+</li>
+</ol>
+</div>
 </div>
 </div></p>
 
 	<hr />
-
+	
 		</div>
 		<div id="push"></div>
     </div>
@@ -84,9 +111,9 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/prettify.js"></script>
+    <script src="../../../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../../../js/bootstrap.min.js"></script>
+    <script src="../../../../js/prettify.js"></script>
     
   </body>
 </html>

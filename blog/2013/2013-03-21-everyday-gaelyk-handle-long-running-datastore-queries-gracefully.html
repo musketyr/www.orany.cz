@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: Handle long running datastore queries gracefully</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: Handle long running datastore queries gracefully</h1>
+	</div>
+
+	<p><em>21 březen 2013</em></p>
+
+	<p><p><a href="https://developers.google.com/appengine/">Google App Engine</a> is full of hidden traps. One of them is the need to restart long running queries when<br/>the query expired causing following exception to be thrown:</p><p><code>The requested query has expired. Please restart it with the last cursor to read more results</code></p><p>In <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a><br/>you can now tell your <a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#query">query</a><br/>to restart automatically if this happen. Restarting happen under the hood so you can use <code>for</code> loops flawlessly.</p><p>To enable automatic restarting of queries add <code>restart automatically</code> statement to your query dsl.<br/>Currenty, you can only use this option on <code>iterate</code> method, because it doesn't make much sense with <code>execute</code><br/>method.</p><p><em>Simple restarting query</em></p>
+<pre><code>def comments = datastore.iterate {
+    from Comment
+    limit 50000
+    restart automatically
+}
+
+for(comment in comments){
+    // would throw exception randomly for long running queries
+    process comment
+}
+</code></pre><p>You can use <code>restart automatically</code> with <code>select all</code> and <code>select keys</code> query types. It also works with<br/>coerced queries using <code>as Type</code> keyword e.g. <code>form &#39;Comment&#39; as Comment</code>.</p></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

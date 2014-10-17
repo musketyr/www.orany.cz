@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: More readable routes with optional path parameters</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: More readable routes with optional path parameters</h1>
+	</div>
+
+	<p><em>16 březen 2013</em></p>
+
+	<p><p>At the time of writing, the original <a href="http://gaelyk.appspot.com/tutorial/url-routing">Gaelyk documentation</a><br/>still contains the verbose way how to define following routes with optional path variables.<br/><a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> helps you<br/>to get rid of lot of boilerplate routes definition.</p>
+<!--more--><p><em>Current approach to define optional path variables</em></p>
+<pre><code>get &quot;/article/@year/@month/@day/@title&quot;, 
+    forward: &quot;/article.groovy?year=@year&amp;month=@month&amp;day=@day&amp;title=@title&quot;
+get &quot;/article/@year/@month/@day&quot;,        
+    forward: &quot;/article.groovy?year=@year&amp;month=@month&amp;day=@day&quot;
+get &quot;/article/@year/@month&quot;,             
+    forward: &quot;/article.groovy?year=@year&amp;month=@month&quot;
+get &quot;/article/@year&quot;,                    
+    forward: &quot;/article.groovy?year=@year&quot;
+get &quot;/article&quot;,                          
+    forward: &quot;/article.groovy&quot;
+</code></pre><h3>Defining Optional Path Variables in Gaelyk 2.0</h3><p>As soon as Gaelyk 2.0 is released<br/>you can save a lot of typing, because adding a question mark <code>?</code> at the end of path variable definition such as <code>@title</code><br/>has the same effect multiple declaring the multiple routes as described above.</p><p><em>New way to define optional path variables</em></p>
+<pre><code>get &quot;/article/@year?/@month?/@day?/@title?&quot;, forward: &quot;/article.groovy&quot;
+</code></pre><p>If the path variable is present it is appended as <code>path_variable_name=@path_variable_name</code> to destination specified in <code>forward</code> or <code>redirect</code><br/>definition e.g. <code>/article/2013</code> is forwarded to <code>/article.groovy?year=2013</code>. </p><h3>Handling trailing slashes</h3><p>If the route defined ends with slash, all the routes matched must<br/>ends with slash and vice versa, e.g. <code>/article/2013</code> will match the route above but <code>/article/2013/</code> won't because the route does not end<br/>with slash.</p><h3>Mixing optional and required path variables</h3><p>Of course there is no need to have all the parameters optional. For example, we can make <code>year</code> required:</p><p><em>Mixed optional and required path variables</em></p>
+<pre><code>get &quot;/article/@year/@month?/@day?/@title?&quot;, forward: &quot;/article.groovy&quot;
+</code></pre><h3>Making Path Variables Sticky</h3><p>Sometimes you want to have some path variable recognized even if the previous are mising. For example, you want to be able to specify paging using <code>@page</code><br/>path variable, which itself is optional as well the other path variables. You can do this by assigning the path variable unique prefix like <code>page-</code><br/>as in following examples. Take a note you can have multiple path variables with prefixes as long as the prefixes are unique. Also routes are<br/>handled as special type of regular expressions so you can use some features like <code>[io]n</code> to specify that the prefix might be either <code>in</code> or <code>on</code>.</p><p><em>Sticky path variable</em></p>
+<pre><code>get &quot;/article/@year?/@month?/@day?/@title?/page-@page?/[io]n-@tag&quot;, forward: &quot;/article.groovy&quot;
+</code></pre><p>This route will match following situations and many others:</p><p><em>Sticky path variable usage</em></p>
+<pre><code>/article/in-groovy               =&gt; /article.groovy?tag=groovy
+/article/page-1                  =&gt; /article.groovy?page=1
+/article/2013/page-2/on-groovy   =&gt; /article.groovy?year=2013&amp;page=2&amp;tag=groovy
+/article/2013/03/16              =&gt; /article.groovy?year=2013&amp;month=03&amp;day=16
+</code></pre></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: Save your query dsl for later use</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: Save your query dsl for later use</h1>
+	</div>
+
+	<p><em>21 březen 2013</em></p>
+
+	<p><p>In <a href="http://gaelyk.appspot.com">Gaelyk</a> you can already save <a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#query">query created by query dsl</a> using <code>datastore.query{...}</code> and than excute it using <a href="https://developers.google.com/appengine/docs/java/datastore/queries#Retrieving_Results">datastore prepare</a> function but this method only support a subset of dsl statements - namely<br/><code>select</code>, <code>from</code>, <code>where</code>, <code>and</code> and <code>sort</code>. Corection using <code>as</code> or setting <code>limit</code> or <code>offset</code> is simply ignored.<br/>In <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> you can use <code>datastore.build{...}</code> method<br/>to create instance of <a href="http://gaelyk.appspot.com/api/groovyx/gaelyk/query/QueryBuilder.html">QueryBuilder</a>.</p>
+<div class="alert">
+  <p><strong>Warning!</strong> Thanks to <a href="http://docs.codehaus.org/display/GROOVY/Creating+an+extension+module">Groovy 2.0 
+  extension modules</a> you can use helper method on any <code>DatastoreService</code> instance even outside groovlets or templates
+  but you still have to assing the <code>DatastoreService</code> in <code>datastore</code> variable and call
+  the methods on that variable to make query dsl transformation working.</p>
+  <p>This is current limitation and should change in time of final Gaelyk 2.0 release.</p>
+</div><p>Let's show the difference between <code>datastore.query</code> and <code>datastore.build</code> methods:</p><p><em>Query method example</em></p>
+<pre><code>Query query = datastore.query {
+    from &#39;Comment&#39; as Comment
+    where author == 10
+    sort by crate desc
+    limit 10        
+}
+
+PreparedQuery pq = datastore.prepare query
+
+// The limit is gone! We need to set it again
+FetchOptions.Builder options = withLimit(10)
+
+// set the offset if there is page param specified
+if(params.page){
+    options = options.offset((params.page as int) * 10)
+}
+
+def comments = pq.asList(options.build())
+
+// and we also get only entities not comments
+for(Entity e in entity){
+    // which needs to be coerced manually
+    Comment comment = e as Comment
+    process comment
+}
+</code></pre><p>When using <code>datastore.query</code> method a portion of query parameters where erased, expecially loosing coercion<br/>is very confusing. On the other hand if you use <code>datastore.build</code> instead than all the information are kept.</p><p><em>Build method example</em></p>
+<pre><code>QueryBuiler dsl = datastore.build {
+    from &#39;Comment&#39; as Comment
+    where author == 10
+    sort by crate desc
+    limit 10
+}
+
+// set the offset if there is page param specified
+if(params.page){
+    dsl.offset((params.page as int) * 10)
+}
+
+def comments = dsl.execute()
+
+// no need to coerce manually
+for(Comment in comments){
+    process comment
+}
+</code></pre></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

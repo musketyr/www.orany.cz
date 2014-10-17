@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: Living on the edge with Gaelyk snapshots</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: Living on the edge with Gaelyk snapshots</h1>
+	</div>
+
+	<p><em>16 březen 2013</em></p>
+
+	<p><p>I've setup <a href="https://gaelyk.ci.cloudbees.com/">Gaelyk Continuous Integration Server</a> on <a href="http://www.cloudbees.com">CloudBees</a> few months ago so each time<br/>the change is pushed to Gaelyk repository and the tests are passing then the new JARs are pushed to the snapshot repository currently hosted at<br/><a href="https://oss.sonatype.org/content/repositories/snapshots/">SonaType OSS</a>. If you like living on the edge and using the latest features you can<br/>use these in your application.</p>
+<!--more--><p>Updating <a href="http://www.gradle.org">Gradle</a> build is pretty easy. Only thing you need to do is to declare<br/><a href="https://oss.sonatype.org/content/repositories/snapshots/">SonaType snapshot repository</a> in <code>repositories</code> configuration closure</p><p><em>Repositories configuration</em></p>
+<pre><code>repositories {
+    ...
+    mavenRepo url: &#39;https://oss.sonatype.org/content/repositories/snapshots/&#39;
+}
+</code></pre><p>and change the version of your <a href="http://gaelyk.appspot.com">Gaelyk</a> dependency to the snapshot version, <code>2.0-SNAPSHOT</code> at the time of writing.</p><p><em>Dependencies configuration</em></p>
+<pre><code>dependencies {
+    ...
+    compile &#39;org.gaelyk:gaelyk:2.0-SNAPSHOT&#39;
+}
+</code></pre><p><span class="label">EDIT</span><br/>By default Gradle caches the snapshot versions.<br/>To disable caching for all snapshot versions add following to your <code>build.gradle</code> file:</p><p><em>Disable snapshot versions caching</em></p>
+<pre><code>configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, &#39;seconds&#39;
+}
+</code></pre><p>If you haven't adopted Gradle for Gaelyk development, you can download latest snapshots from<br/><a href="https://oss.sonatype.org/content/repositories/snapshots/org/gaelyk/gaelyk/2.0-SNAPSHOT/">Sonatype OSS Snapshot Repository</a>. Be sure you are using<br/>the same <a href="http://groovy.codehaus.org/Download">Groovy</a><br/>and <a href="https://developers.google.com/appengine/downloads">GAE SDK</a> version as listed in <a href="https://raw.github.com/gaelyk/gaelyk/master/common.gradle">common build configuration</a>.</p><p>Here you go, you're now using the latest version of <a href="http://gaelyk.appspot.com">Gaelyk</a> available.</p></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

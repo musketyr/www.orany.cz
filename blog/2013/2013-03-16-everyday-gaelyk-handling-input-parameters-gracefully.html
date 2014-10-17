@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: Handling input parameters gracefully</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: Handling input parameters gracefully</h1>
+	</div>
+
+	<p><em>16 březen 2013</em></p>
+
+	<p><p>The <code>params</code> object added to <a href="http://groovy.codehaus.org/Groovlets">groovlets</a> and <a href="http://groovy.codehaus.org/Groovy+Templates">templates</a> has one<br/>very enpleasant feature that it either contains values of type <code>String</code> or <code>String[]</code> depending on how many parameters were submitted. In<br/><a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> is now handling parameters much easier.</p>
+<!--more--><p>Prior Gaelyk 2.0 following unpleasant situation may occur:</p><p><em>Problems with params prior Gaelyk 2.0</em></p>
+<pre><code>// query = ?tag=one&amp;tag=two
+params.tag == [&#39;one&#39;,&#39;two&#39;] as String[]
+// this is ok
+params.tag.collect { it } == [&#39;one&#39;, &#39;two&#39;]
+
+// query = ?tag=one
+params.tag == &#39;one&#39;
+// oops, String.each iterates over characters
+params.tag.collect { it } == [&#39;o&#39;, &#39;n&#39;, &#39;e&#39;]
+
+// query = ?limit=100
+params.limit == &#39;100&#39;
+params.limit as int == 100
+
+// query = ?limit=100&amp;limit=200
+params.limit == [&#39;100&#39;, &#39;200&#39;] as String[]
+try {
+    params.limit as int
+    assert false
+} catch(ClassCastException e) {
+    // cannot cast String[] to int
+    assert true
+}
+</code></pre><p>These casts are now safe in Gaelyk 2.0.</p><p><em>Safe parameters handling in Gaelyk 2.0</em></p>
+<pre><code>// query = ?tag=one&amp;tag=two
+params.tag == [&#39;one&#39;,&#39;two&#39;] as String[]
+// this is ok
+params.tag.collect { it } == [&#39;one&#39;, &#39;two&#39;]
+
+// query = ?tag=one
+params.tag == &#39;one&#39;
+// oops, String.each iterates over characters
+params.tag.collect { it } == [&#39;o&#39;, &#39;n&#39;, &#39;e&#39;]
+// use as String[] to ensure having String array
+(params.tag as String[]).collect { it } == [&#39;one&#39;]
+
+// query = ?limit=100
+params.limit == &#39;100&#39;
+params.limit as int == 100
+
+// query = ?limit=100&amp;limit=200
+params.limit == [&#39;100&#39;, &#39;200&#39;] as String[]
+// first value is taken on cast to single value (not array or collection)
+params.limit as int == 100
+</code></pre><p>Simply said use <code>as String[]</code> on values from <code>params</code> whenever you expect multiple values and <code>as &lt;type supported by String.asType() or String&gt;</code> if you expect single value.</p></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

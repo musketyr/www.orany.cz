@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: Common Query DSL pitfalls</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: Common Query DSL pitfalls</h1>
+	</div>
+
+	<p><em>03 duben 2013</em></p>
+
+	<p><p><a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#query">Gaelyk Query DSL</a> makes quering<br/><a href="https://developers.google.com/appengine/docs/java/datastore/">Google App Engine Datastore</a> a lot simpler but sometimes<br/>it isn't working as expected.</p><h2>Variable naming conflict</h2><p>Some of problems origins from using the variable or property names which are already taken.<br/>Names of the properties in where clause are converted to <code>String</code> automatically. What property we will be querying?</p><p><em>Variable name conflict</em></p>
+<pre><code>def count = 123
+// a lot of code here so you&#39;ve already forgotten you have such a variable
+
+def maxCount = 100
+
+datastore.execute {
+    from Item
+    where count &lt;= maxCount
+}
+</code></pre><p>This query will be translated as <code>123 &lt;= 100</code> which probably isn't what you wanted.</p><h2>Binding variable name conflict</h2><p>Previous example was quite obvious but what if we have following query:</p><p><em>Binding variable name conflict</em></p>
+<pre><code>datastore.execute {
+    from Item
+    where users &gt; 10
+}
+</code></pre><p>Instead of getting result of items having more than ten users we get empty result set. It's<br/>because <code>users</code> is Gaelyk's shortcut to <a href="https://developers.google.com/appengine/docs/java/gettingstarted/usingusers">UserService</a><br/>so the where clause is translated to something like <code>UserService@xyz123 &gt; 10</code> which obviously returns no results.</p><p>If you run into name conflict just use good old String as property name in the where clause such as <code>where &#39;users&#39; &gt; 10</code>.</p><h2>Entity pitfalls</h2><p><code>@Entity</code> annotation adds sevral useful methods to the POGO class such as <code>findAll</code> which resemble their<br/><a href="http://grails.org/doc/2.1.0/ref/Domain%20Classes/findAll.html">Grails counterparts</a>. But don't get confused. The syntax of<br/>using such methods differs slightly. <code>find</code>, <code>findAll</code> or <code>count</code> method are just shortcuts to Query DSL!</p><p><em>Using findAll method</em></p>
+<pre><code>@Entity class Item {
+    int count
+}
+
+Item.findAll { count == 10 }
+</code></pre><p>The query listed above will return all the items since the condition is ignored<br/>because the <code>where</code> keyword is missing.</p><p><em>Using findAll method with where</em></p>
+<pre><code>@Entity class Item {
+    int count
+}
+
+Item.findAll { where count == 10 }
+</code></pre><p>We have added the <code>where</code> keyword to the <code>findAll</code> method but now we'll always get empty result because all field of <code>@Entity</code> class<br/>are unindexed by default. You need to mark the field <code>@Indexed</code> to use it in queries.</p><p><em>Using findAll method with where on indexed field</em></p>
+<pre><code>@Entity class Item {
+    @Indexed int count
+}
+
+Item.findAll { where count == 10 }
+</code></pre><h2>Summary</h2><p>Using Query DSL you should basically always take care about two important things:</p>
+<ol>
+  <li>Property names are always converted to String, this is may make mess if the variable with the same name is already defined (even in Gaelyk shortcut bindings). Use String constants instead of property names in case of any possible name conflict.</li>
+  <li>All properties you're querying must be indexed. When using <code>@Entity</code> annotations all the properties are unindexed by default.</li>
+</ol></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

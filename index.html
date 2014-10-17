@@ -29,8 +29,9 @@
   </head>
   <body onload="prettyPrint()">
     <div id="wrap">
-	
-	<!-- Fixed navbar -->
+   
+
+		<!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -40,123 +41,407 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">JBake</a>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="feed.xml">Subscribe</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
     <div class="container">
+
 	<div class="page-header">
 		<h1>Blog</h1>
 	</div>
-  			<a href="blog/2013/second-post.html"><h1>Rendering engine missing</h1></a>
-  			<p>17 říjen 2014</p>
-  			<p>The markup engine [org.jbake.parser.MarkdownEngine] for [/Users/ladin/development/projects/www.orany.cz/src/jbake/content/blog/2013/second-post.md] couldn't be loaded</p>
-  			<a href="blog/2013/fourth-post.html"><h1>Fourth Post</h1></a>
-  			<p>17 říjen 2013</p>
-  			<p><div id="preamble">
+	
+		<a href="blog/2014/10/17/migrated-to-jbake.html"><h1>Blog Migrated to JBake</h1></a>
+		<p>17 říjen 2014</p>
+		<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel diam purus. Curabitur ut nisi lacus.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://example.org">http://example.org</a></p>
-</li>
-<li>
-<p><a href="http://example.org">Example.org</a></p>
-</li>
-</ul>
+<p>Thanks to great <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">Cédric Champeau&#8217;s blog post how to setup JBake on GitHub Pages</a>
+it was quite easy to migrate my previous <a href="http://jekyllrb.com/">Jekyll</a> blog to <a href="http://jbake.org">JBake</a>.</p>
 </div>
 <div class="paragraph">
-<p>Nam id nisl quam. Donec a lorem sit amet libero pretium vulputate vel ut purus. Suspendisse leo arcu,
-mattis et imperdiet luctus, pulvinar vitae mi. Quisque fermentum sollicitudin feugiat. Mauris nec leo
-ligula. Vestibulum tristique odio ut risus ultricies a hendrerit quam iaculis. Duis tempor elit sit amet
-ligula vehicula et iaculis sem placerat. Fusce dictum, metus at volutpat lacinia, elit massa auctor risus,
-id auctor arcu enim eu augue. Donec ultrices turpis in mi imperdiet ac venenatis sapien sodales. In
-consequat imperdiet nunc quis bibendum. Nulla semper, erat quis ornare tristique, lectus massa posuere
-libero, ut vehicula lectus nunc ut lorem. Aliquam erat volutpat.</p>
+<p>Many thanks for such a great guide.</p>
+</div>
+<div class="paragraph">
+<p>As the guide is bit outdated, here&#8217;s few more steps you need to do:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You can use <a href="http://gvmtool.net/">Groovy enVironmental Manager</a> to install <a href="http://jbake.org">JBake</a></p>
+</li>
+<li>
+<p>You have to use Gradle 1.10 to make the Gradle script working (maybe few more versions are compatibile as well)</p>
+</li>
+<li>
+<p>You have to use stable version of the jbake plugin (<code>me.champeau.gradle:jbake-gradle-plugin:0.1</code> is working well for me)</p>
+</li>
+<li>
+<p>You have to create <code>gh-pages</code> branch first (<a href="http://bitflop.com/tutorials/how-to-create-a-new-and-empty-branch-in-git.html">orphan branch would do the best job</a>)</p>
+</li>
+<li>
+<p>You may want to use Groovy templates instead of FreeMarker ones (run <code>jbake -i groovy</code> instead of <code>jbake -i</code>)</p>
+</li>
+<li>
+<p>You may want to add dependency <code>publish.dependsOn(jbake)</code> for the publish task so the jbake will be executed before the publishing when needed</p>
+</li>
+</ol>
 </div>
 </div>
 </div></p>
-  			<a href="blog/2013/third-post.html"><h1>Third Post</h1></a>
-  			<p>26 září 2013</p>
-  			<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel diam purus. Curabitur ut nisi lacus.</p>
-</div>
-<div class="ulist">
+  	
+		<a href="blog/2013/2013-05-17-gaelyk-20-released.html"><h1>Gaelyk 2.0 Released</h1></a>
+		<p>17 květen 2013</p>
+		<p><p>Gaelyk 2.0 is finally out. Some of the new features were already listed on this site.</p><p>The most important features are:</p>
 <ul>
-<li>
-<p><a href="http://example.org">http://example.org</a></p>
-</li>
-<li>
-<p><a href="http://example.org">Example.org</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Nam id nisl quam. Donec a lorem sit amet libero pretium vulputate vel ut purus. Suspendisse leo arcu,
-mattis et imperdiet luctus, pulvinar vitae mi. Quisque fermentum sollicitudin feugiat. Mauris nec leo
-ligula. Vestibulum tristique odio ut risus ultricies a hendrerit quam iaculis. Duis tempor elit sit amet
-ligula vehicula et iaculis sem placerat. Fusce dictum, metus at volutpat lacinia, elit massa auctor risus,
-id auctor arcu enim eu augue. Donec ultrices turpis in mi imperdiet ac venenatis sapien sodales. In
-consequat imperdiet nunc quis bibendum. Nulla semper, erat quis ornare tristique, lectus massa posuere
-libero, ut vehicula lectus nunc ut lorem. Aliquam erat volutpat.</p>
-</div>
-</div>
-</div></p>
-  			<a href="blog/2013/first-post.html"><h1>First Post</h1></a>
-  			<p>24 červenec 2013</p>
-  			<p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel diam purus. Curabitur ut nisi lacus.</p>
-
+  <li>Groovy 2.0 support and removing <code>GaelykCategory</code></li>
+  <li><a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#advanced_fulltext_search">Search DSL</a></li>
+  <li><a href="http://gaelyk.appspot.com/tutorial/url-routing#path-variables">Optinal routes parameters</a></li>
+  <li><a href="http://gaelyk.appspot.com/tutorial/views-and-controllers#better-params-handling">Better parameters conversion</a></li>
+  <li>Better coercion performance</li>
+  <li>Returning <a href="https://developers.google.com/appengine/docs/java/javadoc/com/google/appengine/api/datastore/QueryResultList">QueryResultList</a> and <a href="https://developers.google.com/appengine/docs/java/javadoc/com/google/appengine/api/datastore/QueryResultIterator">QueryResultIterator</a><br/> from <code>datastore.execute{}</code> and <code>datastore.iterate{}</code> methods</li>
+  <li>and many others ...</li>
+</ul><p>Gaelyk 2.0 is already available on Maven Central or you can download it from <a href="http://gaelyk.appspot.com/download">Gaelyk Download Page</a>.</p><h3>What's new in Gaelyk 2.0 Session at Gr8Conf</h3><p>If you are attending <a href="http://www.gr8conf.eu">Gr8Conf EU</a> next week, I'll be glad meeting you at my session <a href="http://gr8conf.eu/Presentations/Whats-new-in-Gaelyk-2.0">What is new in Gaelyk 2.0</a> where all the new features will be shown.</p><h3>Gaelyk Spock and core plugins</h3><p>Gaelyk related projects were relased as well:</p>
 <ul>
-<li><a href="http://example.org">http://example.org</a></li>
-<li><a href="http://example.org">Example.org</a></li>
-</ul>
+  <li><a href="https://github.com/gaelyk/gaelyk-spock">Gaelyk Spock 0.4</a></li>
+  <li><a href="https://github.com/gaelyk/gaelyk-resources-plugin">Gaelyk Resources Plugin 2.0</a></li>
+  <li><a href="https://github.com/gaelyk/gaelyk-bootstrap-resources">Gaelyk Bootstrap Resources Plugin 2.0</a></li>
+  <li><a href="https://github.com/gaelyk/gaelyk-console-plugin">Gaelyk Console Plugin 2.0</a></li>
+  <li><a href="https://github.com/gaelyk/gaelyk-datastore-viewer-plugin">Gaelyk Datastore Viewer Plugin 2.0</a></li>
+</ul><p>Thank all the great people helping with this release!</p></p>
+  	
+		<a href="blog/2013/2013-04-03-everyday-gaelyk-common-query-dsl-pitfalls.html"><h1>Everyday Gaelyk: Common Query DSL pitfalls</h1></a>
+		<p>03 duben 2013</p>
+		<p><p><a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#query">Gaelyk Query DSL</a> makes quering<br/><a href="https://developers.google.com/appengine/docs/java/datastore/">Google App Engine Datastore</a> a lot simpler but sometimes<br/>it isn't working as expected.</p><h2>Variable naming conflict</h2><p>Some of problems origins from using the variable or property names which are already taken.<br/>Names of the properties in where clause are converted to <code>String</code> automatically. What property we will be querying?</p><p><em>Variable name conflict</em></p>
+<pre><code>def count = 123
+// a lot of code here so you&#39;ve already forgotten you have such a variable
 
-<p>Nam id nisl quam. Donec a lorem sit amet libero pretium vulputate vel ut purus. Suspendisse leo arcu, 
-mattis et imperdiet luctus, pulvinar vitae mi. Quisque fermentum sollicitudin feugiat. Mauris nec leo 
-ligula. Vestibulum tristique odio ut risus ultricies a hendrerit quam iaculis. Duis tempor elit sit amet 
-ligula vehicula et iaculis sem placerat. Fusce dictum, metus at volutpat lacinia, elit massa auctor risus, 
-id auctor arcu enim eu augue. Donec ultrices turpis in mi imperdiet ac venenatis sapien sodales.</p> 
+def maxCount = 100
 
-<pre class="prettyprint">
-<code>
-package org.jbake;
-
-public class Oven {
-	public static void main(String[] args) {
-		System.out.print("Baking!");
-  }
+datastore.execute {
+    from Item
+    where count &lt;= maxCount
 }
-</code>
-</pre>
+</code></pre><p>This query will be translated as <code>123 &lt;= 100</code> which probably isn't what you wanted.</p><h2>Binding variable name conflict</h2><p>Previous example was quite obvious but what if we have following query:</p><p><em>Binding variable name conflict</em></p>
+<pre><code>datastore.execute {
+    from Item
+    where users &gt; 10
+}
+</code></pre><p>Instead of getting result of items having more than ten users we get empty result set. It's<br/>because <code>users</code> is Gaelyk's shortcut to <a href="https://developers.google.com/appengine/docs/java/gettingstarted/usingusers">UserService</a><br/>so the where clause is translated to something like <code>UserService@xyz123 &gt; 10</code> which obviously returns no results.</p><p>If you run into name conflict just use good old String as property name in the where clause such as <code>where &#39;users&#39; &gt; 10</code>.</p><h2>Entity pitfalls</h2><p><code>@Entity</code> annotation adds sevral useful methods to the POGO class such as <code>findAll</code> which resemble their<br/><a href="http://grails.org/doc/2.1.0/ref/Domain%20Classes/findAll.html">Grails counterparts</a>. But don't get confused. The syntax of<br/>using such methods differs slightly. <code>find</code>, <code>findAll</code> or <code>count</code> method are just shortcuts to Query DSL!</p><p><em>Using findAll method</em></p>
+<pre><code>@Entity class Item {
+    int count
+}
 
-<p>In consequat imperdiet nunc quis bibendum. Nulla semper, erat quis ornare tristique, lectus massa posuere 
-libero, ut vehicula lectus nunc ut lorem. Aliquam erat volutpat.</p>
-</p>
+Item.findAll { count == 10 }
+</code></pre><p>The query listed above will return all the items since the condition is ignored<br/>because the <code>where</code> keyword is missing.</p><p><em>Using findAll method with where</em></p>
+<pre><code>@Entity class Item {
+    int count
+}
+
+Item.findAll { where count == 10 }
+</code></pre><p>We have added the <code>where</code> keyword to the <code>findAll</code> method but now we'll always get empty result because all field of <code>@Entity</code> class<br/>are unindexed by default. You need to mark the field <code>@Indexed</code> to use it in queries.</p><p><em>Using findAll method with where on indexed field</em></p>
+<pre><code>@Entity class Item {
+    @Indexed int count
+}
+
+Item.findAll { where count == 10 }
+</code></pre><h2>Summary</h2><p>Using Query DSL you should basically always take care about two important things:</p>
+<ol>
+  <li>Property names are always converted to String, this is may make mess if the variable with the same name is already defined (even in Gaelyk shortcut bindings). Use String constants instead of property names in case of any possible name conflict.</li>
+  <li>All properties you're querying must be indexed. When using <code>@Entity</code> annotations all the properties are unindexed by default.</li>
+</ol></p>
+  	
+		<a href="blog/2013/2013-03-21-everyday-gaelyk-handle-long-running-datastore-queries-gracefully.html"><h1>Everyday Gaelyk: Handle long running datastore queries gracefully</h1></a>
+		<p>21 březen 2013</p>
+		<p><p><a href="https://developers.google.com/appengine/">Google App Engine</a> is full of hidden traps. One of them is the need to restart long running queries when<br/>the query expired causing following exception to be thrown:</p><p><code>The requested query has expired. Please restart it with the last cursor to read more results</code></p><p>In <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a><br/>you can now tell your <a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#query">query</a><br/>to restart automatically if this happen. Restarting happen under the hood so you can use <code>for</code> loops flawlessly.</p><p>To enable automatic restarting of queries add <code>restart automatically</code> statement to your query dsl.<br/>Currenty, you can only use this option on <code>iterate</code> method, because it doesn't make much sense with <code>execute</code><br/>method.</p><p><em>Simple restarting query</em></p>
+<pre><code>def comments = datastore.iterate {
+    from Comment
+    limit 50000
+    restart automatically
+}
+
+for(comment in comments){
+    // would throw exception randomly for long running queries
+    process comment
+}
+</code></pre><p>You can use <code>restart automatically</code> with <code>select all</code> and <code>select keys</code> query types. It also works with<br/>coerced queries using <code>as Type</code> keyword e.g. <code>form &#39;Comment&#39; as Comment</code>.</p></p>
+  	
+		<a href="blog/2013/2013-03-21-everyday-gaelyk-save-your-query-builder-for-later-use.html"><h1>Everyday Gaelyk: Save your query dsl for later use</h1></a>
+		<p>21 březen 2013</p>
+		<p><p>In <a href="http://gaelyk.appspot.com">Gaelyk</a> you can already save <a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#query">query created by query dsl</a> using <code>datastore.query{...}</code> and than excute it using <a href="https://developers.google.com/appengine/docs/java/datastore/queries#Retrieving_Results">datastore prepare</a> function but this method only support a subset of dsl statements - namely<br/><code>select</code>, <code>from</code>, <code>where</code>, <code>and</code> and <code>sort</code>. Corection using <code>as</code> or setting <code>limit</code> or <code>offset</code> is simply ignored.<br/>In <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> you can use <code>datastore.build{...}</code> method<br/>to create instance of <a href="http://gaelyk.appspot.com/api/groovyx/gaelyk/query/QueryBuilder.html">QueryBuilder</a>.</p>
+<div class="alert">
+  <p><strong>Warning!</strong> Thanks to <a href="http://docs.codehaus.org/display/GROOVY/Creating+an+extension+module">Groovy 2.0 
+  extension modules</a> you can use helper method on any <code>DatastoreService</code> instance even outside groovlets or templates
+  but you still have to assing the <code>DatastoreService</code> in <code>datastore</code> variable and call
+  the methods on that variable to make query dsl transformation working.</p>
+  <p>This is current limitation and should change in time of final Gaelyk 2.0 release.</p>
+</div><p>Let's show the difference between <code>datastore.query</code> and <code>datastore.build</code> methods:</p><p><em>Query method example</em></p>
+<pre><code>Query query = datastore.query {
+    from &#39;Comment&#39; as Comment
+    where author == 10
+    sort by crate desc
+    limit 10        
+}
+
+PreparedQuery pq = datastore.prepare query
+
+// The limit is gone! We need to set it again
+FetchOptions.Builder options = withLimit(10)
+
+// set the offset if there is page param specified
+if(params.page){
+    options = options.offset((params.page as int) * 10)
+}
+
+def comments = pq.asList(options.build())
+
+// and we also get only entities not comments
+for(Entity e in entity){
+    // which needs to be coerced manually
+    Comment comment = e as Comment
+    process comment
+}
+</code></pre><p>When using <code>datastore.query</code> method a portion of query parameters where erased, expecially loosing coercion<br/>is very confusing. On the other hand if you use <code>datastore.build</code> instead than all the information are kept.</p><p><em>Build method example</em></p>
+<pre><code>QueryBuiler dsl = datastore.build {
+    from &#39;Comment&#39; as Comment
+    where author == 10
+    sort by crate desc
+    limit 10
+}
+
+// set the offset if there is page param specified
+if(params.page){
+    dsl.offset((params.page as int) * 10)
+}
+
+def comments = dsl.execute()
+
+// no need to coerce manually
+for(Comment in comments){
+    process comment
+}
+</code></pre></p>
+  	
+		<a href="blog/2013/2013-03-19-everyday-gaelyk-find-blob-file-by-name.html"><h1>Everyday Gaelyk: Find blob file by name</h1></a>
+		<p>19 březen 2013</p>
+		<p><p>Google App Engine has sort of <a href="https://developers.google.com/appengine/docs/java/blobstore/overview#Writing_Files_to_the_Blobstore">support for saving files to the blobstore</a>. <a href="http://gaelyk.appspot.com">Gaelyk</a> adds some nice <a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#file-service">sugar to the files service</a>. You can easily create file in blobstore using following shortcut:</p><p><em>Creating file in the blobstore</em></p>
+<pre><code>def file = files.createNewBlobFile(&quot;text/plain&quot;, &quot;hello.txt&quot;)
+
+file.withWriter { writer -&gt;
+    writer &lt;&lt; &quot;some content&quot;
+}
+</code></pre><p>It is very nice that you have to set the content type and the name of the file but neither the content type nor the file<br/>name is used anywhere. If you <a href="https://developers.google.com/appengine/docs/java/blobstore/overview#Serving_a_Blob">serve the file from the blobstore</a><br/>the content type doesn't seem to be set to the response and of course you can't find file by its name easily. But it doesn't mean there<br/>is no way how to do it.</p><p>Google offers class <a href="https://developers.google.com/appengine/docs/java/javadoc/com/google/appengine/api/blobstore/BlobInfoFactory">BlobInfoFactory</a><br/>to query the information about stored blobs but you would have to walk throught all the blobs in your application to find the proper blob.<br/>Luckily, blob information is just plain entity and<br/><a href="https://developers.google.com/appengine/docs/java/javadoc/com/google/appengine/api/blobstore/BlobInfoFactory">BlobInfoFactory</a><br/>exposes fields <code>BlobInfoFactory.KIND</code>, <code>BlobInfoFactory.CREATION</code> and <code>BlobInfoFactory.FILENAME</code> which can help you find the desired file.</p>
+<pre><code>String name = &quot;hello.txt&quot;
+def files = datastore.execute {
+    from BlobInfoFactory.KIND
+    where BlobInfoFactory.FILENAME == name
+    sort desc by BlobInfoFactory.CREATION
+}
+if(files){
+    new BlobKey(files[0].key.name).serve(response)
+} else {
+    response.status = 404
+    out &lt;&lt; &quot;No such file $name&quot;
+}
+</code></pre><p>Since the file name isn't guaranteed to be unique, you can get more than one result. Sorting the blob information by its creation time<br/>help you to get the latest file as the first element of returned list. This might be acctually handy if you want to implement very simple and<br/>inefficient version system. You can create new blob key from the name of the entity returned from the query and using this key you can serve<br/>the file to the client.</p></p>
+  	
+		<a href="blog/2013/2013-03-19-everyday-gaelyk-how-to-solve-javalangnoclassdeffounderror-comgoogleappengineapisearchaddresponse.html"><h1>Everyday Gaelyk: Solving java.lang.NoClassDefFoundError: com/google/appengine/api/search/AddResponse</h1></a>
+		<p>19 březen 2013</p>
+		<p><p>Today, <a href="https://developers.google.com/appengine/">Google App Engine</a> Team said farewell to <a href="https://code.google.com/p/googleappengine/wiki/SdkForJavaReleaseNotes#Version_1.7.5_-_February_13,_2013">deprecated classes</a> in <a href="https://code.google.com/p/googleappengine/wiki/SdkForJavaReleaseNotes#Version_1.7.6_-_March_19,_2013">version 1.7.6</a> causing sevral sites crashed. Even<br/>the application was deployed with older <a href="https://developers.google.com/appengine/downloads#Google_App_Engine_SDK_for_Java">SDK</a> the <code>AddResponse</code><br/>class just disappeared. Yes, we all were warned in that release notes but who cares about the warnings. I wish they have mentioned<br/>when the new version will be released too so we'll be extra careful today.</p><p>For <a href="http://gaelyk.appspot.com">Gaelyk</a> users there are two choices to fix your application:</p>
+<ul>
+  <li>Switch to <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0 snapshot</a> unless version 2.0 is finally out</li>
+  <li>Build <a href="https://github.com/mmigdol/gaelyk/tree/removeSearchFrom13">Gaelyk 1.3 snapshot</a> fixed by <a href="https://github.com/mmigdol">Michael Migdol</a> and use it</li>
+</ul><p>Both solutions was discussed <a href="https://groups.google.com/forum/?hl=en&amp;fromgroups=#!topic/gaelyk/s2vNNVlv0ME">in this thread</a>.<br/>If you use <code>GaelykCategory</code> class directly in your code, 1.3 snapshot is better option for you because the class is no longer present in the<br/>code base of 2.0 snapshots. The category class was broken into serval separate extension modules.</p><p>If you're using plain Java in your Google App Engine application, just switch to latest 1.7.6 SDK and compliation errors will<br/>guide you.</p></p>
+  	
+		<a href="blog/2013/2013-03-17-everyday-gaelyk-simplify-groovlets-flow-by-handling-its-return-value.html"><h1>Everyday Gaelyk: Simplify flow in groovlets by handling their return values</h1></a>
+		<p>17 březen 2013</p>
+		<p><p><a href="http://gaelyk.appspot.com/tutorial/plugins">Gaelyk plugin system</a><br/>allows you to define <code>after</code> hook which is called when <a href="http://gaelyk.appspot.com/tutorial/views-and-controllers#groovlets">groovlet</a><br/>execution is finished. Since <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> the<br/>result returned from the groovlet is bound to the <code>after</code> closure so you can e.g. turn that result into the JSON response.</p>
+<!--more--><p>Let say you have a groovlet serving some JSON content by id and you want to simplify it's flow.</p><p><em>JSON groovlet, standard version</em></p>
+<pre><code> response.contentType = &#39;application/json&#39;
+
+ if(users.isUserLoggedIn){
+     response.status = 401
+     json(error: &#39;You must be logged in&#39;) 
+ } else {
+     // uses @Entity annotation
+     Item item = Item.get(params.id as long)
+     if(!item){
+         response.status = 404
+         json(error: &#39;Item not found&#39;)
+     } else {
+         json(id: item.id, title: item.title)
+     }
+ }
+</code></pre><p>In fact, this example is pretty trivial but still it would be handy if we can cut off some unnecessary branching:</p><p><em>JSON groovlet, version with plugin</em></p>
+<pre><code> // see following
+ request.renderAsJson = true
+
+ if(users.isUserLoggedIn){
+     return [status: 401, error: &#39;You must be logged in&#39;] 
+ }
+
+ // uses @Entity annotation
+ Item item = Item.get(params.id as long)
+ if(!item){
+     return [status: 404, error: &#39;Item not found&#39;]
+ }
+
+ [id: item.id, title: item.title]
+</code></pre><p>This can be actually quite simply accomplished by creating plugin which will render groovlet result as JSON.<br/>You can follow <a href="http://gaelyk.appspot.com/tutorial/plugins#anatomy">the guide on Gaelyk website</a>.<br/>Basically, you need a script containing the <code>after</code> handler:</p><p><em>JSON renderer plugin</em></p>
+<pre><code>after {
+    // render as json only when this attribute is set to groovy truth
+    if(request.renderAsJson){
+        // sets the json
+    response.contentType = &#39;application/json&#39;
+        // result is stored in &#39;result&#39; closure variable
+    if(result instanceof Map &amp;&amp; result?.status){
+            // set the status from the status map value
+        response.status = result.remove(&#39;status&#39;) as int
+    }
+        // render the result
+    JsonBuilder json = new JsonBuilder()
+    json result
+    json.writeTo(response.writer)
+    }
+}
+</code></pre><p>Save the script as <code>WEB-INF/plugins/jsonRenderer.groovy</code> and create another file <code>WEB-INF/plugins.groovy</code> with single line <code>install jsonRenderer</code><br/>and you can try it yourself in your Galeyk 2.0 application.</p><p>If you got another idea how to use result of groovlet exection in your application, please, leave a message under the post.</p></p>
+  	
+		<a href="blog/2013/2013-03-16-everyday-gaelyk-handling-input-parameters-gracefully.html"><h1>Everyday Gaelyk: Handling input parameters gracefully</h1></a>
+		<p>16 březen 2013</p>
+		<p><p>The <code>params</code> object added to <a href="http://groovy.codehaus.org/Groovlets">groovlets</a> and <a href="http://groovy.codehaus.org/Groovy+Templates">templates</a> has one<br/>very enpleasant feature that it either contains values of type <code>String</code> or <code>String[]</code> depending on how many parameters were submitted. In<br/><a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> is now handling parameters much easier.</p>
+<!--more--><p>Prior Gaelyk 2.0 following unpleasant situation may occur:</p><p><em>Problems with params prior Gaelyk 2.0</em></p>
+<pre><code>// query = ?tag=one&amp;tag=two
+params.tag == [&#39;one&#39;,&#39;two&#39;] as String[]
+// this is ok
+params.tag.collect { it } == [&#39;one&#39;, &#39;two&#39;]
+
+// query = ?tag=one
+params.tag == &#39;one&#39;
+// oops, String.each iterates over characters
+params.tag.collect { it } == [&#39;o&#39;, &#39;n&#39;, &#39;e&#39;]
+
+// query = ?limit=100
+params.limit == &#39;100&#39;
+params.limit as int == 100
+
+// query = ?limit=100&amp;limit=200
+params.limit == [&#39;100&#39;, &#39;200&#39;] as String[]
+try {
+    params.limit as int
+    assert false
+} catch(ClassCastException e) {
+    // cannot cast String[] to int
+    assert true
+}
+</code></pre><p>These casts are now safe in Gaelyk 2.0.</p><p><em>Safe parameters handling in Gaelyk 2.0</em></p>
+<pre><code>// query = ?tag=one&amp;tag=two
+params.tag == [&#39;one&#39;,&#39;two&#39;] as String[]
+// this is ok
+params.tag.collect { it } == [&#39;one&#39;, &#39;two&#39;]
+
+// query = ?tag=one
+params.tag == &#39;one&#39;
+// oops, String.each iterates over characters
+params.tag.collect { it } == [&#39;o&#39;, &#39;n&#39;, &#39;e&#39;]
+// use as String[] to ensure having String array
+(params.tag as String[]).collect { it } == [&#39;one&#39;]
+
+// query = ?limit=100
+params.limit == &#39;100&#39;
+params.limit as int == 100
+
+// query = ?limit=100&amp;limit=200
+params.limit == [&#39;100&#39;, &#39;200&#39;] as String[]
+// first value is taken on cast to single value (not array or collection)
+params.limit as int == 100
+</code></pre><p>Simply said use <code>as String[]</code> on values from <code>params</code> whenever you expect multiple values and <code>as &lt;type supported by String.asType() or String&gt;</code> if you expect single value.</p></p>
+  	
+		<a href="blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html"><h1>Everyday Gaelyk: Living on the edge with Gaelyk snapshots</h1></a>
+		<p>16 březen 2013</p>
+		<p><p>I've setup <a href="https://gaelyk.ci.cloudbees.com/">Gaelyk Continuous Integration Server</a> on <a href="http://www.cloudbees.com">CloudBees</a> few months ago so each time<br/>the change is pushed to Gaelyk repository and the tests are passing then the new JARs are pushed to the snapshot repository currently hosted at<br/><a href="https://oss.sonatype.org/content/repositories/snapshots/">SonaType OSS</a>. If you like living on the edge and using the latest features you can<br/>use these in your application.</p>
+<!--more--><p>Updating <a href="http://www.gradle.org">Gradle</a> build is pretty easy. Only thing you need to do is to declare<br/><a href="https://oss.sonatype.org/content/repositories/snapshots/">SonaType snapshot repository</a> in <code>repositories</code> configuration closure</p><p><em>Repositories configuration</em></p>
+<pre><code>repositories {
+    ...
+    mavenRepo url: &#39;https://oss.sonatype.org/content/repositories/snapshots/&#39;
+}
+</code></pre><p>and change the version of your <a href="http://gaelyk.appspot.com">Gaelyk</a> dependency to the snapshot version, <code>2.0-SNAPSHOT</code> at the time of writing.</p><p><em>Dependencies configuration</em></p>
+<pre><code>dependencies {
+    ...
+    compile &#39;org.gaelyk:gaelyk:2.0-SNAPSHOT&#39;
+}
+</code></pre><p><span class="label">EDIT</span><br/>By default Gradle caches the snapshot versions.<br/>To disable caching for all snapshot versions add following to your <code>build.gradle</code> file:</p><p><em>Disable snapshot versions caching</em></p>
+<pre><code>configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, &#39;seconds&#39;
+}
+</code></pre><p>If you haven't adopted Gradle for Gaelyk development, you can download latest snapshots from<br/><a href="https://oss.sonatype.org/content/repositories/snapshots/org/gaelyk/gaelyk/2.0-SNAPSHOT/">Sonatype OSS Snapshot Repository</a>. Be sure you are using<br/>the same <a href="http://groovy.codehaus.org/Download">Groovy</a><br/>and <a href="https://developers.google.com/appengine/downloads">GAE SDK</a> version as listed in <a href="https://raw.github.com/gaelyk/gaelyk/master/common.gradle">common build configuration</a>.</p><p>Here you go, you're now using the latest version of <a href="http://gaelyk.appspot.com">Gaelyk</a> available.</p></p>
+  	
+		<a href="blog/2013/2013-03-16-everyday-gaelyk-more-readable-routes-with-optional-path-parameters.html"><h1>Everyday Gaelyk: More readable routes with optional path parameters</h1></a>
+		<p>16 březen 2013</p>
+		<p><p>At the time of writing, the original <a href="http://gaelyk.appspot.com/tutorial/url-routing">Gaelyk documentation</a><br/>still contains the verbose way how to define following routes with optional path variables.<br/><a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> helps you<br/>to get rid of lot of boilerplate routes definition.</p>
+<!--more--><p><em>Current approach to define optional path variables</em></p>
+<pre><code>get &quot;/article/@year/@month/@day/@title&quot;, 
+    forward: &quot;/article.groovy?year=@year&amp;month=@month&amp;day=@day&amp;title=@title&quot;
+get &quot;/article/@year/@month/@day&quot;,        
+    forward: &quot;/article.groovy?year=@year&amp;month=@month&amp;day=@day&quot;
+get &quot;/article/@year/@month&quot;,             
+    forward: &quot;/article.groovy?year=@year&amp;month=@month&quot;
+get &quot;/article/@year&quot;,                    
+    forward: &quot;/article.groovy?year=@year&quot;
+get &quot;/article&quot;,                          
+    forward: &quot;/article.groovy&quot;
+</code></pre><h3>Defining Optional Path Variables in Gaelyk 2.0</h3><p>As soon as Gaelyk 2.0 is released<br/>you can save a lot of typing, because adding a question mark <code>?</code> at the end of path variable definition such as <code>@title</code><br/>has the same effect multiple declaring the multiple routes as described above.</p><p><em>New way to define optional path variables</em></p>
+<pre><code>get &quot;/article/@year?/@month?/@day?/@title?&quot;, forward: &quot;/article.groovy&quot;
+</code></pre><p>If the path variable is present it is appended as <code>path_variable_name=@path_variable_name</code> to destination specified in <code>forward</code> or <code>redirect</code><br/>definition e.g. <code>/article/2013</code> is forwarded to <code>/article.groovy?year=2013</code>. </p><h3>Handling trailing slashes</h3><p>If the route defined ends with slash, all the routes matched must<br/>ends with slash and vice versa, e.g. <code>/article/2013</code> will match the route above but <code>/article/2013/</code> won't because the route does not end<br/>with slash.</p><h3>Mixing optional and required path variables</h3><p>Of course there is no need to have all the parameters optional. For example, we can make <code>year</code> required:</p><p><em>Mixed optional and required path variables</em></p>
+<pre><code>get &quot;/article/@year/@month?/@day?/@title?&quot;, forward: &quot;/article.groovy&quot;
+</code></pre><h3>Making Path Variables Sticky</h3><p>Sometimes you want to have some path variable recognized even if the previous are mising. For example, you want to be able to specify paging using <code>@page</code><br/>path variable, which itself is optional as well the other path variables. You can do this by assigning the path variable unique prefix like <code>page-</code><br/>as in following examples. Take a note you can have multiple path variables with prefixes as long as the prefixes are unique. Also routes are<br/>handled as special type of regular expressions so you can use some features like <code>[io]n</code> to specify that the prefix might be either <code>in</code> or <code>on</code>.</p><p><em>Sticky path variable</em></p>
+<pre><code>get &quot;/article/@year?/@month?/@day?/@title?/page-@page?/[io]n-@tag&quot;, forward: &quot;/article.groovy&quot;
+</code></pre><p>This route will match following situations and many others:</p><p><em>Sticky path variable usage</em></p>
+<pre><code>/article/in-groovy               =&gt; /article.groovy?tag=groovy
+/article/page-1                  =&gt; /article.groovy?page=1
+/article/2013/page-2/on-groovy   =&gt; /article.groovy?year=2013&amp;page=2&amp;tag=groovy
+/article/2013/03/16              =&gt; /article.groovy?year=2013&amp;month=03&amp;day=16
+</code></pre></p>
+  	
+		<a href="blog/2013/2013-03-15-gaelyk-20-preview-adding-methods-to-groovlets-and-templates.html"><h1>Everyday Gaelyk: Adding methods to groovlets and templates</h1></a>
+		<p>15 březen 2013</p>
+		<p><p>Since <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> is build on the top of <a href="http://groovy.codehaus.org/Groovy+2.1+release+notes">Groovy 2.1 branch</a>,<br/>you can use <a href="http://docs.codehaus.org/display/GROOVY/Creating+an+extension+module">extension modules</a> to add useful methods to particular classes.<br/>As all <a href="http://groovy.codehaus.org/Groovlets">groovlets</a> and <a href="http://groovy.codehaus.org/Groovy+Templates">templates</a> are basically scripts,<br/>all of them extend <code>groovy.lang.Script</code> class.<br/>Every method added to <code>groovy.lang.Script</code> will be available in your groovlets and templates as well as other scripts and can be easily used<br/>nearly as easy as Grails tags.</p>
+<!--more--><h2>Simple Method</h2><p>If you create simple extension class like following</p><p><em>Extension class</em></p>
+<pre><code>package cz.orany.vladimir.gaelyk
+
+class GroovyTemplatesExtensions {
+
+    static String helloWorld(Script self) { &quot;Hello World&quot; }
+}
+</code></pre><p>and register it in <code>org.codehaus.groovy.runtime.ExtensionModule</code> file in the <code>META-INF/services</code> directory</p><p><em>Extension module descriptor</em></p>
+<pre><code>moduleName=gaelyk-scripts-module
+moduleVersion=1.0
+extensionClasses= cz.orany.vladimir.gaelyk.GroovyTemplatesExtension
+staticExtensionClasses=
+</code></pre><p>you will be able to call the method from your template, e.g. <code>test.gtpl</code></p><p><em>Example template</em></p>
+<pre><code>&lt;html&gt;
+   &lt;head&gt;&lt;title&gt;Test hello&lt;/title&gt;&lt;/head&gt;
+   &lt;body&gt;${helloWorld()}&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2>Advanced tag-like method</h2><p>Of course you can create more sofisticated methods which be close to <a href="http://grails.org/doc/latest/guide/theWebLayer.html#6.3+Tag+Libraries">Grails tags</a>.</p><p><em>Secured 'tag'</em></p>
+<pre><code>&lt;% secured { %&gt;
+     &lt;p&gt;This is only visible when the user is signed in&lt;/p&gt;
+&lt;% } %&gt;
+</code></pre><p>The usage is really simple, the implementation isn't difficult either. You basically write same code as you would write in the template:</p><p><em>Method implementation</em></p>
+<pre><code>static void secured(Script self, Closure body) {
+    self.with {
+        if(users.userLoggedIn){
+            body()
+        }
+    }
+}
+</code></pre><p>The core trick is using the context of current script by calling <code>self.with</code> method. In that case you get simply access to all the bindings available<br/>in the script itself.</p></p>
+  	
 	
 	<hr />
 	

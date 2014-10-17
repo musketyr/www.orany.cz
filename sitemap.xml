@@ -1,23 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
     <url>
-        <loc>http://jbake.orgabout.html</loc>
-        <lastmod>2013-09-24</lastmod>
+    	<loc>http://www.orany.czabout.html</loc>
+    	<lastmod>2014-10-17</lastmod>
     </url>
+
     <url>
-        <loc>http://jbake.orgblog/2013/second-post.html</loc>
-        <lastmod>2014-10-17</lastmod>
+    	<loc>http://www.orany.czblog/2014/10/17/migrated-to-jbake.html</loc>
+    	<lastmod>2014-10-17</lastmod>
     </url>
+
     <url>
-        <loc>http://jbake.orgblog/2013/fourth-post.html</loc>
-        <lastmod>2013-10-17</lastmod>
+    	<loc>http://www.orany.czblog/2013/2013-05-17-gaelyk-20-released.html</loc>
+    	<lastmod>2013-05-17</lastmod>
     </url>
+
     <url>
-        <loc>http://jbake.orgblog/2013/third-post.html</loc>
-        <lastmod>2013-09-26</lastmod>
+    	<loc>http://www.orany.czblog/2013/2013-04-03-everyday-gaelyk-common-query-dsl-pitfalls.html</loc>
+    	<lastmod>2013-04-03</lastmod>
     </url>
+
     <url>
-        <loc>http://jbake.orgblog/2013/first-post.html</loc>
-        <lastmod>2013-07-24</lastmod>
+    	<loc>http://www.orany.czblog/2013/2013-03-21-everyday-gaelyk-handle-long-running-datastore-queries-gracefully.html</loc>
+    	<lastmod>2013-03-21</lastmod>
     </url>
+
+    <url>
+    	<loc>http://www.orany.czblog/2013/2013-03-21-everyday-gaelyk-save-your-query-builder-for-later-use.html</loc>
+    	<lastmod>2013-03-21</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://www.orany.czblog/2013/2013-03-19-everyday-gaelyk-find-blob-file-by-name.html</loc>
+    	<lastmod>2013-03-19</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://www.orany.czblog/2013/2013-03-19-everyday-gaelyk-how-to-solve-javalangnoclassdeffounderror-comgoogleappengineapisearchaddresponse.html</loc>
+    	<lastmod>2013-03-19</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://www.orany.czblog/2013/2013-03-17-everyday-gaelyk-simplify-groovlets-flow-by-handling-its-return-value.html</loc>
+    	<lastmod>2013-03-17</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://www.orany.czblog/2013/2013-03-16-everyday-gaelyk-handling-input-parameters-gracefully.html</loc>
+    	<lastmod>2013-03-16</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://www.orany.czblog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html</loc>
+    	<lastmod>2013-03-16</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://www.orany.czblog/2013/2013-03-16-everyday-gaelyk-more-readable-routes-with-optional-path-parameters.html</loc>
+    	<lastmod>2013-03-16</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://www.orany.czblog/2013/2013-03-15-gaelyk-20-preview-adding-methods-to-groovlets-and-templates.html</loc>
+    	<lastmod>2013-03-15</lastmod>
+    </url>
+
 </urlset>

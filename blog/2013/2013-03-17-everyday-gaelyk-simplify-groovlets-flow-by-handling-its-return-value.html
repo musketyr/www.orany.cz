@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: Simplify flow in groovlets by handling their return values</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: Simplify flow in groovlets by handling their return values</h1>
+	</div>
+
+	<p><em>17 březen 2013</em></p>
+
+	<p><p><a href="http://gaelyk.appspot.com/tutorial/plugins">Gaelyk plugin system</a><br/>allows you to define <code>after</code> hook which is called when <a href="http://gaelyk.appspot.com/tutorial/views-and-controllers#groovlets">groovlet</a><br/>execution is finished. Since <a href="/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html">Gaelyk 2.0</a> the<br/>result returned from the groovlet is bound to the <code>after</code> closure so you can e.g. turn that result into the JSON response.</p>
+<!--more--><p>Let say you have a groovlet serving some JSON content by id and you want to simplify it's flow.</p><p><em>JSON groovlet, standard version</em></p>
+<pre><code> response.contentType = &#39;application/json&#39;
+
+ if(users.isUserLoggedIn){
+     response.status = 401
+     json(error: &#39;You must be logged in&#39;) 
+ } else {
+     // uses @Entity annotation
+     Item item = Item.get(params.id as long)
+     if(!item){
+         response.status = 404
+         json(error: &#39;Item not found&#39;)
+     } else {
+         json(id: item.id, title: item.title)
+     }
+ }
+</code></pre><p>In fact, this example is pretty trivial but still it would be handy if we can cut off some unnecessary branching:</p><p><em>JSON groovlet, version with plugin</em></p>
+<pre><code> // see following
+ request.renderAsJson = true
+
+ if(users.isUserLoggedIn){
+     return [status: 401, error: &#39;You must be logged in&#39;] 
+ }
+
+ // uses @Entity annotation
+ Item item = Item.get(params.id as long)
+ if(!item){
+     return [status: 404, error: &#39;Item not found&#39;]
+ }
+
+ [id: item.id, title: item.title]
+</code></pre><p>This can be actually quite simply accomplished by creating plugin which will render groovlet result as JSON.<br/>You can follow <a href="http://gaelyk.appspot.com/tutorial/plugins#anatomy">the guide on Gaelyk website</a>.<br/>Basically, you need a script containing the <code>after</code> handler:</p><p><em>JSON renderer plugin</em></p>
+<pre><code>after {
+    // render as json only when this attribute is set to groovy truth
+    if(request.renderAsJson){
+        // sets the json
+    response.contentType = &#39;application/json&#39;
+        // result is stored in &#39;result&#39; closure variable
+    if(result instanceof Map &amp;&amp; result?.status){
+            // set the status from the status map value
+        response.status = result.remove(&#39;status&#39;) as int
+    }
+        // render the result
+    JsonBuilder json = new JsonBuilder()
+    json result
+    json.writeTo(response.writer)
+    }
+}
+</code></pre><p>Save the script as <code>WEB-INF/plugins/jsonRenderer.groovy</code> and create another file <code>WEB-INF/plugins.groovy</code> with single line <code>install jsonRenderer</code><br/>and you can try it yourself in your Galeyk 2.0 application.</p><p>If you got another idea how to use result of groovlet exection in your application, please, leave a message under the post.</p></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

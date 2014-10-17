@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Everyday Gaelyk: Find blob file by name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+		<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Vladimír Oraný</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Everyday Gaelyk: Find blob file by name</h1>
+	</div>
+
+	<p><em>19 březen 2013</em></p>
+
+	<p><p>Google App Engine has sort of <a href="https://developers.google.com/appengine/docs/java/blobstore/overview#Writing_Files_to_the_Blobstore">support for saving files to the blobstore</a>. <a href="http://gaelyk.appspot.com">Gaelyk</a> adds some nice <a href="http://gaelyk.appspot.com/tutorial/app-engine-shortcuts#file-service">sugar to the files service</a>. You can easily create file in blobstore using following shortcut:</p><p><em>Creating file in the blobstore</em></p>
+<pre><code>def file = files.createNewBlobFile(&quot;text/plain&quot;, &quot;hello.txt&quot;)
+
+file.withWriter { writer -&gt;
+    writer &lt;&lt; &quot;some content&quot;
+}
+</code></pre><p>It is very nice that you have to set the content type and the name of the file but neither the content type nor the file<br/>name is used anywhere. If you <a href="https://developers.google.com/appengine/docs/java/blobstore/overview#Serving_a_Blob">serve the file from the blobstore</a><br/>the content type doesn't seem to be set to the response and of course you can't find file by its name easily. But it doesn't mean there<br/>is no way how to do it.</p><p>Google offers class <a href="https://developers.google.com/appengine/docs/java/javadoc/com/google/appengine/api/blobstore/BlobInfoFactory">BlobInfoFactory</a><br/>to query the information about stored blobs but you would have to walk throught all the blobs in your application to find the proper blob.<br/>Luckily, blob information is just plain entity and<br/><a href="https://developers.google.com/appengine/docs/java/javadoc/com/google/appengine/api/blobstore/BlobInfoFactory">BlobInfoFactory</a><br/>exposes fields <code>BlobInfoFactory.KIND</code>, <code>BlobInfoFactory.CREATION</code> and <code>BlobInfoFactory.FILENAME</code> which can help you find the desired file.</p>
+<pre><code>String name = &quot;hello.txt&quot;
+def files = datastore.execute {
+    from BlobInfoFactory.KIND
+    where BlobInfoFactory.FILENAME == name
+    sort desc by BlobInfoFactory.CREATION
+}
+if(files){
+    new BlobKey(files[0].key.name).serve(response)
+} else {
+    response.status = 404
+    out &lt;&lt; &quot;No such file $name&quot;
+}
+</code></pre><p>Since the file name isn't guaranteed to be unique, you can get more than one result. Sorting the blob information by its creation time<br/>help you to get the latest file as the first element of returned list. This might be acctually handy if you want to implement very simple and<br/>inefficient version system. You can create new blob key from the name of the entity returned from the query and using this key you can serve<br/>the file to the client.</p></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>
