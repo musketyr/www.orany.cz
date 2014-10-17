@@ -1,0 +1,24 @@
+= Blog Migrated to JBake
+Vladimír Oraný
+2014-10-17
+:jbake-type: post
+:jbake-tags: blog,jbake
+:jbake-status: published
+
+
+Thanks to great http://melix.github.io/blog/2014/02/hosting-jbake-github.html[Cédric Champeau's blog post how to setup JBake on GitHub Pages]
+it was quite easy to migrate my previous http://jekyllrb.com/[Jekyll] blog to http://jbake.org[JBake].
+
+Many thanks for such a great guide.
+
+As the guide is bit outdated, here's few more steps you need to do:
+
+. You can use http://gvmtool.net/[Groovy enVironmental Manager] to install http://jbake.org[JBake]
+. You have to use Gradle 1.10 to make the Gradle script working (maybe few more versions are compatibile as well)
+. You have to use stable version of the jbake plugin (`me.champeau.gradle:jbake-gradle-plugin:0.1` is working well for me)
+. You have to create `gh-pages` branch first (http://bitflop.com/tutorials/how-to-create-a-new-and-empty-branch-in-git.html[orphan branch would do the best job])
+. You may want to use Groovy templates instead of FreeMarker ones (run `jbake -i groovy` instead of `jbake -i`)
+. You may want to add dependency `publish.dependsOn(jbake)` for the publish task so the jbake will be executed before the publishing when needed
+
+
+
