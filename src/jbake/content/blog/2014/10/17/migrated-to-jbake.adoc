@@ -13,7 +13,7 @@ Many thanks for such a great guide.
 
 As the guide is bit outdated, here's few more steps you need to do:
 
-. You can use http://gvmtool.net/[Groovy enVironmental Manager] to install http://jbake.org[JBake]
+. You can use http://gvmtool.net[Groovy enVironmental Manager] to install http://jbake.org[JBake]
 . You have to use Gradle 1.10 to make the Gradle script working (maybe few more versions are compatibile as well)
 . You have to use stable version of the jbake plugin (`me.champeau.gradle:jbake-gradle-plugin:0.1` is working well for me)
 . You have to create `gh-pages` branch first (http://bitflop.com/tutorials/how-to-create-a-new-and-empty-branch-in-git.html[orphan branch would do the best job])

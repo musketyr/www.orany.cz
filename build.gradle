@@ -10,6 +10,7 @@ buildscript {
     classpath 'org.asciidoctor:asciidoctor-java-integration:0.1.4'
     classpath 'org.freemarker:freemarker:2.3.19'
     classpath 'org.pegdown:pegdown:1.4.2'
+    classpath 'org.codehaus.groovy:groovy-all:2.3.7', {force = true }
   }
 }
 

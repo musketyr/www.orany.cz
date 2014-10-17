@@ -1,4 +1,4 @@
-<% import static groovy.xml.XmlUtil.escapeXml %><?xml version="1.0"?>
+<?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JBake</title>
@@ -15,9 +15,6 @@
       <link>${config.site_host}/${post.uri}</link>
       <pubDate>${post.date.format("EEE, d MMM yyyy HH:mm:ss Z")}</pubDate>
       <guid isPermaLink="false">${post.uri}</guid>
-      <description>
-      ${escapeXml(post.body)}
-	  </description>
     </item>
     <%}%>
 
