@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JBake</title>
+    <link>http://www.orany.cz</link>
+    <atom:link href="http://www.orany.cz/feed.xml" rel="self" type="application/rss+xml" />
+    <description>JBake Bootstrap Template</description>
+    <language>en-gb</language>
+    <pubDate>Pá, 17 X 2014 15:14:47 +0200</pubDate>
+    <lastBuildDate>Pá, 17 X 2014 15:14:47 +0200</lastBuildDate>
+
+    
+    <item>
+      <title>Blog Migrated to JBake</title>
+      <link>http://www.orany.cz/blog/2014/10/17/migrated-to-jbake.html</link>
+      <pubDate>Pá, 17 X 2014 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2014/10/17/migrated-to-jbake.html</guid>
+    </item>
+    
+    <item>
+      <title>Gaelyk 2.0 Released</title>
+      <link>http://www.orany.cz/blog/2013/2013-05-17-gaelyk-20-released.html</link>
+      <pubDate>Pá, 17 V 2013 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-05-17-gaelyk-20-released.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Common Query DSL pitfalls</title>
+      <link>http://www.orany.cz/blog/2013/2013-04-03-everyday-gaelyk-common-query-dsl-pitfalls.html</link>
+      <pubDate>St, 3 IV 2013 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-04-03-everyday-gaelyk-common-query-dsl-pitfalls.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Handle long running datastore queries gracefully</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-21-everyday-gaelyk-handle-long-running-datastore-queries-gracefully.html</link>
+      <pubDate>Čt, 21 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-21-everyday-gaelyk-handle-long-running-datastore-queries-gracefully.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Save your query dsl for later use</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-21-everyday-gaelyk-save-your-query-builder-for-later-use.html</link>
+      <pubDate>Čt, 21 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-21-everyday-gaelyk-save-your-query-builder-for-later-use.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Find blob file by name</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-19-everyday-gaelyk-find-blob-file-by-name.html</link>
+      <pubDate>Út, 19 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-19-everyday-gaelyk-find-blob-file-by-name.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Solving java.lang.NoClassDefFoundError: com/google/appengine/api/search/AddResponse</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-19-everyday-gaelyk-how-to-solve-javalangnoclassdeffounderror-comgoogleappengineapisearchaddresponse.html</link>
+      <pubDate>Út, 19 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-19-everyday-gaelyk-how-to-solve-javalangnoclassdeffounderror-comgoogleappengineapisearchaddresponse.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Simplify flow in groovlets by handling their return values</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-17-everyday-gaelyk-simplify-groovlets-flow-by-handling-its-return-value.html</link>
+      <pubDate>Ne, 17 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-17-everyday-gaelyk-simplify-groovlets-flow-by-handling-its-return-value.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Handling input parameters gracefully</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-16-everyday-gaelyk-handling-input-parameters-gracefully.html</link>
+      <pubDate>So, 16 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-16-everyday-gaelyk-handling-input-parameters-gracefully.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Living on the edge with Gaelyk snapshots</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html</link>
+      <pubDate>So, 16 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-16-everyday-gaelyk-living-on-the-edge-with-gaelyk-snapshots.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: More readable routes with optional path parameters</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-16-everyday-gaelyk-more-readable-routes-with-optional-path-parameters.html</link>
+      <pubDate>So, 16 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-16-everyday-gaelyk-more-readable-routes-with-optional-path-parameters.html</guid>
+    </item>
+    
+    <item>
+      <title>Everyday Gaelyk: Adding methods to groovlets and templates</title>
+      <link>http://www.orany.cz/blog/2013/2013-03-15-gaelyk-20-preview-adding-methods-to-groovlets-and-templates.html</link>
+      <pubDate>Pá, 15 III 2013 00:00:00 +0100</pubDate>
+      <guid isPermaLink="false">blog/2013/2013-03-15-gaelyk-20-preview-adding-methods-to-groovlets-and-templates.html</guid>
+    </item>
+    
+
+  </channel> 
+</rss>
