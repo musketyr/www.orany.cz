@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About - Vladimír Oraný" description="About Vladimír Oraný">
+  <div class="container">
+    <header class="page-header">
+      <h1>About Me</h1>
+    </header>
+
+    <div class="about-content">
+      <section>
+        <h2>Hi, I'm Vladimír Oraný</h2>
+        <p>
+          I'm a Principal Software Engineer passionate about building developer tools and libraries 
+          that make software development easier and more enjoyable. My expertise lies in the Groovy 
+          ecosystem, including Grails and Micronaut, as well as cloud technologies, particularly AWS.
+        </p>
+        <p>
+          Throughout my career, I've contributed to numerous open-source projects and created tools 
+          that are used by developers worldwide. I believe in the power of well-designed APIs and 
+          DSLs to make complex tasks simple and intuitive.
+        </p>
+      </section>
+
+      <section>
+        <h2>What I Do</h2>
+        <ul>
+          <li>Build developer tools and libraries for Groovy, Grails, and Micronaut</li>
+          <li>Contribute to open-source projects</li>
+          <li>Speak at conferences about software development best practices</li>
+          <li>Write about my experiences with various technologies</li>
+          <li>Help teams migrate from Grails to Micronaut</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Technologies I Love</h2>
+        <div class="tech-tags">
+          <span class="tech-tag">Groovy</span>
+          <span class="tech-tag">Micronaut</span>
+          <span class="tech-tag">Grails</span>
+          <span class="tech-tag">Java</span>
+          <span class="tech-tag">AWS</span>
+          <span class="tech-tag">Gradle</span>
+          <span class="tech-tag">Testing</span>
+          <span class="tech-tag">DSLs</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Connect</h2>
+        <div class="social-links">
+          <a href="https://github.com/musketyr" target="_blank" rel="noopener" class="social-link">
+            <strong>GitHub</strong> - @musketyr
+          </a>
+          <a href="https://medium.com/@vladimir.orany" target="_blank" rel="noopener" class="social-link">
+            <strong>Medium</strong> - @vladimir.orany
+          </a>
+          <a href="https://www.linkedin.com/in/vladim%C3%ADr-oran%C3%BD-22679711/" target="_blank" rel="noopener" class="social-link">
+            <strong>LinkedIn</strong> - Vladimír Oraný
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-content {
+    max-width: 720px;
+    margin: 3rem auto;
+  }
+
+  .about-content section {
+    margin-bottom: 3rem;
+  }
+
+  .about-content h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .about-content ul {
+    margin-left: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .about-content li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .tech-tag {
+    background: var(--bg-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid var(--border);
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .social-link {
+    background: var(--bg-secondary);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    display: block;
+  }
+
+  .social-link:hover {
+    border-color: var(--accent);
+    background: var(--bg-tertiary);
+  }
+
+  .social-link strong {
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>

@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const talks = [
+  {
+    id: 'Gz7a4-70IlI',
+    title: 'Vladimír Oraný: Micronaut',
+    event: 'jOpenSpace',
+    year: '2019',
+  },
+  {
+    id: 'wxSlK6yGiRc',
+    title: 'GeeCON Prague 2022: Micronaut Libraries for a Real Life',
+    event: 'GeeCON Prague',
+    year: '2022',
+  },
+  {
+    id: '84s8HLtJGYU',
+    title: 'GeeCON Prague 2017: Excel in Java',
+    event: 'GeeCON Prague',
+    year: '2017',
+  },
+  {
+    id: 'Besm4uaOQKg',
+    title: 'AWS + MN = BFF',
+    event: 'Greach',
+    year: '2020',
+  },
+  {
+    id: 'dDrid7In_98',
+    title: 'jOpenSpace 2024: DX: Cold Start',
+    event: 'jOpenSpace',
+    year: '2024',
+  },
+  {
+    id: '_F1TzrpKoXk',
+    title: 'jOpenSpace 2025: InfluxDB a proč ho (ne)používat',
+    event: 'jOpenSpace',
+    year: '2025',
+  },
+];
+---
+
+<BaseLayout title="Talks - Vladimír Oraný" description="Conference talks and presentations">
+  <div class="container">
+    <header class="page-header">
+      <h1>Conference Talks</h1>
+      <p>Presentations about Micronaut, Groovy, AWS, and developer tools</p>
+    </header>
+
+    <div class="talks-grid">
+      {talks.map((talk) => (
+        <article class="talk-card">
+          <div class="video-wrapper">
+            <iframe
+              src={`https://www.youtube.com/embed/${talk.id}`}
+              title={talk.title}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="talk-info">
+            <h2>
+              <a href={`https://www.youtube.com/watch?v=${talk.id}`} target="_blank" rel="noopener">
+                {talk.title}
+              </a>
+            </h2>
+            <p class="meta">
+              <span class="event">{talk.event}</span>
+              <span class="year">{talk.year}</span>
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .talks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .talk-card {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .talk-card:hover {
+    border-color: var(--accent);
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .talk-info {
+    padding: 1.5rem;
+  }
+
+  .talk-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .event {
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .talks-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
