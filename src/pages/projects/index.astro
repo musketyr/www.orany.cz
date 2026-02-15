@@ -1,37 +1,37 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+// Sorted by most recent activity within each category
 const projects = {
-  personal: [
-    { name: 'gradle-fatjar-plugin', url: 'https://github.com/musketyr/gradle-fatjar-plugin', description: 'Gradle FatJAR Plugin', stars: 180 },
-    { name: 'bom-seed', url: 'https://github.com/musketyr/bom-seed', description: 'Seed project for creating BOMs', stars: 11 },
-    { name: 'gpars-appengine', url: 'https://github.com/musketyr/gpars-appengine', description: 'GPars App Engine', stars: 8 },
-    { name: 'duckapter', url: 'https://github.com/musketyr/duckapter', description: 'Duck-type adapter library for Groovy', stars: 8 },
-    { name: 'wro4j-gradle-plugin', url: 'https://github.com/musketyr/wro4j-gradle-plugin', description: 'Gradle Wro4J Plugin', stars: 6 },
-  ],
-  dslBuilders: [
-    { name: 'groovy-closure-support', org: 'dsl-builders', url: 'https://github.com/dsl-builders/groovy-closure-support', description: 'Groovy closure support for DSL builders', stars: 2 },
-    { name: 'expectations', org: 'dsl-builders', url: 'https://github.com/dsl-builders/expectations', description: 'Expectations library for testing', stars: 2 },
-  ],
   agorapulse: [
-    { name: 'grails-aws-sdk', url: 'https://github.com/agorapulse/grails-aws-sdk', description: 'Amazon Web Services SDK Grails Plugin', stars: 59 },
-    { name: 'micronaut-aws-sdk', url: 'https://github.com/agorapulse/micronaut-aws-sdk', description: 'Agorapulse AWS SDK for Micronaut', stars: 39 },
-    { name: 'grails-facebook-sdk', url: 'https://github.com/agorapulse/grails-facebook-sdk', description: 'Facebook SDK Grails Plugin', stars: 30 },
-    { name: 'micronaut-worker', url: 'https://github.com/agorapulse/micronaut-worker', description: 'Micronaut Worker - background job processing', stars: 9 },
-    { name: 'micronaut-console', url: 'https://github.com/agorapulse/micronaut-console', description: 'Micronaut Console', stars: null },
-    { name: 'micronaut-grails', url: 'https://github.com/agorapulse/micronaut-grails', description: 'Micronaut Grails integration', stars: null },
-    { name: 'micronaut-log4aws', url: 'https://github.com/agorapulse/micronaut-log4aws', description: 'Micronaut Log4AWS', stars: null },
-    { name: 'micronaut-permissions', url: 'https://github.com/agorapulse/micronaut-permissions', description: 'Micronaut Permissions', stars: null },
-    { name: 'micronaut-slack', url: 'https://github.com/agorapulse/micronaut-slack', description: 'Micronaut Slack integration', stars: null },
-    { name: 'micronaut-snitch', url: 'https://github.com/agorapulse/micronaut-snitch', description: 'Micronaut Snitch - monitoring', stars: null },
-    { name: 'micronaut-newrelic', url: 'https://github.com/agorapulse/micronaut-newrelic', description: 'Micronaut New Relic integration', stars: null },
-    { name: 'micronaut-segment', url: 'https://github.com/agorapulse/micronaut-segment', description: 'Micronaut Segment analytics', stars: null },
+    { name: 'micronaut-aws-sdk', url: 'https://github.com/agorapulse/micronaut-aws-sdk', description: 'Micronaut libraries for AWS — DynamoDB, S3, SES, SNS, SQS and more', stars: 39, updated: '2026' },
+    { name: 'micronaut-console', url: 'https://github.com/agorapulse/micronaut-console', description: 'Execute arbitrary code in running Micronaut apps', stars: null, updated: '2026' },
+    { name: 'micronaut-worker', url: 'https://github.com/agorapulse/micronaut-worker', description: 'Advanced scheduling and work distribution for Micronaut', stars: 9, updated: '2025' },
+    { name: 'micronaut-log4aws', url: 'https://github.com/agorapulse/micronaut-log4aws', description: 'Sentry integration for Micronaut Lambda on AWS', stars: null, updated: '2025' },
+    { name: 'micronaut-newrelic', url: 'https://github.com/agorapulse/micronaut-newrelic', description: 'Send custom events to New Relic from Micronaut', stars: null, updated: '2025' },
+    { name: 'micronaut-slack', url: 'https://github.com/agorapulse/micronaut-slack', description: 'Idiomatic Slack API integration for Micronaut', stars: null, updated: '2025' },
+    { name: 'micronaut-grails', url: 'https://github.com/agorapulse/micronaut-grails', description: 'Use Micronaut beans in Grails 4+ and Spring apps', stars: null, updated: '2025' },
+    { name: 'micronaut-snitch', url: 'https://github.com/agorapulse/micronaut-snitch', description: 'Track running async jobs (Quartz, Scheduled)', stars: null, updated: '2025' },
+    { name: 'micronaut-segment', url: 'https://github.com/agorapulse/micronaut-segment', description: 'Segment analytics for Micronaut and Grails', stars: null, updated: '2025' },
+    { name: 'micronaut-permissions', url: 'https://github.com/agorapulse/micronaut-permissions', description: 'Lightweight object-level permissions for Micronaut', stars: null, updated: '2025' },
+    { name: 'grails-aws-sdk', url: 'https://github.com/agorapulse/grails-aws-sdk', description: 'Amazon Web Services SDK Grails Plugin', stars: 59, updated: '2023' },
+    { name: 'grails-facebook-sdk', url: 'https://github.com/agorapulse/grails-facebook-sdk', description: 'Facebook SDK Grails Plugin', stars: 30, updated: '2023' },
   ],
   testing: [
-    { name: 'Dru', url: 'https://github.com/agorapulse/dru', description: 'Data Reconstruction Utility - test data management', stars: null },
-    { name: 'Gru', url: 'https://github.com/agorapulse/gru', description: 'HTTP interaction testing framework', stars: null },
-    { name: 'Fixt', url: 'https://github.com/agorapulse/fixt', description: 'Fixture organizer for tests', stars: null },
-    { name: 'Office Unit', url: 'https://github.com/agorapulse/office-unit', description: 'MS Office document matching', stars: null },
+    { name: 'Gru', url: 'https://github.com/agorapulse/gru', description: 'HTTP interaction testing framework for Micronaut, Grails & Spring', stars: null, updated: '2025' },
+    { name: 'Dru', url: 'https://github.com/agorapulse/dru', description: 'Data Reconstruction Utility — manage test data from production exports', stars: null, updated: '2025' },
+    { name: 'Fixt', url: 'https://github.com/agorapulse/fixt', description: 'Organize test fixtures in directories matching your test classes', stars: null, updated: null },
+    { name: 'Office Unit', url: 'https://github.com/agorapulse/office-unit', description: 'Match and assert Microsoft Office documents in tests', stars: null, updated: null },
+  ],
+  dslBuilders: [
+    { name: 'expectations', org: 'dsl-builders', url: 'https://github.com/dsl-builders/expectations', description: 'Expectations DSL builder for expressive assertions', stars: 2, updated: '2025' },
+    { name: 'groovy-closure-support', org: 'dsl-builders', url: 'https://github.com/dsl-builders/groovy-closure-support', description: 'Groovy closure support for Java DSL builders', stars: 2, updated: '2023' },
+  ],
+  personal: [
+    { name: 'duckapter', url: 'https://github.com/musketyr/duckapter', description: 'Duck-type adapter library for Groovy', stars: 8, updated: '2023' },
+    { name: 'bom-seed', url: 'https://github.com/musketyr/bom-seed', description: 'Seed project for creating Maven BOMs', stars: 11, updated: '2019' },
+    { name: 'gradle-fatjar-plugin', url: 'https://github.com/musketyr/gradle-fatjar-plugin', description: 'Gradle FatJAR Plugin', stars: 180, updated: '2015' },
+    { name: 'gpars-appengine', url: 'https://github.com/musketyr/gpars-appengine', description: 'GPars concurrency on Google App Engine', stars: 8, updated: '2013' },
   ],
 };
 ---
@@ -44,37 +44,7 @@ const projects = {
     </header>
 
     <section class="project-section">
-      <h2>Personal Projects</h2>
-      <div class="project-grid">
-        {projects.personal.map((project) => (
-          <article class="project-card">
-            <h3>
-              <a href={project.url} target="_blank" rel="noopener">{project.name}</a>
-            </h3>
-            <p>{project.description}</p>
-            {project.stars && <span class="stars">⭐ {project.stars}</span>}
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="project-section">
-      <h2>DSL Builders</h2>
-      <div class="project-grid">
-        {projects.dslBuilders.map((project) => (
-          <article class="project-card">
-            <h3>
-              <a href={project.url} target="_blank" rel="noopener">{project.name}</a>
-            </h3>
-            <p>{project.description}</p>
-            {project.stars && <span class="stars">⭐ {project.stars}</span>}
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="project-section">
-      <h2>Agorapulse</h2>
+      <h2>Agorapulse — Micronaut Libraries</h2>
       <div class="project-grid">
         {projects.agorapulse.map((project) => (
           <article class="project-card">
@@ -82,7 +52,10 @@ const projects = {
               <a href={project.url} target="_blank" rel="noopener">{project.name}</a>
             </h3>
             <p>{project.description}</p>
-            {project.stars && <span class="stars">⭐ {project.stars}</span>}
+            <div class="card-meta">
+              {project.stars && <span class="stars">⭐ {project.stars}</span>}
+              {project.updated && <span class="updated">Updated {project.updated}</span>}
+            </div>
           </article>
         ))}
       </div>
@@ -97,7 +70,46 @@ const projects = {
               <a href={project.url} target="_blank" rel="noopener">{project.name}</a>
             </h3>
             <p>{project.description}</p>
-            {project.stars && <span class="stars">⭐ {project.stars}</span>}
+            <div class="card-meta">
+              {project.stars && <span class="stars">⭐ {project.stars}</span>}
+              {project.updated && <span class="updated">Updated {project.updated}</span>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="project-section">
+      <h2>DSL Builders</h2>
+      <div class="project-grid">
+        {projects.dslBuilders.map((project) => (
+          <article class="project-card">
+            <h3>
+              <a href={project.url} target="_blank" rel="noopener">{project.name}</a>
+            </h3>
+            <p>{project.description}</p>
+            <div class="card-meta">
+              {project.stars && <span class="stars">⭐ {project.stars}</span>}
+              {project.updated && <span class="updated">Updated {project.updated}</span>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="project-section">
+      <h2>Personal Projects</h2>
+      <div class="project-grid">
+        {projects.personal.map((project) => (
+          <article class="project-card">
+            <h3>
+              <a href={project.url} target="_blank" rel="noopener">{project.name}</a>
+            </h3>
+            <p>{project.description}</p>
+            <div class="card-meta">
+              {project.stars && <span class="stars">⭐ {project.stars}</span>}
+              {project.updated && <span class="updated">Updated {project.updated}</span>}
+            </div>
           </article>
         ))}
       </div>
@@ -161,9 +173,21 @@ const projects = {
     margin-bottom: 0.75rem;
   }
 
+  .card-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
   .stars {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
     color: var(--accent);
+  }
+
+  .updated {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
   }
 </style>
