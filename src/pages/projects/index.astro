@@ -10,15 +10,12 @@ const projects = {
     { name: 'micronaut-log4aws', url: 'https://github.com/agorapulse/micronaut-log4aws', description: 'Sentry integration for Micronaut Lambda on AWS', stars: null, updated: '2025' },
     { name: 'micronaut-newrelic', url: 'https://github.com/agorapulse/micronaut-newrelic', description: 'Send custom events to New Relic from Micronaut', stars: null, updated: '2025' },
     { name: 'micronaut-slack', url: 'https://github.com/agorapulse/micronaut-slack', description: 'Idiomatic Slack API integration for Micronaut', stars: null, updated: '2025' },
-    { name: 'micronaut-grails', url: 'https://github.com/agorapulse/micronaut-grails', description: 'Use Micronaut beans in Grails 4+ and Spring apps', stars: null, updated: '2025' },
     { name: 'micronaut-snitch', url: 'https://github.com/agorapulse/micronaut-snitch', description: 'Track running async jobs (Quartz, Scheduled)', stars: null, updated: '2025' },
-    { name: 'micronaut-segment', url: 'https://github.com/agorapulse/micronaut-segment', description: 'Segment analytics for Micronaut and Grails', stars: null, updated: '2025' },
+    { name: 'micronaut-segment', url: 'https://github.com/agorapulse/micronaut-segment', description: 'Segment analytics for Micronaut', stars: null, updated: '2025' },
     { name: 'micronaut-permissions', url: 'https://github.com/agorapulse/micronaut-permissions', description: 'Lightweight object-level permissions for Micronaut', stars: null, updated: '2025' },
-    { name: 'grails-aws-sdk', url: 'https://github.com/agorapulse/grails-aws-sdk', description: 'Amazon Web Services SDK Grails Plugin', stars: 59, updated: '2023' },
-    { name: 'grails-facebook-sdk', url: 'https://github.com/agorapulse/grails-facebook-sdk', description: 'Facebook SDK Grails Plugin', stars: 30, updated: '2023' },
   ],
   testing: [
-    { name: 'Gru', url: 'https://github.com/agorapulse/gru', description: 'HTTP interaction testing framework for Micronaut, Grails & Spring', stars: null, updated: '2025' },
+    { name: 'Gru', url: 'https://github.com/agorapulse/gru', description: 'HTTP interaction testing framework for Micronaut & Spring', stars: null, updated: '2025' },
     { name: 'Dru', url: 'https://github.com/agorapulse/dru', description: 'Data Reconstruction Utility — manage test data from production exports', stars: null, updated: '2025' },
     { name: 'Fixt', url: 'https://github.com/agorapulse/fixt', description: 'Organize test fixtures in directories matching your test classes', stars: null, updated: null },
     { name: 'Office Unit', url: 'https://github.com/agorapulse/office-unit', description: 'Match and assert Microsoft Office documents in tests', stars: null, updated: null },
@@ -27,12 +24,6 @@ const projects = {
     { name: 'expectations', org: 'dsl-builders', url: 'https://github.com/dsl-builders/expectations', description: 'Expectations DSL builder for expressive assertions', stars: 2, updated: '2025' },
     { name: 'groovy-closure-support', org: 'dsl-builders', url: 'https://github.com/dsl-builders/groovy-closure-support', description: 'Groovy closure support for Java DSL builders', stars: 2, updated: '2023' },
   ],
-  personal: [
-    { name: 'duckapter', url: 'https://github.com/musketyr/duckapter', description: 'Duck-type adapter library for Groovy', stars: 8, updated: '2023' },
-    { name: 'bom-seed', url: 'https://github.com/musketyr/bom-seed', description: 'Seed project for creating Maven BOMs', stars: 11, updated: '2019' },
-    { name: 'gradle-fatjar-plugin', url: 'https://github.com/musketyr/gradle-fatjar-plugin', description: 'Gradle FatJAR Plugin', stars: 180, updated: '2015' },
-    { name: 'gpars-appengine', url: 'https://github.com/musketyr/gpars-appengine', description: 'GPars concurrency on Google App Engine', stars: 8, updated: '2013' },
-  ],
 };
 ---
 
@@ -40,7 +31,7 @@ const projects = {
   <div class="container">
     <header class="page-header">
       <h1>Open Source Projects</h1>
-      <p>Libraries, tools, and plugins for Groovy, Grails, and Micronaut</p>
+      <p>Libraries, tools, and plugins for Micronaut and the JVM</p>
     </header>
 
     <section class="project-section">
@@ -97,23 +88,6 @@ const projects = {
       </div>
     </section>
 
-    <section class="project-section">
-      <h2>Personal Projects</h2>
-      <div class="project-grid">
-        {projects.personal.map((project) => (
-          <article class="project-card">
-            <h3>
-              <a href={project.url} target="_blank" rel="noopener">{project.name}</a>
-            </h3>
-            <p>{project.description}</p>
-            <div class="card-meta">
-              {project.stars && <span class="stars">⭐ {project.stars}</span>}
-              {project.updated && <span class="updated">Updated {project.updated}</span>}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
   </div>
 </BaseLayout>
 
