@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://orany.cz',
+  site: 'https://telegraphic.dev',
   integrations: [mdx()],
   markdown: {
     shikiConfig: {

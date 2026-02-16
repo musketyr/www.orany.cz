@@ -4,7 +4,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Principal Software Engineer" } = Astro.props;
+const { title, description = "The Telegraphic Developer — Tech blog by Vladimír Oraný" } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,7 +23,7 @@ const { title, description = "Principal Software Engineer" } = Astro.props;
   <body>
     <nav>
       <div class="container">
-        <a href="/" class="logo">orany.cz</a>
+        <a href="/" class="logo">telegraphic.dev</a>
         <div class="nav-links">
           <a href="/blog">Blog</a>
           <a href="/talks">Talks</a>
@@ -37,11 +37,12 @@ const { title, description = "Principal Software Engineer" } = Astro.props;
     </main>
     <footer>
       <div class="container">
-        <p>&copy; {new Date().getFullYear()} Vladimír Oraný. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Telegraphic. All rights reserved.</p>
         <div class="social-links">
+          <a href="https://telegraphic.substack.com" target="_blank" rel="noopener">Substack</a>
+          <a href="https://bsky.app/profile/telegraphic.dev" target="_blank" rel="noopener">Bluesky</a>
+          <a href="https://x.com/telegraphic_dev" target="_blank" rel="noopener">X</a>
           <a href="https://github.com/musketyr" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://medium.com/@vladimir.orany" target="_blank" rel="noopener">Medium</a>
-          <a href="https://www.linkedin.com/in/vladim%C3%ADr-oran%C3%BD-22679711/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </footer>

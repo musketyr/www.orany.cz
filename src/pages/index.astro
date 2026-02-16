@@ -8,15 +8,20 @@ const recentPosts = allPosts
   .slice(0, 5);
 ---
 
-<BaseLayout title="Vladimír Oraný - Principal Software Engineer">
+<BaseLayout title="The Telegraphic Developer — Tech Blog by Vladimír Oraný">
   <div class="container">
     <section class="hero">
-      <h1>Vladimír Oraný</h1>
-      <p class="tagline">Principal Software Engineer</p>
+      <h1>The Telegraphic Developer</h1>
+      <p class="tagline">by Vladimír Oraný</p>
       <p class="intro">
-        Passionate about Groovy, Micronaut, and building developer tools that make life easier. 
-        Open source contributor, conference speaker, and occasional blogger.
+        Groovy, Micronaut, Java, and developer tools — dispatches from the JVM trenches.
+        Open source contributor, conference speaker, and newsletter author.
       </p>
+      <div class="hero-links">
+        <a href="https://telegraphic.substack.com" target="_blank" rel="noopener" class="hero-link">Newsletter</a>
+        <a href="https://bsky.app/profile/telegraphic.dev" target="_blank" rel="noopener" class="hero-link">Bluesky</a>
+        <a href="https://x.com/telegraphic_dev" target="_blank" rel="noopener" class="hero-link">X</a>
+      </div>
     </section>
 
     <section class="recent-posts">
@@ -115,6 +120,28 @@ const recentPosts = allPosts
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
+  }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .hero-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   section {
