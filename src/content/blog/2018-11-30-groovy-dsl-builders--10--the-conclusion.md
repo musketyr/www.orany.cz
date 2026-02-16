@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #10: The Conclusion"
-date: 2018-11-30
+date: 2018-11-30T17:00:00Z
 slug: groovy-dsl-builders--10--the-conclusion
 source: medium
 mediumId: "9d2b961dbc55"

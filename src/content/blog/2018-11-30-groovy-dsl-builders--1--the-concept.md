@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #1: The Concept"
-date: 2018-11-30
+date: 2018-11-30T08:00:00Z
 slug: groovy-dsl-builders--1--the-concept
 source: medium
 mediumId: "2d5a97fa0a51"

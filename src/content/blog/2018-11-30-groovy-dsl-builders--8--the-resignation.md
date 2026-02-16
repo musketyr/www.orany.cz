@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #8: The Resignation"
-date: 2018-11-30
+date: 2018-11-30T15:00:00Z
 slug: groovy-dsl-builders--8--the-resignation
 source: medium
 mediumId: "99bd118538b4"

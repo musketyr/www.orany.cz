@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #3: Static Compilation"
-date: 2021-08-03
+date: 2021-08-03T11:00:00Z
 slug: goodbye-grails--hello-micronaut--3--static-compilation
 source: medium
 mediumId: "a5a01bad2a06"

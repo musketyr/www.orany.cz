@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #5: Marshalling"
-date: 2021-08-03
+date: 2021-08-03T13:00:00Z
 slug: goodbye-grails--hello-micronaut--5--marshalling
 source: medium
 mediumId: "7b69d9a132bc"

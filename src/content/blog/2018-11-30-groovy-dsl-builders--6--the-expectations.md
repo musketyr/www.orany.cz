@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #6: The Expectations"
-date: 2018-11-30
+date: 2018-11-30T13:00:00Z
 slug: groovy-dsl-builders--6--the-expectations
 source: medium
 mediumId: "83ced4b8f2b"

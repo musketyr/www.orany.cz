@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #4: The Disguise"
-date: 2018-11-30
+date: 2018-11-30T11:00:00Z
 slug: groovy-dsl-builders--4--the-disguise
 source: medium
 mediumId: "1e2edc2311f8"

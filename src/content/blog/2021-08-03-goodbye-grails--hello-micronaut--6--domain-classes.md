@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #6: Domain Classes"
-date: 2021-08-03
+date: 2021-08-03T14:00:00Z
 slug: goodbye-grails--hello-micronaut--6--domain-classes
 source: medium
 mediumId: "ad2d2782059f"

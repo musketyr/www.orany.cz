@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #5: The Desiccation"
-date: 2018-11-30
+date: 2018-11-30T12:00:00Z
 slug: groovy-dsl-builders--5--the-desiccation
 source: medium
 mediumId: "afb47ebbf89d"

@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #2: Configuration"
-date: 2021-08-03
+date: 2021-08-03T10:00:00Z
 slug: goodbye-grails--hello-micronaut--2--configuration
 source: medium
 mediumId: "6aaab659112a"

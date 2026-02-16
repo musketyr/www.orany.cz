@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #2: The Essence"
-date: 2018-11-30
+date: 2018-11-30T09:00:00Z
 slug: groovy-dsl-builders--2--the-essence
 source: medium
 mediumId: "fda1f2ebe657"

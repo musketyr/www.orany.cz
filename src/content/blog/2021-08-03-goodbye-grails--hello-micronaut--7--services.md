@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #7: Services"
-date: 2021-08-03
+date: 2021-08-03T15:00:00Z
 slug: goodbye-grails--hello-micronaut--7--services
 source: medium
 mediumId: "f7d1ba4025f2"

@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #0: Introduction"
-date: 2021-08-03
+date: 2021-08-03T08:00:00Z
 slug: goodbye-grails--hello-micronaut--0--introduction
 source: medium
 mediumId: "ff7470cecf9d"

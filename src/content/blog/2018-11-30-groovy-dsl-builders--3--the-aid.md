@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #3: The Aid"
-date: 2018-11-30
+date: 2018-11-30T10:00:00Z
 slug: groovy-dsl-builders--3--the-aid
 source: medium
 mediumId: "df2e9a02557a"

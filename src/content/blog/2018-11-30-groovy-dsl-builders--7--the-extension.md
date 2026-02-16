@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #7: The Extension"
-date: 2018-11-30
+date: 2018-11-30T14:00:00Z
 slug: groovy-dsl-builders--7--the-extension
 source: medium
 mediumId: "d612fd261471"

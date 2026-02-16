@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #9: Micronaut Application"
-date: 2021-08-03
+date: 2021-08-03T17:00:00Z
 slug: goodbye-grails--hello-micronaut--9--micronaut-application
 source: medium
 mediumId: "c0d3956afe47"

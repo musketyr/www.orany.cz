@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #1: Multiproject"
-date: 2021-08-03
+date: 2021-08-03T09:00:00Z
 slug: goodbye-grails--hello-micronaut--1--multiproject
 source: medium
 mediumId: "ffeaab056e28"

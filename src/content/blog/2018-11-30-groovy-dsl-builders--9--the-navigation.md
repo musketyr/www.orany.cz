@@ -1,6 +1,6 @@
 ---
 title: "Groovy DSL Builders #9: The Navigation"
-date: 2018-11-30
+date: 2018-11-30T16:00:00Z
 slug: groovy-dsl-builders--9--the-navigation
 source: medium
 mediumId: "d065f0253e98"

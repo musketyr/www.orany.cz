@@ -1,6 +1,6 @@
 ---
 title: "Goodbye Grails, Hello Micronaut #8: Controllers"
-date: 2021-08-03
+date: 2021-08-03T16:00:00Z
 slug: goodbye-grails--hello-micronaut--8--controllers
 source: medium
 mediumId: "724e51ec3925"
