@@ -17,7 +17,7 @@ _This is the tenth and the last post in a series that will guide you through the
 So far, we have been using Micronaut with GORM entities. This combination is very suboptimal, but as the migration from GORM to Micronaut Data seems to be the most difficult part of the Grails to Micronaut migration, it is better to keep the migration of the data layer as the very last step.
 
 [**Micronaut Data**  
-_Data Repository Support for Micronaut Version: Micronaut Data is a database access toolkit that uses Ahead of Time…_micronaut-projects.github.io](https://micronaut-projects.github.io/micronaut-data/latest/guide/ "https://micronaut-projects.github.io/micronaut-data/latest/guide/")[](https://micronaut-projects.github.io/micronaut-data/latest/guide/)
+_Data Repository Support for Micronaut Version: Micronaut Data is a database access toolkit that uses Ahead of Time…_micronaut-projects.github.io](https://micronaut-projects.github.io/micronaut-data/latest/guide/ "https://micronaut-projects.github.io/micronaut-data/latest/guide/")
 
 Micronaut Data provides two implementations — Micronaut Data JPA and Micronaut Data JDBC. Let’s first explain these two, starting with the more lightweight one — Micronaut Data JDBC
 
@@ -55,7 +55,7 @@ Micronaut Data JPA is more powerful and a good fit if you require some advanced 
 Either you choose Micronaut Data JPA or Micronaut Data JDBC there is a generator library that can help us with the migration.
 
 [**Grails Integration for Micronaut**  
-agorapulse.github.io](https://agorapulse.github.io/micronaut-grails/#_gorm_to_micronaut_data_jpa_generator "https://agorapulse.github.io/micronaut-grails/#_gorm_to_micronaut_data_jpa_generator")[](https://agorapulse.github.io/micronaut-grails/#_gorm_to_micronaut_data_jpa_generator)
+agorapulse.github.io](https://agorapulse.github.io/micronaut-grails/#_gorm_to_micronaut_data_jpa_generator "https://agorapulse.github.io/micronaut-grails/#_gorm_to_micronaut_data_jpa_generator")
 
 First of all, let's add a `-legacy` suffix to the data project's directory and its build file. For example, `hello-data` directory will become `hello-data-legacy` and `hello-data.gradle` will become `hello-data-legacy.gradle`. Don't forget to also update the new name of the project in the other build files.
 
@@ -97,7 +97,9 @@ At this moment, we are having the new data model implemented with Micronaut Data
 
 Running GORM and Micronaut Data side by side is doable but doing so requires some additional hacks. Therefore, let's switch completely to the new data model. Delete the legacy data model and test data directories and replace the projects' dependencies with the new model ones. If you haven't done so, then also delete the old Grails application. Fix all the compilation errors. This may require making some minor updates in the entities or the repositories. Keep running the following command until you replace all the usages appropriately.
 
+```
 ./gradlew classes testClasses
+```
 
 For the example project, you can check the changes [here](https://github.com/agorapulse/goodbye-grails-hello-micronaut/commit/3ce205e5ff1116c569fd582ed4c338cdd2ebaf5c).
 
@@ -108,7 +110,7 @@ This is the last post in the series. Your feedback is highly appreciated. Feel f
 What next? So far the Micronaut version was limited by Grails so the next step should be upgrading the Micronaut version to the latest one but this is out of the scope of this series but you may find the following article helpful if you find yourself using libraries which were created for Micronaut 1.x.
 
 [**How to Resolve Conflicts in Micronaut 1.x and 2.x Library Versions in Gradle**  
-_Micronaut 2.x version has changed the Maven coordinates for many libraries that crate the Micronaut ecosystem. The…_medium.com](https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce "https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce")[](https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce)
+_Micronaut 2.x version has changed the Maven coordinates for many libraries that crate the Micronaut ecosystem. The…_medium.com](https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce "https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce")
 
 #### Table of Contents
 
@@ -126,7 +128,7 @@ _Micronaut 2.x version has changed the Maven coordinates for many libraries that
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")[](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
+_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
 
 By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/759c6c36bc7).
 

@@ -33,24 +33,20 @@ Method Using Early Returns to Simplify Conditions
 This topic, especially the last part, is obviously a part of [religious wars](https://hackerchick.com/religious-war-48293-single-vs-multiple/). The refactorings made above are based on [Martin Fowler's refactorings](https://refactoring.com/catalog/):
 
 [**Replace Nested Conditional with Guard Clauses**  
-_Edit description_refactoring.com](https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html "https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html")[](https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html)
+_Edit description_refactoring.com](https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html "https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html")
 
 [**Replace Temp with Query**  
-_Edit description_refactoring.com](https://refactoring.com/catalog/replaceTempWithQuery.html "https://refactoring.com/catalog/replaceTempWithQuery.html")[](https://refactoring.com/catalog/replaceTempWithQuery.html)
+_Edit description_refactoring.com](https://refactoring.com/catalog/replaceTempWithQuery.html "https://refactoring.com/catalog/replaceTempWithQuery.html")
 
 You can also inspect a couple of related articles:
 
 [**Local Variables Are Evil (or Just Irritating) - DZone**  
-_Every now and then, I reread parts of Refactoring by Martin Fowler. The main reason is of course to look for…_dzone.com](https://dzone.com/articles/local-variables-are-evil-or "https://dzone.com/articles/local-variables-are-evil-or")[](https://dzone.com/articles/local-variables-are-evil-or)
+_Every now and then, I reread parts of Refactoring by Martin Fowler. The main reason is of course to look for…_dzone.com](https://dzone.com/articles/local-variables-are-evil-or "https://dzone.com/articles/local-variables-are-evil-or")
 
 [**Where did the notion of "one return only" come from?**  
-_I often talk to programmers who say " Don't put multiple return statements in the same method." When I ask them to tell…_softwareengineering.stackexchange.com](https://softwareengineering.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from "https://softwareengineering.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from")[](https://softwareengineering.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from)
+_I often talk to programmers who say " Don't put multiple return statements in the same method." When I ask them to tell…_softwareengineering.stackexchange.com](https://softwareengineering.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from "https://softwareengineering.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from")
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [July 8, 2019](https://medium.com/p/33e190ff0bbc).
 
 [Canonical link](https://medium.com/@musketyr/code-smell-variable-initialized-inside-if-else-conditional-block-33e190ff0bbc)

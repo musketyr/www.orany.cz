@@ -107,10 +107,6 @@ Read [the full documentation](https://agorapulse.github.io/dru/) to get more inf
 _Please, clap your 👏 if you find this article useful and help others find it._
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [September 28, 2017](https://medium.com/p/b4c0686459d7).
 
 [Canonical link](https://medium.com/@musketyr/the-flaws-in-polyglot-persistence-b4c0686459d7)

@@ -38,13 +38,17 @@ docker compose up -d
 
 Then you should be able to run the application from the root of the project:
 
+```
 ./gradlew :hello-mn:run
+```
 
 When you query the server from either cURL or some HTTP client then you should get the default result:
 
-curl [http://localhost:8080/vehicle/1](http://localhost:8080/vehicle/1)
+```
+curl http://localhost:8080/vehicle/1
 
-\# {"id":1,"name":"The Box","make":"Citroen","model":"Berlingo"}
+# {"id":1,"name":"The Box","make":"Citroen","model":"Berlingo"}
+```
 
 * * *
 
@@ -72,7 +76,7 @@ _Although the Micronaut application is up and running there is the very last ste
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")[](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
+_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
 
 By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/c0d3956afe47).
 

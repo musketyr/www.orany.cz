@@ -45,10 +45,6 @@ docker run -d -p 8080:8080 products-with-graavm
 curl -v [http://localhost:8080/product](http://localhost:8080/product)
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [October 19, 2018](https://medium.com/p/464629d95dbd).
 
 [Canonical link](https://medium.com/@musketyr/how-to-deploy-java-application-with-docker-and-graalvm-464629d95dbd)

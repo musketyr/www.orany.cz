@@ -11,7 +11,7 @@ mediumId: "37a6565f217d"
 ### What is Micronaut?
 
 [**Micronaut: A Modern Microservice Framework for the JVM**  
-_A modern, JVM-based, full-stack framework for building modular, easily testable microservice applications._micronaut.io](http://micronaut.io/ "http://micronaut.io/")[](http://micronaut.io/)
+_A modern, JVM-based, full-stack framework for building modular, easily testable microservice applications._micronaut.io](http://micronaut.io/ "http://micronaut.io/")
 
 [Micronaut](http://micronaut.io/) is a new full-stack framework build from the ground by the [Grails](https://grails.org/) team officially announced at [Greach 2018](http://2018.greachconf.com/). It focuses on modularity, minimal memory footprint and startup time which makes it a perfect solution for running on [AWS](https://hackernoon.com/tagged/aws) lambda or similar environments. Server written in [Java](https://hackernoon.com/tagged/java) requires less than one second to start with minimal JAR size of 8 MB. [Micronaut](http://micronaut.io/) supports Java, Groovy and Kotlin language.
 
@@ -64,12 +64,12 @@ mn -version
 _The_ [_documentation_](https://docs.micronaut.io/latest/guide/index.html) _is already very comprehensive:_
 
 [**Micronaut**  
-_In addition, with Micronaut your application startup time and memory consumption is not bound to the size of your…_docs.micronaut.io](https://docs.micronaut.io/latest/guide/index.html "https://docs.micronaut.io/latest/guide/index.html")[](https://docs.micronaut.io/latest/guide/index.html)
+_In addition, with Micronaut your application startup time and memory consumption is not bound to the size of your…_docs.micronaut.io](https://docs.micronaut.io/latest/guide/index.html "https://docs.micronaut.io/latest/guide/index.html")
 
 _There are also_ [_several guides_](http://guides.micronaut.io/) _available already:_
 
 [**Micronaut: A Modern Microservice Framework for the JVM**  
-_A modern, JVM-based, full-stack framework for building modular, easily testable microservice applications._guides.micronaut.io](http://guides.micronaut.io/ "http://guides.micronaut.io/")[](http://guides.micronaut.io/)
+_A modern, JVM-based, full-stack framework for building modular, easily testable microservice applications._guides.micronaut.io](http://guides.micronaut.io/ "http://guides.micronaut.io/")
 
 By [Vladimír Oraný](https://medium.com/@musketyr) on [March 17, 2018](https://medium.com/p/37a6565f217d).
 

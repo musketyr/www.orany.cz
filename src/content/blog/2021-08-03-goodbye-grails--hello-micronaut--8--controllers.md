@@ -42,7 +42,7 @@ We also need to copy `MockDataServiceFactory` into the `hello-api` project. The 
 Migrating controllers themselves is relatively easy. You may face another there are still some parts missing e.g. HTTP filters, Grails Security. You will have to find their counterparts in the [Micronaut Documentation](https://micronaut.io/docs/):
 
 [**Docs - Micronaut Framework**  
-_Access Micronaut framework documentation here._micronaut.io](https://micronaut.io/docs/ "https://micronaut.io/docs/")[](https://micronaut.io/docs/)
+_Access Micronaut framework documentation here._micronaut.io](https://micronaut.io/docs/ "https://micronaut.io/docs/")
 
 _In the next part, we are going to create the new_ [_Micronaut application_](https://medium.com/p/c0d3956afe47)_._
 
@@ -62,7 +62,7 @@ _In the next part, we are going to create the new_ [_Micronaut application_](htt
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")[](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
+_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
 
 By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/724e51ec3925).
 

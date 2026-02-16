@@ -14,13 +14,11 @@ mediumId: "512b18f5c909"
 
 There are many tools that can help you keep your repositories up to date like a [Dependabot](https://github.com/dependabot) but if you need to keep the control in your hands then you need to do the update yourself. But updating to the latest version possible once it's released is not always an option. Let's take an example of excellent test support library [Testcontainers](https://www.testcontainers.org). We'll use the Pierrot command line interface to perform the migration.
 
-[**Pierrot - Multi-repository GitHub Governance Tool**  
-_Pierrot is a tool that helps you to manage many GitHub repositories with single command. The typical use cases…_agorapulse.github.io](https://agorapulse.github.io/pierrot/ "https://agorapulse.github.io/pierrot/")[](https://agorapulse.github.io/pierrot/)
+[**Pierrot - Multi-repository GitHub Governance Tool**](https://agorapulse.github.io/pierrot/)https://agorapulse.github.io/pierrot/)
 
 Pierrot can be installed using [SDKMAN](https://sdkman.io).
 
-[**Home - SDKMAN! the Software Development Kit Manager**  
-_Making life easier. No more trawling download pages, extracting archives, messing with \_HOME and PATH environment…_sdkman.io](https://sdkman.io "https://sdkman.io")[](https://sdkman.io)
+[**Home - SDKMAN! the Software Development Kit Manager**](https://sdkman.io)https://sdkman.io)
 
 ```
 # if you don't have SDKMAN already installedcurl -s "https://get.sdkman.io" | bashsource "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -36,29 +34,35 @@ Once installed you should be able to run the command and get the list of availab
 
 Pierrot requires [GitHub token to access the repositories](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and you should also set up the organization to search, so you don't have to repeat these in every call.
 
-[**Creating a personal access token - GitHub Docs**  
-_Note: If you use GitHub CLI to authenticate to GitHub on the command line, you can skip generating a personal access…_docs.github.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token")[](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+[**Creating a personal access token - GitHub Docs**](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
-export GITHUB\_TOKEN=yourtoken  
-export GITHUB\_ORGANIZATION=yourorganization
+```
+export GITHUB_TOKEN=yourtoken
+export GITHUB_ORGANIZATION=yourorganization
+```
 
 Now we can start searching inside the Gradle files, our build system of choice.
 
+```
 pierrot search extension:gradle testcontainers
+```
 
 The search term is based on the [GitHub content search syntax](https://docs.github.com/en/search-github/searching-on-github/searching-code).
 
-[**Searching code - GitHub Docs**  
-_You can search globally across all of GitHub, or scope your search to a particular repository or organization. For more…_docs.github.com](https://docs.github.com/en/search-github/searching-on-github/searching-code "https://docs.github.com/en/search-github/searching-on-github/searching-code")[](https://docs.github.com/en/search-github/searching-on-github/searching-code)
+[**Searching code - GitHub Docs**](https://docs.github.com/en/search-github/searching-on-github/searching-code)https://docs.github.com/en/search-github/searching-on-github/searching-code)
 
 We will get a pageable list of results such as this one:
 
 If we are happy with the results that they contain all the files we're interested in then we can actually download them using the `pull` command:
 
-mkdir testcontainers-1.16.3-upgrade  
+```
+mkdir testcontainers-1.16.3-upgrade
 cd testcontainers-1.16.3-upgrade
+```
 
+```
 pierrot pull -P extension:gradle testcontainers
+```
 
 _Using_ `_-P_` _we disable pagination so all the files will be fetched at once._
 
@@ -72,9 +76,11 @@ Most of the files are using the Testcontainers' version from the `gradle.propert
 
 We can limit the pull command to current repositories using the `--workspace-repositories-only` flag which is very useful for incremental updates.
 
-pierrot pull \\  
-  --workspace-repositories-only \\  
+```
+pierrot pull \
+  --workspace-repositories-only \
   filename:gradle.properties
+```
 
 The directory will now contain the following files:
 
@@ -91,11 +97,13 @@ I'm using IntelliJ IDEA to perform the changes. Replacing the version is pretty 
 
 Once the changes are done then we can `push` them back to GitHub.
 
-pierrot push \\  
- --project "Testcontainers 0.16.2" \\  
- --branch=chore/upgrade-testcontainers-0.16.2 \\  
- --title="Upgraded Testcontainers to 0.16.2" \\  
+```
+pierrot push \
+ --project "Testcontainers 0.16.2" \
+ --branch=chore/upgrade-testcontainers-0.16.2 \
+ --title="Upgraded Testcontainers to 0.16.2" \
  --message="Upgraded Testcontainers to 0.16.2 to enable M1"
+```
 
 You will see a log of changes being pushed and PRs being open:
 
@@ -109,14 +117,16 @@ Now when you have kickstarted the changes you will have to handle the pull reque
 
 For the next time, we can actually skip pulling the changes locally and use the `replace` command
 
-pierrot replace \\  
- --pattern='testcontainersVersion = .\*' \\  
- --replacement='testcontainersVersion = 3.1.0' \\  
- --project "Testcontainers 0.16.3" \\  
- --branch=chore/upgrade-testcontainers-0.16.3 \\  
- --title="Upgraded Testcontainers to 0.16.3" \\  
- --message="Upgraded Testcontainers to 0.16. to enable M1" \\  
+```
+pierrot replace \
+ --pattern='testcontainersVersion = .*' \
+ --replacement='testcontainersVersion = 3.1.0' \
+ --project "Testcontainers 0.16.3" \
+ --branch=chore/upgrade-testcontainers-0.16.3 \
+ --title="Upgraded Testcontainers to 0.16.3" \
+ --message="Upgraded Testcontainers to 0.16. to enable M1" \
  filename:gradle.properties testcontainersVersion
+```
 
 This command uses Java regular expression pattern to replace any version number with the latest one.
 

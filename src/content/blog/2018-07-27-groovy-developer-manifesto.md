@@ -36,10 +36,6 @@ Do you have your own statement to add? Please, leave it in the comments. I may u
 You can sign this manifest using the hand icon bellow.
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [July 27, 2018](https://medium.com/p/bb9bdafa214f).
 
 [Canonical link](https://medium.com/@musketyr/groovy-developer-manifest-bb9bdafa214f)

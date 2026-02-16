@@ -114,10 +114,6 @@ The controller will handle the exceptions in an exception handling actions:
 See [Declarative Controller Exception Handling](http://docs.grails.org/latest/guide/theWebLayer.html#controllerExceptionHandling) for further reference.
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [September 5, 2019](https://medium.com/p/254a99510e82).
 
 [Canonical link](https://medium.com/@musketyr/how-to-reduce-code-in-grails-controllers-to-minimum-254a99510e82)

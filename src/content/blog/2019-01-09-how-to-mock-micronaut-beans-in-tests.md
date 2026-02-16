@@ -43,10 +43,6 @@ ApplicationContext ctx = ApplicationContext._build_().build()    .registerSingle
     .start()UnderTestService uts = ctx.getBean(UnderTestService)
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [January 9, 2019](https://medium.com/p/eaba6d20de70).
 
 [Canonical link](https://medium.com/@musketyr/how-to-mock-micronaut-beans-in-tests-eaba6d20de70)

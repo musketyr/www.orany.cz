@@ -37,10 +37,6 @@ _}
 Next time it would be great if JCP would take into account also the testability not just the pure academic point of view.
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [March 12, 2018](https://medium.com/p/7c7f4a6d703c).
 
 [Canonical link](https://medium.com/@musketyr/how-to-solve-now-problem-in-your-java-tests-7c7f4a6d703c)

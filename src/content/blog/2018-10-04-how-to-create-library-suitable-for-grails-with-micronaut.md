@@ -19,12 +19,12 @@ We are slowly trying to introduce [Micronaut](http://micronaut.io/) into our cod
 To be more specific, the question is how to share bean definitions so the beans are automatically injected into both — [Micronaut](http://micronaut.io/) microservices and the [Grails](https://grails.org/) applications. There is an excellent blog post from [Hubert Klein Ikkink (aka Mr. Haki)](https://www.mrhaki.com/about/) showing [how to integrate Micronaut beans into Spring application](http://mrhaki.blogspot.com/2018/08/micronaut-mastery-use-micronaut-beans.html) but for [Grails](https://grails.org/) application, this is useless as [Grails](https://grails.org/) applications inject beans by names and [Micronaut's Spring integration](https://docs.micronaut.io/latest/guide/index.html#springBeans) uses fully qualified names of the type of the bean such as `foo.bar.MyService` for the name of the bean whereas [Grails](https://grails.org/) expects property name such as `myService`. Therefore beans injected using [Micronaut’s Spring integration](https://docs.micronaut.io/latest/guide/index.html#springBeans) will never be found by [Grails](https://grails.org/) autowiring mechanism.
 
 [**Micronaut Mastery: Use Micronaut Beans In Spring Applications**  
-_We can add Micronaut beans to the application context of a Spring application. Micronaut has a MicronautBeanProcessor…_mrhaki.blogspot.com](http://mrhaki.blogspot.com/2018/08/micronaut-mastery-use-micronaut-beans.html "http://mrhaki.blogspot.com/2018/08/micronaut-mastery-use-micronaut-beans.html")[](http://mrhaki.blogspot.com/2018/08/micronaut-mastery-use-micronaut-beans.html)
+_We can add Micronaut beans to the application context of a Spring application. Micronaut has a MicronautBeanProcessor…_mrhaki.blogspot.com](http://mrhaki.blogspot.com/2018/08/micronaut-mastery-use-micronaut-beans.html "http://mrhaki.blogspot.com/2018/08/micronaut-mastery-use-micronaut-beans.html")
 
 To workaround this problem we have created another [Micronaut](http://micronaut.io/) library which can be used to inject [Micronaut](http://micronaut.io/) beans into [Grails](https://grails.org/)'s application context.
 
 [**agorapulse/micronaut-libraries**  
-_Agorapulse libraries for Micronaut. Contribute to agorapulse/micronaut-libraries development by creating an account on…_github.com](https://github.com/agorapulse/micronaut-libraries#micronaut-grails "https://github.com/agorapulse/micronaut-libraries#micronaut-grails")[](https://github.com/agorapulse/micronaut-libraries#micronaut-grails)
+_Agorapulse libraries for Micronaut. Contribute to agorapulse/micronaut-libraries development by creating an account on…_github.com](https://github.com/agorapulse/micronaut-libraries#micronaut-grails "https://github.com/agorapulse/micronaut-libraries#micronaut-grails")
 
 New `GrailsMicronautBeanProcessor` works in a similar way as original `MicronautBeanProcess` with the focus of the names of the injected beans:
 
@@ -89,10 +89,6 @@ The last step to allow [Grails](https://grails.org/) (and other [Spring](https:/
 **org.springframework.boot.autoconfigure.EnableAutoConfiguration**\=**com.example.mn4grails.GrailsConfig**
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [October 4, 2018](https://medium.com/p/3485329fd7e6).
 
 [Canonical link](https://medium.com/@musketyr/how-to-create-library-suitable-for-grails-with-micronaut-3485329fd7e6)

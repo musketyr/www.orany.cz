@@ -33,10 +33,6 @@ Last weekend I’ve spent in lovely Bohemian-Moravian Highlands attending jOpenS
 There were many other interesting talks and an overall feeling is very positive and I can’t wait to implement at least some of the ideas introduced there.
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [October 8, 2018](https://medium.com/p/5f6716aa053e).
 
 [Canonical link](https://medium.com/@musketyr/jopenspace-2018-notes-5f6716aa053e)

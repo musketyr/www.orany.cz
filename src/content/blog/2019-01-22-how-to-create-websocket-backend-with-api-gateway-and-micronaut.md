@@ -108,7 +108,7 @@ Select the new stage and call it `test`. When the stage is deployed you can see 
 You can use the WebSocket URL to test if everything is working as expected using this simple WebSocket tester:
 
 [**WebSocket Test**  
-output.jsbin.com](https://output.jsbin.com/fatenun "https://output.jsbin.com/fatenun")[](https://output.jsbin.com/fatenun)
+output.jsbin.com](https://output.jsbin.com/fatenun "https://output.jsbin.com/fatenun")
 
 Paste the WebSocket URL into endpoint input and click _Connect_. As soon as you see the text `CONNECTED` which may take a while you can write some text into the message text area and click _Send_. If everything was set up properly you should see the text starting with `SEND` followed by the same text starting with `MESSAGE`.
 
@@ -117,10 +117,6 @@ Paste the WebSocket URL into endpoint input and click _Connect_. As soon as you 
 Please, read [WebSockets for API Gateway](https://agorapulse.github.io/micronaut-libraries/#_websockets_for_api_gateway) part of the documentation for further reference and use cases.
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [January 22, 2019](https://medium.com/p/20c6683f5916).
 
 [Canonical link](https://medium.com/@musketyr/how-to-create-websocket-backend-with-api-gateway-and-micronaut-20c6683f5916)

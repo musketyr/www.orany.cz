@@ -68,14 +68,16 @@ In the following example, you can see that you cannot use any of dependencies on
 
 You can also test it by executing the application:
 
+```
 ./gradlew :christmas-dinner:run
 
-\# result:
+# result:
 
-Serving:  
-\[plate with potato salad with ham, breaded carp\]  
-Cutlery:  
-\[fork, knife\]
+Serving:
+[plate with potato salad with ham, breaded carp]
+Cutlery:
+[fork, knife]
+```
 
 You can see all the runtime dependencies such as **plate**, **fork** and **knife** are present and found while running the application.
 
@@ -114,10 +116,12 @@ If we return to our example we can see that we can actually use `Ham` directly i
 
 If we remove the offending `Fork` and run the application again, we can see **ham** is now also on the plate.
 
-Serving:  
-\[plate with potato salad with ham, breaded carp, ham\]  
-Cutlery:  
-\[fork, knife\]
+```
+Serving:
+[plate with potato salad with ham, breaded carp, ham]
+Cutlery:
+[fork, knife]
+```
 
 ### Shopping List (Runtime Classpath)
 
@@ -141,18 +145,15 @@ If you are creating Java library which then you should think twice which of your
 
 There is a Gradle Lint project which can help you decide the right configuration to be used:
 
-[**GitHub - nebula-plugins/gradle-lint-plugin: A pluggable and configurable linter tool for…**  
-_A pluggable and configurable linter tool for identifying and reporting on patterns of misuse or deprecations in Gradle…_github.com](https://github.com/nebula-plugins/gradle-lint-plugin "https://github.com/nebula-plugins/gradle-lint-plugin")[](https://github.com/nebula-plugins/gradle-lint-plugin)
+[**GitHub - nebula-plugins/gradle-lint-plugin: A pluggable and configurable linter tool for…**](https://github.com/nebula-plugins/gradle-lint-plugin)https://github.com/nebula-plugins/gradle-lint-plugin)
 
 You can dig deeper into the Christmas Dinner example here:
 
-[**GitHub - musketyr/christmas-dinner: Gradle Configurations Showcase**  
-_Gradle Configurations Showcase. Contribute to musketyr/christmas-dinner development by creating an account on GitHub._github.com](https://github.com/musketyr/christmas-dinner "https://github.com/musketyr/christmas-dinner")[](https://github.com/musketyr/christmas-dinner)
+[**GitHub - musketyr/christmas-dinner: Gradle Configurations Showcase**](https://github.com/musketyr/christmas-dinner)https://github.com/musketyr/christmas-dinner)
 
 Or inspect just the build scan:
 
-[**Build scan | Gradle Cloud Services**  
-_Edit description_scans.gradle.com](https://scans.gradle.com/s/q7ol2tszrw6uo "https://scans.gradle.com/s/q7ol2tszrw6uo")[](https://scans.gradle.com/s/q7ol2tszrw6uo)
+[**Build scan | Gradle Cloud Services**](https://scans.gradle.com/s/q7ol2tszrw6uo)https://scans.gradle.com/s/q7ol2tszrw6uo)
 
 By [Vladimír Oraný](https://medium.com/@musketyr) on [September 3, 2021](https://medium.com/p/4b9608dd5e35).
 

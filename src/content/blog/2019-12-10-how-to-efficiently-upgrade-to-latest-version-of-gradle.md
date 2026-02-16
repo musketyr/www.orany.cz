@@ -233,10 +233,6 @@ I'm currently putting hope to the [Kordamp](https://aalmiray.github.io/kordamp-g
 **2019–12–12**: Suggested to create separate workflow file for regular Gradle RC checks.
 
 * * *
-
-[**We're Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [December 10, 2019](https://medium.com/p/ada64f1f5097).
 
 [Canonical link](https://medium.com/@musketyr/how-to-efficiently-upgrade-to-latest-version-of-gradle-ada64f1f5097)

@@ -184,7 +184,7 @@ class Application {
 You can check the complete example in the following repository:
 
 [**musketyr/gorm-shared-domains**  
-_Contribute to musketyr/gorm-shared-domains development by creating an account on GitHub._github.com](https://github.com/musketyr/gorm-shared-domains "https://github.com/musketyr/gorm-shared-domains")[](https://github.com/musketyr/gorm-shared-domains)
+_Contribute to musketyr/gorm-shared-domains development by creating an account on GitHub._github.com](https://github.com/musketyr/gorm-shared-domains "https://github.com/musketyr/gorm-shared-domains")
 
 By [Vladimír Oraný](https://medium.com/@musketyr) on [June 24, 2020](https://medium.com/p/a1b938e5adc4).
 

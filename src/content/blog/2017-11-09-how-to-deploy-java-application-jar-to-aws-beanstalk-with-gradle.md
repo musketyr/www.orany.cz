@@ -67,10 +67,6 @@ shadowJar {
 }
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [November 9, 2017](https://medium.com/p/35343337febf).
 
 [Canonical link](https://medium.com/@musketyr/how-to-deploy-java-application-jar-to-aws-beanstalk-with-gradle-35343337febf)

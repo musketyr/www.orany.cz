@@ -56,7 +56,7 @@ You need to update all the remaining injection points in the Grails application.
 As GORM is now called from Micronaut beans instead of Grails services and controllers, we need to let Micronaut know which packages should be scanned. Sadly, the default `GrailsApp` implementation does not propagate the packages into the Micronaut context but there is [Micronaut Grails](https://agorapulse.github.io/micronaut-grails/) library for a rescue:
 
 [**Grails Integration for Micronaut**  
-_import com.agorapulse.micronaut.grails.CompatibilityMode import…_agorapulse.github.io](https://agorapulse.github.io/micronaut-grails/ "https://agorapulse.github.io/micronaut-grails/")[](https://agorapulse.github.io/micronaut-grails/)
+_import com.agorapulse.micronaut.grails.CompatibilityMode import…_agorapulse.github.io](https://agorapulse.github.io/micronaut-grails/ "https://agorapulse.github.io/micronaut-grails/")
 
 We need to add two more dependencies into the Grails application's build file `hello.gradle`:
 
@@ -80,13 +80,13 @@ Then we can get the mock injected into the specification using Spring's `Autowir
 Even this step looks pretty simple, it is usually one of the most difficult tasks. of the migration process. Your services usually use some Grails plugins and you need to find their Micronaut counterparts. You can find inspiration in the Micronaut Documentation, Agorapulse OSS Hub, or Awesome Micronaut catalog:
 
 [**Docs - Micronaut Framework**  
-_Access Micronaut framework documentation here._micronaut.io](https://micronaut.io/docs/ "https://micronaut.io/docs/")[](https://micronaut.io/docs/)
+_Access Micronaut framework documentation here._micronaut.io](https://micronaut.io/docs/ "https://micronaut.io/docs/")
 
 [**Agorapulse OSS Hub**  
-_This page is a catalogue of all currently supported open-source libraries provided by Agorapulse. The major categories…_agorapulse.github.io](https://agorapulse.github.io/agorapulse-oss/ "https://agorapulse.github.io/agorapulse-oss/")[](https://agorapulse.github.io/agorapulse-oss/)
+_This page is a catalogue of all currently supported open-source libraries provided by Agorapulse. The major categories…_agorapulse.github.io](https://agorapulse.github.io/agorapulse-oss/ "https://agorapulse.github.io/agorapulse-oss/")
 
 [**GitHub - JonasHavers/awesome-micronaut: A curated list of resources for the Micronaut JVM framework**  
-_A hand-picked and curated list of resources for the Micronaut framework. Contributing Pull requests are highly…_github.com](https://github.com/JonasHavers/awesome-micronaut "https://github.com/JonasHavers/awesome-micronaut")[](https://github.com/JonasHavers/awesome-micronaut)
+_A hand-picked and curated list of resources for the Micronaut framework. Contributing Pull requests are highly…_github.com](https://github.com/JonasHavers/awesome-micronaut "https://github.com/JonasHavers/awesome-micronaut")
 
 _In the next step, we will migrate the controllers themselves._
 
@@ -106,7 +106,7 @@ _In the next step, we will migrate the controllers themselves._
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")[](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
+_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
 
 By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/f7d1ba4025f2).
 

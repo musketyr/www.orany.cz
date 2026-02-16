@@ -28,10 +28,6 @@ repositories { jcenter() }
 dependencies { compile 'com.agorapulse:remember:0.1' }
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [June 14, 2018](https://medium.com/p/7faf4e53dd7c).
 
 [Canonical link](https://medium.com/@musketyr/let-your-groovy-code-remember-your-sins-7faf4e53dd7c)

@@ -70,10 +70,6 @@ Some of the original tests may fail. If you are lucky the new failures are cause
 Once you finish all the previous phases you are more confident to release tool to everyone. You know that all the examples from the documentation are really working and code base is as compact as possible. You have created a tool which can help people without causing too much headache and which can grow easily as all the original use cases are covered by tests.
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [October 8, 2017](https://medium.com/p/821d83e60a8d).
 
 [Canonical link](https://medium.com/@musketyr/four-phases-to-accomplish-before-open-sourcing-your-tool-821d83e60a8d)

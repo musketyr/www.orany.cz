@@ -275,10 +275,6 @@ Now the test is future proof. Any changes in watchers, stargazers or any pushes 
 For this example we've used existing public API endpoint but in your application you will test your own API. For example, [Gru](https://agorapulse.github.io/gru/) comes with out-of-box support for unit testing [Grails](https://grails.org/) controllers. Read the [documentation](https://agorapulse.github.io/gru/) to see more examples and [follow the project on GitHub](https://github.com/agorapulse/gru) to be notified about the latest changes.
 
 * * *
-
-[**We’re Hiring**  
-_Are you kick-ass fullstack or front-end dev that wants to work on AWS, Angular, Java or Groovy? You must contact us to join our dream team in Paris or Nantes_apply.workable.com](https://apply.workable.com/agorapulse/ "https://apply.workable.com/agorapulse/")[](https://apply.workable.com/agorapulse/)
-
 By [Vladimír Oraný](https://medium.com/@musketyr) on [August 24, 2017](https://medium.com/p/5b614db048bd).
 
 [Canonical link](https://medium.com/@musketyr/testing-legacy-api-endpoints-with-gru-5b614db048bd)
