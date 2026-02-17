@@ -42,6 +42,11 @@ const { Content } = await post.render();
           Originally published on <a href={`https://medium.com/@vladimir.orany/${post.data.mediumId}`} target="_blank" rel="noopener">Medium</a>
         </p>
       )}
+      {post.data.source === 'substack' && (
+        <p class="source-note">
+          Originally published on <a href="https://telegraphic.substack.com" target="_blank" rel="noopener">Substack</a>
+        </p>
+      )}
     </footer>
   </article>
 </BaseLayout>
