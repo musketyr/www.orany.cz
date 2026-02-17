@@ -13,7 +13,9 @@ const { title, description = "The Telegraphic Developer â€” Tech blog by VladimÃ
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="256x256" href="/logo-256.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -22,6 +24,7 @@ const { title, description = "The Telegraphic Developer â€” Tech blog by VladimÃ
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="The Telegraphic Developer" />
+    <meta property="og:image" content="https://telegraphic.dev/logo-512.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@telegraphic_dev" />
     <meta name="twitter:title" content={title} />
@@ -31,7 +34,7 @@ const { title, description = "The Telegraphic Developer â€” Tech blog by VladimÃ
   <body>
     <nav>
       <div class="container">
-        <a href="/" class="logo">telegraphic.dev</a>
+        <a href="/" class="logo"><img src="/logo-256.png" alt="Telegraphic" class="logo-img" />telegraphic.dev</a>
         <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -174,10 +177,16 @@ const { title, description = "The Telegraphic Developer â€” Tech blog by VladimÃ
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
   }
 
-  nav .logo {
-    flex-shrink: 0;
+  nav .logo-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
   }
 
   nav .nav-links {
