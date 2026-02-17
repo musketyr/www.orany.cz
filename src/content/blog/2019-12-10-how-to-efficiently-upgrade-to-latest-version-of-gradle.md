@@ -233,8 +233,5 @@ I'm currently putting hope to the [Kordamp](https://aalmiray.github.io/kordamp-g
 **2019–12–12**: Suggested to create separate workflow file for regular Gradle RC checks.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [December 10, 2019](https://medium.com/p/ada64f1f5097).
 
-[Canonical link](https://medium.com/@musketyr/how-to-efficiently-upgrade-to-latest-version-of-gradle-ada64f1f5097)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

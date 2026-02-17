@@ -67,8 +67,5 @@ shadowJar {
 }
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [November 9, 2017](https://medium.com/p/35343337febf).
 
-[Canonical link](https://medium.com/@musketyr/how-to-deploy-java-application-jar-to-aws-beanstalk-with-gradle-35343337febf)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

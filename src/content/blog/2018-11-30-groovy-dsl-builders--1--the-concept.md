@@ -15,7 +15,7 @@ mediumId: "2d5a97fa0a51"
 Groovy is a language where domain-specific languages (DSL) are the first class citizens. There is a whole page in the documentation dedicated to writing DSL:
 
 [**The Apache Groovy programming language - Domain-Specific Languages**  
-_Groovy lets you omit parentheses around the arguments of a method call for top-level statements. "command chain"…_groovy-lang.org](http://groovy-lang.org/dsls.html "http://groovy-lang.org/dsls.html")
+[groovy-lang.org](http://groovy-lang.org/dsls.html)
 
 Builder pattern has its special place among the other DSL approaches because of an ability to delegate closures to different objects which allows creating compact and easily readable code-as-data. Here is the example of one of the built-in builder `JsonBuilder` from the official documentation above:
 
@@ -198,8 +198,5 @@ In the next post in this series [The Essence: _The closures’ basics_](https://
 9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)
 10.  [The Conclusion: _The checklist for Groovy DSL builders' authors_](https://medium.com/p/9d2b961dbc55)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [November 30, 2018](https://medium.com/p/2d5a97fa0a51).
 
-[Canonical link](https://medium.com/@musketyr/groovy-dsl-builders-1-the-concept-2d5a97fa0a51)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

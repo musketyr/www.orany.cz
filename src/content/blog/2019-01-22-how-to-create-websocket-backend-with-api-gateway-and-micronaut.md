@@ -117,8 +117,5 @@ Paste the WebSocket URL into endpoint input and click _Connect_. As soon as you 
 Please, read [WebSockets for API Gateway](https://agorapulse.github.io/micronaut-libraries/#_websockets_for_api_gateway) part of the documentation for further reference and use cases.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [January 22, 2019](https://medium.com/p/20c6683f5916).
 
-[Canonical link](https://medium.com/@musketyr/how-to-create-websocket-backend-with-api-gateway-and-micronaut-20c6683f5916)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

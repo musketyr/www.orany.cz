@@ -15,10 +15,10 @@ mediumId: "7a6404461b44"
 It has been nearly two years since [Benoit Hediard](https://medium.com/u/368024b1dcc0) published [an article on how to build a real-time web application with Angular, Ngrx and Vert.x](https://medium.com/agorapulse-stories/building-a-realtime-web-app-with-angular-ngrx-and-vert-x-a5381c0397a1). My last post was about [creating WebSocket backed with Micronaut and API Gateway](https://medium.com/agorapulse-stories/how-to-create-websocket-backend-with-api-gateway-and-micronaut-20c6683f5916). Let’s combine these two approaches and replace the Vert.X part of the real-time web application example with AWS Lambda with Micronaut approach.
 
 [**Building a real-time web app with Angular/Ngrx and Vert.x**  
-_Welcome to the real-time web! It’s time to move on from traditional synchronous HTTP request/response architectures to…_medium.com](https://medium.com/agorapulse-stories/building-a-realtime-web-app-with-angular-ngrx-and-vert-x-a5381c0397a1 "https://medium.com/agorapulse-stories/building-a-realtime-web-app-with-angular-ngrx-and-vert-x-a5381c0397a1")
+[medium.com](https://medium.com/agorapulse-stories/building-a-realtime-web-app-with-angular-ngrx-and-vert-x-a5381c0397a1)
 
 [**How to Create WebSocket Backend with API Gateway and Micronaut**  
-_Since December 2018 you have a choice to create either REST or WebSocket API when you create new API using AWS API…_medium.com](https://medium.com/agorapulse-stories/how-to-create-websocket-backend-with-api-gateway-and-micronaut-20c6683f5916 "https://medium.com/agorapulse-stories/how-to-create-websocket-backend-with-api-gateway-and-micronaut-20c6683f5916")
+[medium.com](https://medium.com/agorapulse-stories/how-to-create-websocket-backend-with-api-gateway-and-micronaut-20c6683f5916)
 
 _Please, get familiar with the two posts above before continuing reading as we are going to combine these two approaches together._
 
@@ -133,8 +133,5 @@ As the approach described in this blog post relies directly on WebSockets there 
 There is a common problem with AWS Lambda functions which is potentially slow cold start. Our current experience with running AWS Lambda functions with Micronaut is that with 1024 MB of memory the cold start is about 8 seconds but it happens just once or twice an hour. The average duration of the request is just about 40 ms. The latency between publishing and delivering the message is about 700 ~ 800 ms (including processing by API Gateway which usually consumes about ~ 700 ms even for the mock responses) which should be enough for most of the business use cases so if you are not developing an online shooter game you the latency shouldn't be a problem for you. Also, don't forget to minimize the delay time of your SNS topic.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [January 29, 2019](https://medium.com/p/7a6404461b44).
 
-[Canonical link](https://medium.com/@musketyr/how-to-emulate-event-bus-with-micronaut-api-gateway-and-sns-7a6404461b44)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

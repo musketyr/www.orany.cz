@@ -38,8 +38,5 @@ kotlin.version = 1.4.10
 
 After this change the application should start as expected.
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [July 16, 2021](https://medium.com/p/f6387fe4460e).
 
-[Canonical link](https://medium.com/@musketyr/how-to-use-okhttp-4-x-with-grails-f6387fe4460e)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

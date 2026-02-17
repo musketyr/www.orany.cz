@@ -17,7 +17,7 @@ I have noticed that many great frameworks such as Spring Boot, Grails or Microna
 I wanted to bring the same smooth versions' management into our project so I've created a seed project to generate the BOM files easily. Although there is a `[java-platform](https://docs.gradle.org/current/userguide/java_platform_plugin.html)` [Gradle plugin](https://docs.gradle.org/current/userguide/java_platform_plugin.html) which is designed for generating BOM files I got inspired by [the approach taken by Micronaut team](https://github.com/micronaut-projects/micronaut-core/blob/master/bom/build.gradle) and created a project which generated the BOM from a simple properties file and publishes it into GitHub Maven repository using GitHub Actions.
 
 [**musketyr/bom-seed**  
-_You can fork this project to simply create your own BOM with automatic generation using GitHub Actions and publishing…_github.com](https://github.com/musketyr/bom-seed "https://github.com/musketyr/bom-seed")
+[github.com](https://github.com/musketyr/bom-seed)
 
 #### Creating BOM
 
@@ -68,8 +68,5 @@ depedencyManagement {
 }
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [December 3, 2019](https://medium.com/p/b3fd94301655).
 
-[Canonical link](https://medium.com/@musketyr/how-to-manage-versions-using-maven-bom-gradle-and-github-b3fd94301655)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

@@ -43,8 +43,5 @@ ApplicationContext ctx = ApplicationContext._build_().build()    .registerSingle
     .start()UnderTestService uts = ctx.getBean(UnderTestService)
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [January 9, 2019](https://medium.com/p/eaba6d20de70).
 
-[Canonical link](https://medium.com/@musketyr/how-to-mock-micronaut-beans-in-tests-eaba6d20de70)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

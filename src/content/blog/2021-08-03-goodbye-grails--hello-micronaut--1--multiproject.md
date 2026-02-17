@@ -17,7 +17,7 @@ _This is the first post in a series that will guide you through the migration fr
 In this series, we will migrate various parts of the Grails application one by one. To be able to achieve that, we need to be able to extract parts of the current Grails application into separate libraries. This is best handled by using Gradle's multiproject layout. We'll be using Kordamp Gradle Plugin to achieve an easy-to-change multiproject structure.
 
 [**A collection of opinionated Gradle plugins**  
-_It's expected of projects that make use of these plugins to follow a certain directory structure that enables them to…_kordamp.org](https://kordamp.org/kordamp-gradle-plugins/ "https://kordamp.org/kordamp-gradle-plugins/")
+[kordamp.org](https://kordamp.org/kordamp-gradle-plugins/)
 
 First, move everything specific to your application into `apps/<your-app-name>`. We will use the name `hello` as a placeholder for your application's name in the following texts. So if your application is called `hello` then the new destination should be `apps/hello`. Do not move Gradle related files except the `build.gradle` file which will now take the name of the directory in which you have moved the file, e.g. `hello.gradle`. Grails Wrapper related files can be deleted.
 
@@ -58,10 +58,7 @@ _In the next step, we will migrate Grails'_ [_configuration_](https://medium.com
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
+[github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/ffeaab056e28).
 
-[Canonical link](https://medium.com/@musketyr/goodbye-grails-hello-micronaut-1-multiproject-ffeaab056e28)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

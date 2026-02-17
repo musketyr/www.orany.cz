@@ -108,8 +108,5 @@ You can easily use these with Dru in your tests:
 The important part is `grails.gorm.transactions.Rollback` annotation applied to the test class which guarantees transaction present for every test call and also it also help to keep the database clean.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [May 31, 2018](https://medium.com/p/9b6e6550f260).
 
-[Canonical link](https://medium.com/@musketyr/how-to-prepare-test-data-in-micronaut-with-dru-9b6e6550f260)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

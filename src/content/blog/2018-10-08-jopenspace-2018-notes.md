@@ -33,8 +33,5 @@ Last weekend I’ve spent in lovely Bohemian-Moravian Highlands attending jOpenS
 There were many other interesting talks and an overall feeling is very positive and I can’t wait to implement at least some of the ideas introduced there.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [October 8, 2018](https://medium.com/p/5f6716aa053e).
 
-[Canonical link](https://medium.com/@musketyr/jopenspace-2018-notes-5f6716aa053e)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

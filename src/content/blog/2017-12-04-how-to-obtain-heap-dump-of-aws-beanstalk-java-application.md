@@ -17,8 +17,5 @@ Following script will SSH to the Beanstalk server and as a user `webapp` obtain 
 Once you have the heap dump downloaded you can use any memory analyser such a [VisualVM](https://visualvm.github.io/) to discover the problem.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [December 4, 2017](https://medium.com/p/15bd5aec757d).
 
-[Canonical link](https://medium.com/@musketyr/how-to-obtain-heap-dump-of-aws-beanstalk-java-application-15bd5aec757d)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

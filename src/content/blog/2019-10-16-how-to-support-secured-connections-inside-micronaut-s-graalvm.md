@@ -40,8 +40,5 @@ Second, replace the last line of `bootstrap` script with following to let the ap
 If you now deploy the function and set up the data source properly in `application.yml` then you should be able to successfully connect to PostgreSQL RDS instance and make calls to your API.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [October 16, 2019](https://medium.com/p/730800d2ed03).
 
-[Canonical link](https://medium.com/@musketyr/how-to-support-secured-connections-inside-micronauts-graalvm-730800d2ed03)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

@@ -184,10 +184,7 @@ class Application {
 You can check the complete example in the following repository:
 
 [**musketyr/gorm-shared-domains**  
-_Contribute to musketyr/gorm-shared-domains development by creating an account on GitHub._github.com](https://github.com/musketyr/gorm-shared-domains "https://github.com/musketyr/gorm-shared-domains")
+[github.com](https://github.com/musketyr/gorm-shared-domains)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [June 24, 2020](https://medium.com/p/a1b938e5adc4).
 
-[Canonical link](https://medium.com/@musketyr/how-to-share-gorm-domain-classes-between-grails-and-micronaut-a1b938e5adc4)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

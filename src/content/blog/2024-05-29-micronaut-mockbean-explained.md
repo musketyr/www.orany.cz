@@ -35,8 +35,5 @@ The most complicated scenario is replacing a bean with a specified qualifier, su
 *   Use the `@Replace` annotation directly, specifying the qualifier and/or a factory bean.
 *   Any qualifier added to the method will once again apply to the new bean.
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [May 29, 2024](https://medium.com/p/ee0ad109cfb5).
 
-[Canonical link](https://medium.com/@musketyr/micronaut-mockbean-explained-ee0ad109cfb5)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

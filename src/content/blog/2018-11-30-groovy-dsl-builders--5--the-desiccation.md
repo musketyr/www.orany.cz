@@ -103,8 +103,5 @@ In the next part [The Expectations: _The importance of handling closures’ owne
 9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)
 10.  [The Conclusion: _The checklist for Groovy DSL builders’ authors_](https://medium.com/p/9d2b961dbc55)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [November 30, 2018](https://medium.com/p/afb47ebbf89d).
 
-[Canonical link](https://medium.com/@musketyr/groovy-dsl-builders-5-the-desiccation-afb47ebbf89d)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

@@ -17,7 +17,7 @@ _This is the sixth post in a series that will guide you through the migration fr
 Domain classes are usually the essential part of any Grails application, therefore the most difficult part to migrate. First of all, we need to migrate every database-related calls to use Data Services instead of any instance or static _magic_ methods and properties.
 
 [**GORM for Hibernate**  
-_A domain class can be created with the create-domain-class command if you are using Grails, or if you are not using…_gorm.grails.org](http://gorm.grails.org/7.0.x/hibernate/manual/index.html#dataServices "http://gorm.grails.org/7.0.x/hibernate/manual/index.html#dataServices")
+[gorm.grails.org](http://gorm.grails.org/7.0.x/hibernate/manual/index.html#dataServices)
 
 We can very easily create the data service for the domain class `Vehicle` we were mentioning earlier:
 
@@ -40,7 +40,7 @@ Now visit the list of the VCS-changed files. The list should show all the classe
 Then you need to replace all the instance and static GORM method calls in these files. For example, change `Vehicle.get(id)` to `vehicleDataService.findById(id)`. You can either mock the `vehicleDataService` in your tests or you can use this article to use the real implementation against the test datastore:
 
 [**How to Use GORM Data Services in Test**  
-_GORM data services allows Grails developers to write clearer code without polluting the whole application with database…_medium.com](https://medium.com/agorapulse-stories/how-to-use-gorm-data-services-in-test-cf1839aca530 "https://medium.com/agorapulse-stories/how-to-use-gorm-data-services-in-test-cf1839aca530")
+[medium.com](https://medium.com/agorapulse-stories/how-to-use-gorm-data-services-in-test-cf1839aca530)
 
 Let's summarise the steps required for each domain class:
 
@@ -58,7 +58,7 @@ Once you complete the steps above, there might still be some well-hidden calls t
 compileOnly 'com.agorapulse:groovy-code-checks-gorm:0.9.0'
 
 [**Groovy Code Checks**  
-_This project contains additional code checkers for Groovy programming language._agorapulse.github.io](https://agorapulse.github.io/groovy-code-checks/#_gorm "https://agorapulse.github.io/groovy-code-checks/#_gorm")
+[agorapulse.github.io](https://agorapulse.github.io/groovy-code-checks/#_gorm)
 
 This library is very strict and it will create compilation failures wherever it finds any GORM-related method. This is very useful for indirect usages such as `user.vehicle.save()` where the GORM methods are not called directly on the entity object but a reference one.
 
@@ -71,7 +71,7 @@ If you comment out or remove the checking extensions related to GORM then you sh
 Let's extract the domain classes into the separate subproject to allow modularization of the other parts of the application. There is a dedicated article that can help you achieve this:
 
 [**How to Share GORM Domain Classes between Grails and Micronaut**  
-_Our architecture, originally built with Grails 3.3.x semi-monoliths, is currently leaning toward using more Micronaut…_medium.com](https://medium.com/agorapulse-stories/how-to-share-gorm-domain-classes-between-grails-and-micronaut-a1b938e5adc4 "https://medium.com/agorapulse-stories/how-to-share-gorm-domain-classes-between-grails-and-micronaut-a1b938e5adc4")
+[medium.com](https://medium.com/agorapulse-stories/how-to-share-gorm-domain-classes-between-grails-and-micronaut-a1b938e5adc4)
 
 If you have applied Kordamp layout you simply create a new folder under `libs` such as `hello-data` containing `hello-data.gradle` build file.
 
@@ -153,10 +153,7 @@ _Having the domain classes extracted, we can also_ [_extract the services into a
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
+[github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/ad2d2782059f).
 
-[Canonical link](https://medium.com/@musketyr/goodbye-grails-hello-micronaut-6-domain-classes-ad2d2782059f)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

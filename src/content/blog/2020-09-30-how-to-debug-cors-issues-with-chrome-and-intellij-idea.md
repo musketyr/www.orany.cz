@@ -45,8 +45,5 @@ In our case, we were getting a duplicate route exception error message in the re
 
 As soon as we know what was actually wrong it was quite easy to fix it.
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [September 30, 2020](https://medium.com/p/d88ca77e292d).
 
-[Canonical link](https://medium.com/@musketyr/how-to-debug-cors-issues-with-chrome-and-intellij-idea-d88ca77e292d)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

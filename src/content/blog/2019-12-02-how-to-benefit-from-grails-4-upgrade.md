@@ -178,8 +178,5 @@ There are several reasons why you should prefer writing services as Micronaut se
 Also, if you migrate your services to Micronaut then it will easier for you to migrate your whole application to Micronaut if you find out that Grails framework no longer meets your needs. In a case of Grails plugins, it will allow you to migrate them to configurations.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [December 2, 2019](https://medium.com/p/e4f4aae4a9d).
 
-[Canonical link](https://medium.com/@musketyr/how-to-benefit-from-grails-4-upgrade-e4f4aae4a9d)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

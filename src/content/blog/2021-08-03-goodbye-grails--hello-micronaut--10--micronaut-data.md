@@ -17,7 +17,7 @@ _This is the tenth and the last post in a series that will guide you through the
 So far, we have been using Micronaut with GORM entities. This combination is very suboptimal, but as the migration from GORM to Micronaut Data seems to be the most difficult part of the Grails to Micronaut migration, it is better to keep the migration of the data layer as the very last step.
 
 [**Micronaut Data**  
-_Data Repository Support for Micronaut Version: Micronaut Data is a database access toolkit that uses Ahead of Time…_micronaut-projects.github.io](https://micronaut-projects.github.io/micronaut-data/latest/guide/ "https://micronaut-projects.github.io/micronaut-data/latest/guide/")
+[micronaut-projects.github.io](https://micronaut-projects.github.io/micronaut-data/latest/guide/)
 
 Micronaut Data provides two implementations — Micronaut Data JPA and Micronaut Data JDBC. Let’s first explain these two, starting with the more lightweight one — Micronaut Data JDBC
 
@@ -110,7 +110,7 @@ This is the last post in the series. Your feedback is highly appreciated. Feel f
 What next? So far the Micronaut version was limited by Grails so the next step should be upgrading the Micronaut version to the latest one but this is out of the scope of this series but you may find the following article helpful if you find yourself using libraries which were created for Micronaut 1.x.
 
 [**How to Resolve Conflicts in Micronaut 1.x and 2.x Library Versions in Gradle**  
-_Micronaut 2.x version has changed the Maven coordinates for many libraries that crate the Micronaut ecosystem. The…_medium.com](https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce "https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce")
+[medium.com](https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce)
 
 #### Table of Contents
 
@@ -128,10 +128,7 @@ _Micronaut 2.x version has changed the Maven coordinates for many libraries that
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
+[github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/759c6c36bc7).
 
-[Canonical link](https://medium.com/@musketyr/goodbye-grails-hello-micronaut-10-micronaut-data-759c6c36bc7)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

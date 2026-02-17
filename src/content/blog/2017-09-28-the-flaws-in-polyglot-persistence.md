@@ -107,8 +107,5 @@ Read [the full documentation](https://agorapulse.github.io/dru/) to get more inf
 _Please, clap your 👏 if you find this article useful and help others find it._
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [September 28, 2017](https://medium.com/p/b4c0686459d7).
 
-[Canonical link](https://medium.com/@musketyr/the-flaws-in-polyglot-persistence-b4c0686459d7)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

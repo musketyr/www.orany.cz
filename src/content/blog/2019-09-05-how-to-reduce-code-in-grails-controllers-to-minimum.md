@@ -114,8 +114,5 @@ The controller will handle the exceptions in an exception handling actions:
 See [Declarative Controller Exception Handling](http://docs.grails.org/latest/guide/theWebLayer.html#controllerExceptionHandling) for further reference.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [September 5, 2019](https://medium.com/p/254a99510e82).
 
-[Canonical link](https://medium.com/@musketyr/how-to-reduce-code-in-grails-controllers-to-minimum-254a99510e82)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

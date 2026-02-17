@@ -55,10 +55,7 @@ _In the next step, we will extract_ [_the domain classes_](https://medium.com/p/
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
+[github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/7b69d9a132bc).
 
-[Canonical link](https://medium.com/@musketyr/goodbye-grails-hello-micronaut-5-marshalling-7b69d9a132bc)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

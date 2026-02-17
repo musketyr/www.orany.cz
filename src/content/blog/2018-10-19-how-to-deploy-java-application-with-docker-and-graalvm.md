@@ -45,8 +45,5 @@ docker run -d -p 8080:8080 products-with-graavm
 curl -v [http://localhost:8080/product](http://localhost:8080/product)
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [October 19, 2018](https://medium.com/p/464629d95dbd).
 
-[Canonical link](https://medium.com/@musketyr/how-to-deploy-java-application-with-docker-and-graalvm-464629d95dbd)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

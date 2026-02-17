@@ -15,12 +15,12 @@ mediumId: "1d39fe5dc6c2"
 When you decide to use Amazon Web Services (AWS) in your project then you voluntarily lock yourself up with Amazon. By default, most of the services have no official local alternative for unit or integration testing. Luckily for most of the services, there is an open-source variant which fills the gap. And most of them were reunited inside [Localstack](https://localstack.cloud) — docker image to serve most of the AWS services locally:
 
 [**LocalStack**  
-_We are strongly committed to our open source offering. Our philosophy is that today's best software is built by great…_localstack.cloud](https://localstack.cloud/ "https://localstack.cloud/")
+[localstack.cloud](https://localstack.cloud/)
 
 As another piece of the puzzle, [Testcontainers](https://www.testcontainers.org/) provides an easy way how to run docker images in your unit tests:
 
 [**Introduction · Testcontainers**  
-_Testcontainers is a Java library that supports JUnit tests, providing lightweight, throwaway instances of common…_www.testcontainers.org](https://www.testcontainers.org/ "https://www.testcontainers.org/")
+[www.testcontainers.org](https://www.testcontainers.org/)
 
 It is very easy to test application using AWS services when we use these two tools together.
 
@@ -72,11 +72,8 @@ In that case, you have to untick _Securely store Docker logins in macOS keychain
 The example application can be found on GitHub:
 
 [**musketyr/grails-aws-plugin-with-localstack**  
-_Grails AWS Plugin with Localstack. Contribute to musketyr/grails-aws-plugin-with-localstack development by creating an…_github.com](https://github.com/musketyr/grails-aws-plugin-with-localstack "https://github.com/musketyr/grails-aws-plugin-with-localstack")
+[github.com](https://github.com/musketyr/grails-aws-plugin-with-localstack)
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 30, 2018](https://medium.com/p/1d39fe5dc6c2).
 
-[Canonical link](https://medium.com/@musketyr/how-to-unit-test-aws-services-with-localstack-and-testcontainers-1d39fe5dc6c2)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

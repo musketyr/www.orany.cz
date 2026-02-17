@@ -43,8 +43,5 @@ ApiProxyResponse `handle(ApiProxyRequest request, Context ctx) {       switch(re
 
 The disappointment is rather just a small one. Just having solid dependency injection may help a lot. But you can see there is definitely a room for improvement.
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [May 31, 2018](https://medium.com/p/a92e99bb6bdf).
 
-[Canonical link](https://medium.com/@musketyr/micronaut-the-missing-part-a92e99bb6bdf)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

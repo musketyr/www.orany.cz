@@ -242,8 +242,5 @@ Next post [The Desiccation: _Keeping the code DRY_](https://medium.com/p/afb47eb
 9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)
 10.  [The Conclusion: _The checklist for Groovy DSL builders’ authors_](https://medium.com/p/9d2b961dbc55)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [November 30, 2018](https://medium.com/p/1e2edc2311f8).
 
-[Canonical link](https://medium.com/@musketyr/groovy-dsl-builders-4-the-disguise-1e2edc2311f8)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

@@ -181,11 +181,8 @@ In production, you will probably override the configuration properties using env
 Following repository contains examples of all three approaches:
 
 [**agorapulse/micronaut-configuration-strategies**  
-_Micronaut Configuration Strategies Examples._github.com](https://github.com/agorapulse/micronaut-configration-strategies/ "https://github.com/agorapulse/micronaut-configration-strategies/")
+[github.com](https://github.com/agorapulse/micronaut-configration-strategies/)
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [February 10, 2020](https://medium.com/p/8a7914ea2050).
 
-[Canonical link](https://medium.com/@musketyr/how-to-set-the-default-configuration-properties-for-a-micronaut-library-8a7914ea2050)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

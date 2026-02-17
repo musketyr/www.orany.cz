@@ -100,8 +100,5 @@ class HelloServiceSpec extends Specification
 The example is too trivial to fully show the benefit of using declarative Spring mock beans in favour of manual binding but with services with many dependencies it definitely produces clearer code then manual binding.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [October 5, 2017](https://medium.com/p/e839340de272).
 
-[Canonical link](https://medium.com/@musketyr/leveraging-spock-spring-module-in-grails-unit-tests-e839340de272)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

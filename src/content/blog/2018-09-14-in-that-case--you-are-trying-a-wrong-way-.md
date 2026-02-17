@@ -18,8 +18,5 @@ On the other hand in many use cases, people are not building new Netflix. I'm qu
 
 Over and out, V
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [September 14, 2018](https://medium.com/p/8f0d6c2baa2).
 
-[Canonical link](https://medium.com/@musketyr/in-that-case-you-are-trying-a-wrong-way-8f0d6c2baa2)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

@@ -128,8 +128,5 @@ In the next part [The Navigation: _Using the annotations for named parameters_](
 9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)
 10.  [The Conclusion: _The checklist for Groovy DSL builders’ authors_](https://medium.com/p/9d2b961dbc55)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [November 30, 2018](https://medium.com/p/99bd118538b4).
 
-[Canonical link](https://medium.com/@musketyr/groovy-dsl-builders-8-the-resignation-99bd118538b4)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

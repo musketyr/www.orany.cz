@@ -64,8 +64,5 @@ public class HelloControllerSpec extends Specification {
     }  
 }
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [May 30, 2018](https://medium.com/p/9ef8f8093ecb).
 
-[Canonical link](https://medium.com/@musketyr/how-to-test-micronaut-with-gru-9ef8f8093ecb)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

@@ -13,7 +13,7 @@ mediumId: "76f5e14bfc5b"
 For two days, I was trying to figure out what is wrong with our project after upgrading to Groovy 2.5. First of all, I've found that `java.util.Date` extension methods are no longer part of `groovy-all` but this was quite easy as this is mentioned in the release notes.
 
 [**The Apache Groovy programming language - Groovy 2.5 release notes**  
-_Groovy is well known for its extensible compilation process. The compiler supports a compile-time metaprogramming…_groovy-lang.org](http://groovy-lang.org/releasenotes/groovy-2.5.html "http://groovy-lang.org/releasenotes/groovy-2.5.html")
+[groovy-lang.org](http://groovy-lang.org/releasenotes/groovy-2.5.html)
 
 The other issue was much more cryptic to discover. After numerous hours I've found out that last item of the list in some method is not being removed. When I dig deeper I found a short note for a`pop` method:
 
@@ -42,8 +42,5 @@ String usedToBeLast = numbers.pop()
 assert numbers == \['one', 'two', 'three'\]
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [September 17, 2018](https://medium.com/p/76f5e14bfc5b).
 
-[Canonical link](https://medium.com/@musketyr/why-you-should-avoid-using-push-and-pop-method-on-lists-in-groovy-76f5e14bfc5b)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

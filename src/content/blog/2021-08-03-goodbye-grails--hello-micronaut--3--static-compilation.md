@@ -17,7 +17,7 @@ _This is the third post in a series that will guide you through the migration fr
 Switching the frameworks is never easy, even for the ones which are very close to each other. As an extra layer of security to ensure the migration won't get wrong, let's adda static compilation of the application globally. This will also help us in the next steps to purify the domain model usage. The whole process has been already described in the following post so, please, take the detour and read that guide first.
 
 [**How to Compile Groovy Statically by Default**  
-_Groovy was created as a dynamic language, but it also offers static compilation for a long time. Myself, I prefer the…_medium.com](https://medium.com/agorapulse-stories/how-to-compile-groovy-statically-by-default-980816119534 "https://medium.com/agorapulse-stories/how-to-compile-groovy-statically-by-default-980816119534")
+[medium.com](https://medium.com/agorapulse-stories/how-to-compile-groovy-statically-by-default-980816119534)
 
 As we would like to apply the static compilation for every application and library in the project, let's update our `settings.gradle` projects section as follows:
 
@@ -53,10 +53,7 @@ _In the next step, we will prepare_ [_datasets_](https://medium.com/p/440c8b50fb
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
+[github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/a5a01bad2a06).
 
-[Canonical link](https://medium.com/@musketyr/goodbye-grails-hello-micronaut-3-static-compilation-a5a01bad2a06)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

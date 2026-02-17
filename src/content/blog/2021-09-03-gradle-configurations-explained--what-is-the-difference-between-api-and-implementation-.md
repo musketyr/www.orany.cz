@@ -145,18 +145,15 @@ If you are creating Java library which then you should think twice which of your
 
 There is a Gradle Lint project which can help you decide the right configuration to be used:
 
-[**GitHub - nebula-plugins/gradle-lint-plugin: A pluggable and configurable linter tool for…**](https://github.com/nebula-plugins/gradle-lint-plugin)https://github.com/nebula-plugins/gradle-lint-plugin)
+[**GitHub - nebula-plugins/gradle-lint-plugin: A pluggable and configurable linter tool for…**](https://github.com/nebula-plugins/gradle-lint-plugin)
 
 You can dig deeper into the Christmas Dinner example here:
 
-[**GitHub - musketyr/christmas-dinner: Gradle Configurations Showcase**](https://github.com/musketyr/christmas-dinner)https://github.com/musketyr/christmas-dinner)
+[**GitHub - musketyr/christmas-dinner: Gradle Configurations Showcase**](https://github.com/musketyr/christmas-dinner)
 
 Or inspect just the build scan:
 
-[**Build scan | Gradle Cloud Services**](https://scans.gradle.com/s/q7ol2tszrw6uo)https://scans.gradle.com/s/q7ol2tszrw6uo)
+[**Build scan | Gradle Cloud Services**](https://scans.gradle.com/s/q7ol2tszrw6uo)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [September 3, 2021](https://medium.com/p/4b9608dd5e35).
 
-[Canonical link](https://medium.com/@musketyr/gradle-configurations-explained-4b9608dd5e35)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

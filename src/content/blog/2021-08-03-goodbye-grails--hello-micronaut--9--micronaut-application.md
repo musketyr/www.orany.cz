@@ -76,10 +76,7 @@ _Although the Micronaut application is up and running there is the very last ste
 #### Sources & Discussion
 
 [**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
-_This repository contains sources for the Grails to Micronaut guide. The repository shows the state of the application…_github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut "https://github.com/agorapulse/goodbye-grails-hello-micronaut")
+[github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 3, 2021](https://medium.com/p/c0d3956afe47).
 
-[Canonical link](https://medium.com/@musketyr/goodbye-grails-hello-micronaut-9-micronaut-application-c0d3956afe47)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

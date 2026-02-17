@@ -13,7 +13,7 @@ mediumId: "7d7df185a48d"
 Some time ago, I have adopted CodeNarc IDEA plugin which helps to detect(and soon it will help fixing) Groovy code style violations.
 
 [**CodeNarc - IntelliJ IDEs Plugin | Marketplace**  
-_CodeNarc analyzes Groovy code for defects, bad practices, inconsistencies, style issues and more._plugins.jetbrains.com](https://plugins.jetbrains.com/plugin/5925-codenarc "https://plugins.jetbrains.com/plugin/5925-codenarc")
+[plugins.jetbrains.com](https://plugins.jetbrains.com/plugin/5925-codenarc)
 
 I have a version of a plugin in the beta channel which works great but sometimes the plugin code throws a `StackOverflowError` that I am not able to emulate in the sandbox but that only occurs on my own IntelliJ IDEA instance. It has been also reported by my coworkers who help me with testing so I wanted to fix the issue before releasing the plugin to the general public. I need to be able to debug my own IntelliJ IDEA instance to get more details about the issue.
 
@@ -38,7 +38,7 @@ _If you fail to update the file for some reason and your IntelliJ instance won't
 Other options are either downloading a different edition of the IDE (e.g. the community edition instead of ultimate) or launching the IDE with different configuration directories.
 
 [**Changing IDE default directories used for config, plugins, and caches storage**  
-_user profile drive runs out of space disk is slow and you want to use faster HDD or SSD for caches default user profile…_intellij-support.jetbrains.com](https://intellij-support.jetbrains.com/hc/en-us/articles/207240985 "https://intellij-support.jetbrains.com/hc/en-us/articles/207240985")
+[intellij-support.jetbrains.com](https://intellij-support.jetbrains.com/hc/en-us/articles/207240985)
 
 Once your regular IntelliJ IDEA instance has started then launch the other one, open the plugin's code and run _Attach to Process_ action:
 
@@ -56,8 +56,5 @@ Once you are finished, do not forget to remove the debugging configuration from 
 
 _Many thanks to Yann Cébron, the developer advocate of IntelliJ Platform, for helping me setting up the process._
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 23, 2021](https://medium.com/p/7d7df185a48d).
 
-[Canonical link](https://medium.com/@musketyr/how-to-debug-your-own-intellij-idea-instance-7d7df185a48d)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

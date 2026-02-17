@@ -71,7 +71,7 @@ Once the container is present in ECR then we can focus on setting up AWS Batch.
 Setting up AWS Batch requires some work that will not be covered in this guide. Please, follow to official guide:
 
 [**Setting Up with AWS Batch**  
-_If you've already signed up for Amazon Web Services (AWS) and have been using Amazon Elastic Compute Cloud (Amazon EC2)…_docs.aws.amazon.com](https://docs.aws.amazon.com/batch/latest/userguide/get-set-up-for-aws-batch.html "https://docs.aws.amazon.com/batch/latest/userguide/get-set-up-for-aws-batch.html")
+[docs.aws.amazon.com](https://docs.aws.amazon.com/batch/latest/userguide/get-set-up-for-aws-batch.html)
 
 Once you have your _Compute environments_ and _Job queue_ ready then you can proceed to create a new _Job definition_:
 
@@ -142,10 +142,7 @@ Event sent at 2021-10-12T13:15:34Z to the environments \[ec2, cloud, cli\]
 This is the end of this guide. You have an up-and-running Micronaut application in AWS Batch. You can check the sources of the sample application on GitHub:
 
 [**GitHub - musketyr/micronaut-aws-batch-demo: Micronaut Micronaut -aws -batch -demo Application**  
-_Workflow file: .github/workflows/graalvm.yml For pushes to the master branch, the workflow will: Setup the build…_github.com](https://github.com/musketyr/micronaut-aws-batch-demo "https://github.com/musketyr/micronaut-aws-batch-demo")
+[github.com](https://github.com/musketyr/micronaut-aws-batch-demo)
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [October 13, 2021](https://medium.com/p/4bf2a61107).
 
-[Canonical link](https://medium.com/@musketyr/how-to-use-micronaut-in-aws-batch-4bf2a61107)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

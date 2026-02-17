@@ -13,12 +13,12 @@ mediumId: "27aee7a89b1c"
 TL;DR: You can develop your lambda functions with [Micronaut](http://micronaut.io/) controllers and friends and then use `ApiGatewayProxyHandler` as your Lambda handler. If you deploy to AWS then the handler will convert the API Gateway Proxy request to [Micronaut](http://micronaut.io/)'s request, which will be processed in similar way how [Micronaut](http://micronaut.io/)’s Netty HTTP server processes requests and the response returned will be again converted from [Micronaut](http://micronaut.io/)’s response to API Gateway Proxy response. On the other hand, the Lambda projects will still be regular [Micronaut](http://micronaut.io/) projects so you will be able to run them with [Micronaut](http://micronaut.io/)’s Netty HTTP. You can for example create subproject `local-server` which will depend on every API Gateway Lambda Proxy subprojects written with [Micronaut](http://micronaut.io/) and if you run the Netty HTTP embedded server for `local-server` subproject then all the endpoint will be available locally. Please, read the documentation bellow for more information how to actually achieve this:
 
 [**agorapulse/micronaut-libraries**  
-_micronaut-libraries - Agorapulse libraries for Micronaut_github.com](https://github.com/agorapulse/micronaut-libraries "https://github.com/agorapulse/micronaut-libraries")
+[github.com](https://github.com/agorapulse/micronaut-libraries)
 
 You can also start right ahead with the start project:
 
 [**agorapulse/micronaut-aws-api-gateway-proxy-starter**  
-_Starter project for Micronaut with AWS API Gateway Proxy Integration …_github.com](https://github.com/agorapulse/micronaut-aws-api-gateway-proxy-starter "https://github.com/agorapulse/micronaut-aws-api-gateway-proxy-starter")
+[github.com](https://github.com/agorapulse/micronaut-aws-api-gateway-proxy-starter)
 
 Now the long story. We have recently migrated part of our application [AWS API Gateway](https://aws.amazon.com/api-gateway/) with [Lambda Proxy Integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html). We adopted quite a trivial approach similar to servlet context where all resources under common starting path are handled by the same [AWS Lambda](https://aws.amazon.com/lambda/) function.
 
@@ -100,7 +100,7 @@ First time I've seen the presentation about [Micronaut](http://micronaut.io/) I 
 But by default [Micronaut](http://micronaut.io/) comes only with Netty-based HTTP server. Luckily I was able to create an adapter for API Gateway Lambda Proxy functions which can be found on GitHub:
 
 [**agorapulse/micronaut-libraries**  
-_micronaut-libraries - Agorapulse libraries for Micronaut_github.com](https://github.com/agorapulse/micronaut-libraries "https://github.com/agorapulse/micronaut-libraries")
+[github.com](https://github.com/agorapulse/micronaut-libraries)
 
 In the documentation, you can find how to configure your [Micronaut](http://micronaut.io/)'s projects to deploy to AWS using Gradle and also how to run them locally with [Micronaut](http://micronaut.io/)’s Netty HTTP server. As the lambda is pure [Micronaut](http://micronaut.io/)’s application you should see no difference but you may consider creating tests for both — lambda and netty servers. Feel free to [dive deep into the examples](https://github.com/agorapulse/micronaut-libraries/tree/master/examples) to see it action.
 
@@ -109,8 +109,5 @@ You are currently still responsible to create the exact same mapping (including 
 As a side-product, there is a generic library to create your own [Micronaut](http://micronaut.io/)’s HTTP servers so maybe one of you can create [Java Servlet](https://www.oracle.com/technetwork/java/index-jsp-135475.html) bridge to be able to deploy for example to [Google's App Engine](https://cloud.google.com/appengine/).
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [July 25, 2018](https://medium.com/p/27aee7a89b1c).
 
-[Canonical link](https://medium.com/@musketyr/how-to-run-your-java-aws-api-gateway-lambda-projects-locally-with-micronaut-27aee7a89b1c)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

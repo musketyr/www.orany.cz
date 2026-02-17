@@ -15,21 +15,21 @@ mediumId: "5b3ade1e3945"
 AWS DynamoDB Accelerator (DAX) is a fully managed, in-memory cache for DynamoDB. In Java, using DAX can be completely hidden from the developer as DAX Java Client implements the same `AmazonDynamoDB` interface as the direct client. [Agorapulse Micronaut Libraries](https://agorapulse.github.io/micronaut-libraries/#_dynamodb) provides out-of-the-box support with a single configuration property switching between DAX and direct DynamoDB.
 
 [**Agorapulse Micronaut Libraries**  
-_AWS SDK for Micronaut - integration for DynamoDB, Kinesis, Simple Storage Service (S3), Simple Email Service (SES)…_agorapulse.github.io](https://agorapulse.github.io/micronaut-libraries/#_dynamodb "https://agorapulse.github.io/micronaut-libraries/#_dynamodb")
+[agorapulse.github.io](https://agorapulse.github.io/micronaut-libraries/#_dynamodb)
 
 #### Setting up the Cluster
 
 There is excellent documentation which describes how to create a new DAX cluster. Please, follow the necessary steps to set up your own cluster first.
 
 [**Creating a DAX Cluster - Amazon DynamoDB**  
-_This section walks you through first-time setup and usage of DAX in your default Amazon VPC environment. You can create…_docs.aws.amazon.com](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.create-cluster.html "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.create-cluster.html")
+[docs.aws.amazon.com](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.create-cluster.html)
 
 DAX is only available inside VPC so using DAX automatically implies running your applications and functions inside very same VPC. You will also need to create DAX subnet which may only access the private subnets of your VPC.
 
 Access control itself is based on IAM roles and policies. Pay attention to the roles your application or function is assuming. Follow the instruction in this article to set up the roles properly:
 
 [**DAX Access Control - Amazon DynamoDB**  
-_DAX is designed to work together with DynamoDB, to seamlessly add a caching layer to your applications. However, DAX…_docs.aws.amazon.com](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.access-control.html "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.access-control.html")
+[docs.aws.amazon.com](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.access-control.html)
 
 This is the sample policy taken from the article above which allows running DAX command against given cluster:
 
@@ -135,11 +135,8 @@ You can try yourself to run the function using any test payload. You can also tr
 You can check the whole sample project on GitHub:
 
 [**musketyr/dax-tester**  
-_Micronaut + AWS DynamoDB Accelerator (DAX) Example - musketyr/dax-tester_github.com](https://github.com/musketyr/dax-tester "https://github.com/musketyr/dax-tester")
+[github.com](https://github.com/musketyr/dax-tester)
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [February 20, 2019](https://medium.com/p/5b3ade1e3945).
 
-[Canonical link](https://medium.com/@musketyr/how-to-setup-aws-dynamodb-accelerator-dax-with-micronaut-5b3ade1e3945)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

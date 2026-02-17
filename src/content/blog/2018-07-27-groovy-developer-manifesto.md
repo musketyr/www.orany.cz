@@ -36,8 +36,5 @@ Do you have your own statement to add? Please, leave it in the comments. I may u
 You can sign this manifest using the hand icon bellow.
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [July 27, 2018](https://medium.com/p/bb9bdafa214f).
 
-[Canonical link](https://medium.com/@musketyr/groovy-developer-manifest-bb9bdafa214f)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

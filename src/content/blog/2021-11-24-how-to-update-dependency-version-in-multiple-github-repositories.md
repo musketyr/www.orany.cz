@@ -14,11 +14,11 @@ mediumId: "512b18f5c909"
 
 There are many tools that can help you keep your repositories up to date like a [Dependabot](https://github.com/dependabot) but if you need to keep the control in your hands then you need to do the update yourself. But updating to the latest version possible once it's released is not always an option. Let's take an example of excellent test support library [Testcontainers](https://www.testcontainers.org). We'll use the Pierrot command line interface to perform the migration.
 
-[**Pierrot - Multi-repository GitHub Governance Tool**](https://agorapulse.github.io/pierrot/)https://agorapulse.github.io/pierrot/)
+[**Pierrot - Multi-repository GitHub Governance Tool**](https://agorapulse.github.io/pierrot/)
 
 Pierrot can be installed using [SDKMAN](https://sdkman.io).
 
-[**Home - SDKMAN! the Software Development Kit Manager**](https://sdkman.io)https://sdkman.io)
+[**Home - SDKMAN! the Software Development Kit Manager**](https://sdkman.io)
 
 ```
 # if you don't have SDKMAN already installedcurl -s "https://get.sdkman.io" | bashsource "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -34,7 +34,7 @@ Once installed you should be able to run the command and get the list of availab
 
 Pierrot requires [GitHub token to access the repositories](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and you should also set up the organization to search, so you don't have to repeat these in every call.
 
-[**Creating a personal access token - GitHub Docs**](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+[**Creating a personal access token - GitHub Docs**](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 ```
 export GITHUB_TOKEN=yourtoken
@@ -49,7 +49,7 @@ pierrot search extension:gradle testcontainers
 
 The search term is based on the [GitHub content search syntax](https://docs.github.com/en/search-github/searching-on-github/searching-code).
 
-[**Searching code - GitHub Docs**](https://docs.github.com/en/search-github/searching-on-github/searching-code)https://docs.github.com/en/search-github/searching-on-github/searching-code)
+[**Searching code - GitHub Docs**](https://docs.github.com/en/search-github/searching-on-github/searching-code)
 
 We will get a pageable list of results such as this one:
 
@@ -130,8 +130,5 @@ pierrot replace \
 
 This command uses Java regular expression pattern to replace any version number with the latest one.
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [November 24, 2021](https://medium.com/p/512b18f5c909).
 
-[Canonical link](https://medium.com/@musketyr/how-to-update-dependency-version-in-multiple-github-repositories-512b18f5c909)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

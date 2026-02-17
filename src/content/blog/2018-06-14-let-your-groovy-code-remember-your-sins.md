@@ -28,8 +28,5 @@ repositories { jcenter() }
 dependencies { compile 'com.agorapulse:remember:0.1' }
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [June 14, 2018](https://medium.com/p/7faf4e53dd7c).
 
-[Canonical link](https://medium.com/@musketyr/let-your-groovy-code-remember-your-sins-7faf4e53dd7c)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

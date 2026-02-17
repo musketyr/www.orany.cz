@@ -35,8 +35,5 @@ Here is a complete example:
 }
 
 * * *
-By [Vladimír Oraný](https://medium.com/@musketyr) on [July 26, 2018](https://medium.com/p/becd8fc50a88).
 
-[Canonical link](https://medium.com/@musketyr/the-easiest-way-how-to-display-all-spocks-mock-interactions-becd8fc50a88)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

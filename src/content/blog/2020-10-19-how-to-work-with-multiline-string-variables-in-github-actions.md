@@ -47,8 +47,5 @@ echo "::set-output name=changelog::$(echo "$CHANGELOG")"
 
 Then the output is read correctly in the next steps — no need to other replacements in the consumer step.
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [October 19, 2020](https://medium.com/p/23f56447d209).
 
-[Canonical link](https://medium.com/@musketyr/how-to-work-with-multiline-string-variables-in-github-actions-23f56447d209)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.

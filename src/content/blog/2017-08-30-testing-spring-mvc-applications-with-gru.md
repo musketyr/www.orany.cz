@@ -70,8 +70,5 @@ When we run the specification again all tests should pass.
 
 Gru Spring implementation is very lightweight. It only provides [common HTTP interactions](https://agorapulse.github.io/gru/#_common_interactions) and [leverages the rest of advanced settings back to MockMvc](https://agorapulse.github.io/gru/#_mockmvc_builders). Dive deep into [Gru documentation](https://agorapulse.github.io/gru/) and feel free to start experimenting with the project we have just created. If you haven't followed the steps then you can download the sample project from GitHub: [https://github.com/musketyr/gru-spring-demo](https://github.com/musketyr/gru-spring-demo).
 
-By [Vladimír Oraný](https://medium.com/@musketyr) on [August 30, 2017](https://medium.com/p/9867b28774c3).
 
-[Canonical link](https://medium.com/@musketyr/testing-spring-mvc-applications-with-gru-9867b28774c3)
 
-Exported from [Medium](https://medium.com) on February 15, 2026.
