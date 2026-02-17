@@ -14,7 +14,10 @@ mediumId: "2d5a97fa0a51"
 
 Groovy is a language where domain-specific languages (DSL) are the first class citizens. There is a whole page in the documentation dedicated to writing DSL:
 
-[**The Apache Groovy programming language - Domain-Specific Languages**  
+```groovy
+[The Apache Groovy programming language - Domain-Specific Languages
+```
+
 [groovy-lang.org](http://groovy-lang.org/dsls.html)
 
 Builder pattern has its special place among the other DSL approaches because of an ability to delegate closures to different objects which allows creating compact and easily readable code-as-data. Here is the example of one of the built-in builder `JsonBuilder` from the official documentation above:
@@ -42,21 +45,24 @@ YUML.me Diagram’s Diagram
 
 If we want to describe the Order’s example with plain old Groovy features we can just use language features such as map constructor:
 
-Diagram diagram =  **new** Diagram()
+```groovy
+Diagram diagram =  new Diagram()
 
-diagram.notes.add(**new** Note(  
-    **text**: **'You can stick notes on diagrams too!'**,  
-    **color**: **'skyblue'  
-**))
+diagram.notes.add(new Note(
+    text: 'You can stick notes on diagrams too!',
+    color: 'skyblue'
+))
 
-Type customer = **new** Type(**name**: **'Customer'**)  
-Type order = **new** Type(**name**: **'Order'**)  
-Type lineItem = **new** Type(**name**: **'LineItem'**)  
-Type deliveryMethod = **new** Type(**name**: **'DeliveryMethod'**)  
-Type product = **new** Type(**name**: **'Product'**)  
-Type category = **new** Type(**name**: **'Category'**)  
-Type nationalDeliveryMethod = **new** Type(**name**: **'National'**)  
-Type internationalDeliveryMethod = **new** Type(**name**: **'International'**)
+Type customer = new Type(name: 'Customer')
+Type order = new Type(name: 'Order')
+Type lineItem = new Type(name: 'LineItem')
+Type deliveryMethod = new Type(name: 'DeliveryMethod')
+Type product = new Type(name: 'Product')
+Type category = new Type(name: 'Category')
+Type nationalDeliveryMethod = new Type(name: 'National')
+Type internationalDeliveryMethod = new Type(name: 'International')
+```
+
 
 diagram.types.add(customer)  
 diagram.types.add(order)  
@@ -67,103 +73,124 @@ diagram.types.add(category)
 diagram.types.add(nationalDeliveryMethod)  
 diagram.types.add(internationalDeliveryMethod)
 
-diagram.relationships.add(**new** Relationship(  
-    **source**: customer,  
-    **sourceCardinality**: **'1'**,  
-    **destinationTitle**: **'orders'**,  
-    **destination**: order,  
-    **destinationCardinality**: **'0..\*'**,  
-    **type**: RelationshipType.**_AGGREGATION  
-_**))
+```groovy
+diagram.relationships.add(new Relationship(
+    source: customer,
+    sourceCardinality: '1',
+    destinationTitle: 'orders',
+    destination: order,
+    destinationCardinality: '0..\*',
+    type: RelationshipType._AGGREGATION
+_))
 
-diagram.relationships.add(**new** Relationship(  
-    **source**: order,  
-    **sourceCardinality**: **'\*'**,  
-    **destination**: lineItem,  
-    **destinationCardinality**: **'\*'**,  
-    **type**: RelationshipType.**_COMPOSITION  
-_**))
+diagram.relationships.add(new Relationship(
+    source: order,
+    sourceCardinality: '\*',
+    destination: lineItem,
+    destinationCardinality: '\*',
+    type: RelationshipType._COMPOSITION
+_))
 
-diagram.relationships.add(**new** Relationship(  
-    **source**: order,  
-    **destination**: deliveryMethod,  
-    **destinationCardinality**: **'1'  
-**))
+diagram.relationships.add(new Relationship(
+    source: order,
+    destination: deliveryMethod,
+    destinationCardinality: '1'
+))
 
-diagram.relationships.add(**new** Relationship(  
-    **source**: order,  
-    **sourceCardinality**: **'\*'**,  
-    **destination**: product,  
-    **destinationCardinality**: **'\*'  
-**))
+diagram.relationships.add(new Relationship(
+    source: order,
+    sourceCardinality: '\*',
+    destination: product,
+    destinationCardinality: '\*'
+))
 
-diagram.relationships.add(**new** Relationship(  
-    **source**: category,  
-    **destination**: product,  
-    **bidirectional**: **true  
-**))
+diagram.relationships.add(new Relationship(
+    source: category,
+    destination: product,
+    bidirectional: true
+))
 
-diagram.relationships.add(**new** Relationship(  
-    **source**: nationalDeliveryMethod,  
-    **destination**: deliveryMethod,  
-    **type**: RelationshipType.**_INHERITANCE  
-_**))
+diagram.relationships.add(new Relationship(
+    source: nationalDeliveryMethod,
+    destination: deliveryMethod,
+    type: RelationshipType._INHERITANCE
+_))
 
-diagram.relationships.add(**new** Relationship(  
-    **source**: internationalDeliveryMethod,  
-    **destination**: deliveryMethod,  
-    **type**: RelationshipType.**_INHERITANCE  
-_**))
+diagram.relationships.add(new Relationship(
+    source: internationalDeliveryMethod,
+    destination: deliveryMethod,
+    type: RelationshipType._INHERITANCE
+_))
+```
+
 
 You can see that it takes many lines of code to write just a very simple diagram. In particular, we need to take care of creating new objects and adding them into particular collections.
 
 `Diagram` class and its companion in this example are a just plain old Groovy object which uses `toString` method to build the diagram:
 
-@CompileStatic  
-@EqualsAndHashCode  
-**class** Diagram {  
-  
-    Collection<Note> **notes** \= **new** LinkedHashSet<>()  
-    Collection<Type> **types** \= **new** LinkedHashSet<>()  
-    Collection<Relationship> **relationships** \= **new** LinkedHashSet<>()  
-  
-    @Override  
+```groovy
+@CompileStatic
+@EqualsAndHashCode
+class Diagram {
+
+    Collection<Note> notes = new LinkedHashSet<>()
+    Collection<Type> types = new LinkedHashSet<>()
+    Collection<Relationship> relationships = new LinkedHashSet<>()
+
+    @Override
+```
+
     String toString() {  
-        **assert types**        StringWriter stringWriter = **new** StringWriter()  
-        PrintWriter printWriter = **new** PrintWriter(stringWriter)  
-  
-        **for** (Note note **in notes**) {  
+```groovy
+        assert types        StringWriter stringWriter = new StringWriter()
+        PrintWriter printWriter = new PrintWriter(stringWriter)
+
+        for (Note note in notes) {
+```
+
             stringWriter.println(note)  
         }  
-  
-        Collection<Type> orphanTypes = **new** LinkedHashSet<>(**types**)  
-  
-        **for** (Relationship relationship **in relationships**) {  
+```groovy
+        Collection<Type> orphanTypes = new LinkedHashSet<>(types)
+
+        for (Relationship relationship in relationships) {
+```
+
             orphanTypes.remove(relationship.source)  
             orphanTypes.remove(relationship.destination)  
   
             printWriter.println(relationship)  
         }  
-  
-        **for** (Type type **in** orphanTypes) {  
+```groovy
+        for (Type type in orphanTypes) {
+```
+
             printWriter.println(type)  
         }  
-  
-        **return** stringWriter.toString()  
-    }  
-  
+```groovy
+        return stringWriter.toString()
+    }
+
 }
+```
+
 
 The produced YUML format is on the other hand very compact:
 
-**\[note: You can stick notes on diagrams too!{bg:skyblue}\]  
+```groovy
+\[note: You can stick notes on diagrams too!{bg:skyblue}\]
+```
+
 \[Customer\]<>1-orders 0..\*>\[Order\]  
 \[Order\]++\*-\*>\[LineItem\]  
 \[Order\]-1>\[DeliveryMethod\]  
 \[Order\]\*-\*>\[Product\]  
 \[Category\]<->\[Product\]  
 \[DeliveryMethod\]^\[National\]  
-\[DeliveryMethod\]^\[International\]**
+```groovy
+\[DeliveryMethod\]^\[International\]
+```
+
 
 This will result in a very familiar graph to any YUML user:
 
@@ -187,7 +214,10 @@ In the next post in this series [The Essence: _The closures’ basics_](https://
 
 ### Contents
 
-1.  [**The Concept: _The core concept of builders_**](https://medium.com/p/2d5a97fa0a51)
+```groovy
+1.  [The Concept: _The core concept of builders_](https://medium.com/p/2d5a97fa0a51)
+```
+
 2.  [The Essence: _The closures' basics_](https://medium.com/p/fda1f2ebe657)
 3.  [The Aid: _Using the annotations for static compilation_](https://medium.com/p/df2e9a02557a)
 4.  [The Disguise: _Hiding the implementation of the builder API_](https://medium.com/p/1e2edc2311f8)

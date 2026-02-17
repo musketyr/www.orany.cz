@@ -41,7 +41,10 @@ We also need to copy `MockDataServiceFactory` into the `hello-api` project. The 
 
 Migrating controllers themselves is relatively easy. You may face another there are still some parts missing e.g. HTTP filters, Grails Security. You will have to find their counterparts in the [Micronaut Documentation](https://micronaut.io/docs/):
 
-[**Docs - Micronaut Framework**  
+```groovy
+[Docs - Micronaut Framework
+```
+
 [micronaut.io](https://micronaut.io/docs/)
 
 _In the next part, we are going to create the new_ [_Micronaut application_](https://medium.com/p/c0d3956afe47)_._
@@ -61,7 +64,10 @@ _In the next part, we are going to create the new_ [_Micronaut application_](htt
 
 #### Sources & Discussion
 
-[**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
+```yaml
+[GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut
+```
+
 [github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
 

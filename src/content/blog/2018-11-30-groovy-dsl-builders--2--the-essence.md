@@ -24,43 +24,64 @@ Closures are an essential part of any Groovy DSL builders. Contrary to their Jav
 
 The most common method which changes closure's delegate is the method `with` which can be used on any object and which allows you to call methods of given object directly from within the closure definition without the need to specify the caller subject. See the following example which benefits from calling `with` on the `Diagram` instance:
 
-Diagram diagram =  **new** Diagram().with {  
-    note(**'You can stick notes on diagrams too!'**,**'skyblue'**)  
+```groovy
+Diagram diagram =  new Diagram().with {
+    note('You can stick notes on diagrams too!','skyblue')
+```
+
   
     relationship(  
-        type(**'Customer'**),   
-        RelationshipType.**_AGGREGATION_**,   
-        type(**'Order'**)  
+```groovy
+        type('Customer'),
+        RelationshipType.\1,
+        type('Order')
+```
+
     ).with {  
-        sourceCardinality = **'1'**        destinationTitle = **'orders'**        destinationCardinality = **'0..\*'**    }  
+```groovy
+        sourceCardinality = '1'        destinationTitle = 'orders'        destinationCardinality = '0..\*'    }
+```
+
   
     relationship(  
-        type(**'Order'**),  
-        RelationshipType.**_COMPOSITION_**,   
-        type(**'LineItem'**)  
+```groovy
+        type('Order'),
+        RelationshipType.\1,
+        type('LineItem')
+```
+
     ).with {  
-        sourceCardinality = **'\*'**        destinationCardinality = **'\*'**    }  
-  
-    relationship(type(**'Order'**), type(**'DeliveryMethod'**)).with {  
-        destinationCardinality = **'1'**    }  
-  
-    relationship(type(**'Order'**), type(**'Product'**)).with {  
-        sourceCardinality = **'\*'**        destinationCardinality = **'\*'**    }  
-  
-    relationship(type(**'Category'**), type(**'Product'**)).with {  
-        bidirectional = **true**    }  
+```groovy
+        sourceCardinality = '\*'        destinationCardinality = '\*'    }
+
+    relationship(type('Order'), type('DeliveryMethod')).with {
+        destinationCardinality = '1'    }
+
+    relationship(type('Order'), type('Product')).with {
+        sourceCardinality = '\*'        destinationCardinality = '\*'    }
+
+    relationship(type('Category'), type('Product')).with {
+        bidirectional = true    }
+```
+
   
     relationship(  
-        type(**'National'**),   
-        RelationshipType.**_INHERITANCE_**,   
-        type(**'DeliveryMethod'**)  
+```groovy
+        type('National'),
+        RelationshipType.\1,
+        type('DeliveryMethod')
     )
+```
+
 
     relationship(  
-        type(**'International'**),   
-        RelationshipType.**_INHERITANCE_**,   
-        type(**'DeliveryMethod'**)  
-    )  
+```groovy
+        type('International'),
+        RelationshipType.\1,
+        type('DeliveryMethod')
+    )
+```
+
   
     it  
 }
@@ -69,47 +90,65 @@ We have added some useful methods for building notes, types and relationships di
 
 Here is the updated `Diagram` class which now manages more gracefully the `types` and `relationships` collections using the methods of similar name. This is a pretty common pattern in the Groovy builders' DSLs.
 
-@CompileStatic  
-@EqualsAndHashCode  
-**class** Diagram {  
-  
-    Collection<Note> **notes** \= **new** LinkedHashSet<>()  
-    Map<String, Type> **types** \= \[:\].withDefault { key ->   
-        **new** Type(key.toString())   
+```groovy
+@CompileStatic
+@EqualsAndHashCode
+class Diagram {
+
+    Collection<Note> notes = new LinkedHashSet<>()
+    Map<String, Type> types = \[:\].withDefault { key ->
+        new Type(key.toString())
     }
 
-    Collection<Relationship> **relationships** \= **new** LinkedHashSet<>()  
-  
-    Note note(String text, String color = **null**) {  
-        Note note = **new** Note(text, color)  
-        **this**.**notes**.add(note)  
-        **return** note  
-    }  
+    Collection<Relationship> relationships = new LinkedHashSet<>()
+
+    Note note(String text, String color = null) {
+        Note note = new Note(text, color)
+        this.notes.add(note)
+        return note
+    }
+```
+
   
     Type type(String name) {  
-        **types**\[name\]  
-    }  
+```groovy
+        types\[name\]
+    }
+```
+
   
     Relationship relationship(  
         Type source,   
-        RelationshipType type = RelationshipType.**_ASSOCIATION_**,  
+```groovy
+        RelationshipType type = RelationshipType.\1,
+```
+
         Type destination  
-    ) {  
-        Relationship relationship = **new** Relationship(  
+```groovy
+    ) {
+        Relationship relationship = new Relationship(
+```
+
             source,  
             type,   
             destination  
-         )  
-        **this**.**relationships**.add(relationship)  
-        **return** relationship  
-    }  
-  
-    @Override  
+```groovy
+         )
+        this.relationships.add(relationship)
+        return relationship
+    }
+
+    @Override
+```
+
     String toString() {  
-        **// print diagram**  
-    }  
-  
+```groovy
+        // print diagram
+    }
+
 }
+```
+
 
 Calling the method `type` or `relationship` will either find the existing object of given name or it will create a new one and return it.
 

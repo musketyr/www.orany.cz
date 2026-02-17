@@ -70,7 +70,10 @@ Once the container is present in ECR then we can focus on setting up AWS Batch.
 
 Setting up AWS Batch requires some work that will not be covered in this guide. Please, follow to official guide:
 
-[**Setting Up with AWS Batch**  
+```groovy
+[Setting Up with AWS Batch
+```
+
 [docs.aws.amazon.com](https://docs.aws.amazon.com/batch/latest/userguide/get-set-up-for-aws-batch.html)
 
 Once you have your _Compute environments_ and _Job queue_ ready then you can proceed to create a new _Job definition_:
@@ -141,7 +144,10 @@ Event sent at 2021-10-12T13:15:34Z to the environments \[ec2, cloud, cli\]
 
 This is the end of this guide. You have an up-and-running Micronaut application in AWS Batch. You can check the sources of the sample application on GitHub:
 
-[**GitHub - musketyr/micronaut-aws-batch-demo: Micronaut Micronaut -aws -batch -demo Application**  
+```groovy
+[GitHub - musketyr/micronaut-aws-batch-demo: Micronaut Micronaut -aws -batch -demo Application
+```
+
 [github.com](https://github.com/musketyr/micronaut-aws-batch-demo)
 
 

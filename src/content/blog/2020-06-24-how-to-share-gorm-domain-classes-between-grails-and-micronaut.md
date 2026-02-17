@@ -20,7 +20,10 @@ In theory, [you can use GORM without Grails](https://gorm.grails.org/latest/hibe
 
 Luckily, to generate Grails plugin descriptor you only need to include Grails core dependency on the compile classpath and have any Groovy class with `GrailsPlugin` suffix. Add the following dependencies into your Gradle file:
 
-dependencies **{**    _// GORM_    compile "org.grails:grails-datastore-gorm-hibernate5:$gormVersion"
+```groovy
+dependencies {    _// GORM_    compile "org.grails:grails-datastore-gorm-hibernate5:$gormVersion"
+```
+
 
     // more flexible binding support (known from controllers),   
     // but adds too many dependencies      
@@ -31,7 +34,10 @@ dependencies **{**    _// GORM_    compile "org.grails:grails-datastore-gorm-hib
     _// required for Micronaut service generation, if present_    compileOnly "io.micronaut:micronaut-inject-groovy:$micronautVersion"  
   
     _// required for jackson ignores generation for Micronaut_    compileOnly 'com.fasterxml.jackson.core:jackson-databind:2.8.11.3'  
-**}**
+```groovy
+}
+```
+
 
 This is the example of Grails plugin descriptor with zero-runtime dependencies on Grails:
 
@@ -49,40 +55,56 @@ class GormSharedDomainsGrailsPlugin {
 
 The descriptor generator adds artefacts based on the location of the classes source code. So we need to create convenient source location known from Grails. Add the following lines to build into your Gradle file:
 
-sourceSets **{**    main **{**        groovy **{**            _// the source folder for the GORM domain classes_            srcDir 'grails-app/domain'  
+```groovy
+sourceSets {    main {        groovy {            _// the source folder for the GORM domain classes_            srcDir 'grails-app/domain'
+```
+
             _// if you also want to include some services_            srcDir 'grails-app/services'  
-        **}  
-    }  
-}**
+```groovy
+        }
+    }
+}
+```
+
 
 Now you have two more source directories which correspond the Grails layout. All the domain classes must be placed into `grails-app/domain` source folder. They still have to be annotated with `grails.gorm.annotation.Entity`.
 
 import grails.gorm.annotation.Entity  
-  
-@Entity  
+```groovy
+@Entity
+```
+
 class Person {  
   
     String firstName  
     String lastName  
     String email  
   
-    static _constraints_ \= **{**        firstName maxSize: 256  
+```groovy
+    static _constraints_ = {        firstName maxSize: 256
+```
+
         lastName maxSize: 256  
         email maxSize: 256, nullable: true  
-    **}  
-  
-**}
+```groovy
+    }
+
+}
+```
+
 
 You should not use GORM static methods but rather utilise [GORM Data Services](http://gorm.grails.org/6.1.x/hibernate/manual/). If you want to use the very same service from Micronaut then annotate it also with `@Singleton`. You need to place the class inside `grails-app/services`
 
 import grails.gorm.transactions.Transactional  
 import groovy.transform.CompileStatic  
-  
-import javax.inject.Singleton  
-  
-@Transactional  
-@CompileStatic  
-@Singleton  
+```groovy
+import javax.inject.Singleton
+
+@Transactional
+@CompileStatic
+@Singleton
+```
+
 class PersonService {  
   
     Person create(String firstName, String lastName, String email) {  
@@ -98,8 +120,10 @@ class PersonService {
     List<Person> getAllPersons() {  
         Person._list_()  
     }  
-  
+```groovy
 }
+```
+
 
 You can check the generated `build/classes/main/META-INF/` directory if it contains the generated descriptor:
 
@@ -136,8 +160,10 @@ class PersonController {
         }  
         render personService.allPersons as JSON  
     }  
-  
+```groovy
 }
+```
+
 
 #### Micronaut Usage
 
@@ -151,8 +177,10 @@ class PersonController {
     PersonController(PersonService personService) {  
         this.personService = personService  
     }  
-  
-    @Get('/')  
+```groovy
+    @Get('/')
+```
+
     List<Person> index() {  
         if (!personService.allPersons) {  
             personService.create(  
@@ -163,8 +191,10 @@ class PersonController {
         }  
         return personService.allPersons  
     }  
-  
+```groovy
 }
+```
+
 
 To enable domain classes for Micronaut you will probably have to change the packages scanned by Micronaut during the startup:
 
@@ -176,14 +206,19 @@ class Application {
                  .mainClass(Application)  
                  .start()  
     }  
-  
+```groovy
 }
+```
+
 
 #### Example Project
 
 You can check the complete example in the following repository:
 
-[**musketyr/gorm-shared-domains**  
+```groovy
+[musketyr/gorm-shared-domains
+```
+
 [github.com](https://github.com/musketyr/gorm-shared-domains)
 
 

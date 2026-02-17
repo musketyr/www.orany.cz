@@ -14,17 +14,26 @@ My first question when I've seen new [Micronaut](https://medium.com/@musketyr/wh
 
 Add following dependency to your `build.gradle` file:
 
-testImplementation **"com.agorapulse:gru-micronaut:1.0.1"**
+```yaml
+testImplementation "com.agorapulse:gru-micronaut:1.0.1"
+```
+
 
 Let's imagine you have a simple controller `HelloController`:
 
-@Controller(**"/hello"**)  
-**class** HelloController {  
-  
-    @Get(**"/"**)  
+```groovy
+@Controller("/hello")
+class HelloController {
+
+    @Get("/")
+```
+
     String index() {  
-        **return "Hello World"**    }  
+```groovy
+        return "Hello World"    }
 }
+```
+
 
 You are able to update the automatically generated specification file to use Gru.
 
@@ -34,8 +43,10 @@ If you are using Java:
 public class HelloControllerSpec {
 
     @Inject Gru gru
+```groovy
+    @Test
+```
 
-    @Test  
     public void testMicronautWithGru() throws Throwable {  
         gru.verify(test -> test  
             .get("/hello")  

@@ -17,8 +17,11 @@ Spock Spring module does not like mix-and-matching the Spock version so be sure 
 dependencies {  
     String spockVersion = '1.1-groovy-2.4'  
     testCompile "org.spockframework:spock-core:${spockVersion}"  
-    testCompile "org.spockframework:spock-spring:${spockVersion}**"  
-**}
+```groovy
+    testCompile "org.spockframework:spock-spring:${spockVersion}"
+}
+```
+
 
 In any Grails Unit test you can easily add another beans using `[doWithSpring](https://testing.grails.org/latest/guide/index.html#_dowithspring)` method where you can do [whatever you can do within](https://docs.grails.org/latest/guide/spring.html) `[resources.groovy](https://docs.grails.org/latest/guide/spring.html)` [file](https://docs.grails.org/latest/guide/spring.html):
 
@@ -54,8 +57,10 @@ class HelloServiceSpec extends Specification
 
         spock.mock(id: 'helloService', class: HelloService.name)  
     }}
-
+```groovy
     @Autowired HelloService helloService
+```
+
 
     void 'say hello'() {  
         given:  
@@ -85,8 +90,10 @@ class HelloServiceSpec extends Specification
 
         spock.mock(id: 'helloService', class: HelloService.name)  
     }}
-
+```groovy
     @Autowired @AutoAttach HelloService helloService
+```
+
 
     void 'say hello'() {  
         when:  

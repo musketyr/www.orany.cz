@@ -20,19 +20,22 @@ When I'm writing [Spock's](http://spockframework.org/) specifications for legacy
 
 Here is a complete example:
 
-**import** spock.lang.Specification  
-  
-**class** MySpec **extends** Specification {  
-      
-    Runnable **runnable** \= Mock(Runnable)  
-      
-    _// ... other mocks and setup_        **void 'my test'**() {  
-        **when**:  
-            _// my service call_        **then**:  
-            1 \* **runnable**.run()  
-    }  
-      
+```groovy
+import spock.lang.Specification
+
+class MySpec extends Specification {
+
+    Runnable runnable = Mock(Runnable)
+
+    _// ... other mocks and setup_        void 'my test'() {
+        when:
+            _// my service call_        then:
+            1 \* runnable.run()
+    }
+
 }
+```
+
 
 * * *
 

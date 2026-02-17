@@ -44,7 +44,10 @@ Let's summarise what you should learn from this series into two checklists depen
 
 One general advice for both situations which didn't fit elsewhere:
 
-**_Try to avoid method names which have a special meaning in Groovy. The most toxic in the terms of builder DSL is using the method_** `**_get_**` **_which is basically a shortcut to_** `**_propertyMissing_**` **_fallback. Especially if you haven't resolved the problem with_** `**_owner_**` **_this may result into cryptic exceptions._**
+```groovy
+_Try to avoid method names which have a special meaning in Groovy. The most toxic in the terms of builder DSL is using the method_ `_get_` _which is basically a shortcut to_ `_propertyMissing_` _fallback. Especially if you haven't resolved the problem with_ `_owner_` _this may result into cryptic exceptions._
+```
+
 
 * * *
 
@@ -65,7 +68,10 @@ git clone [https://github.com/musketyr/yuml-dsl-builder.git](https://github.com/
 7.  [The Extension: _Designing your builder DSL for extendability_](https://medium.com/p/d612fd261471)
 8.  [The Resignation: _Rewriting the Groovy DSL builder into Java_](https://medium.com/p/99bd118538b4)
 9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)
-10.  [**The Conclusion: _The checklist for Groovy DSL builders’ authors_**](https://medium.com/p/9d2b961dbc55)
+```groovy
+10.  [The Conclusion: _The checklist for Groovy DSL builders’ authors_](https://medium.com/p/9d2b961dbc55)
+```
+
 
 
 

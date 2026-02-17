@@ -33,25 +33,28 @@ When developing DSL builders in Groovy there are three key parts which can incre
 Let's take a look on another iteration of our YUML DSL:
 
 Diagram._build_ {  
-    note(**'You can stick notes on diagrams too!'**, **'skyblue'**)  
-  
-    aggregation(**'Customer'**, **'Order'**) {  
-        source **'1'**        destination **'0..\*'**, **'orders'**    }  
-  
-    composition(**'Order'**, **'LineItem'**) {  
-        source **'\*'**        destination **'\*'**    }  
-  
-    association(**'Order'**, **'DeliveryMethod'**) {  
-        destination **'1'**    }  
-  
-    association(**'Order'**, **'Product'**) {  
-        source **'\*'**        destination **'\*'**    }  
-  
-    association(**'Category'**, **'Product'**) {  
-        bidirectional **true**    }  
-  
-    type **'National'** inherits _from_ type **'DeliveryMethod'**    type**'International'** inherits _from_ type **'DeliveryMethod'  
-**}
+```groovy
+    note('You can stick notes on diagrams too!', 'skyblue')
+
+    aggregation('Customer', 'Order') {
+        source '1'        destination '0..\*', 'orders'    }
+
+    composition('Order', 'LineItem') {
+        source '\*'        destination '\*'    }
+
+    association('Order', 'DeliveryMethod') {
+        destination '1'    }
+
+    association('Order', 'Product') {
+        source '\*'        destination '\*'    }
+
+    association('Category', 'Product') {
+        bidirectional true    }
+
+    type 'National' inherits _from_ type 'DeliveryMethod'    type'International' inherits _from_ type 'DeliveryMethod'
+}
+```
+
 
 The latest iteration of the DSL uses two new features
 
@@ -66,50 +69,68 @@ Relationship relationship(
     String destination,  
     @DelegatesTo(  
         value = Relationship,   
-        strategy = Closure.**_DELEGATE\_FIRST_**    )  
-    Closure additionalProperties = Closure.**_IDENTITY  
-_**) {  
-    Relationship relationship = **new** Relationship(  
+```groovy
+        strategy = Closure.\1    )
+    Closure additionalProperties = Closure._IDENTITY
+_) {
+    Relationship relationship = new Relationship(
+```
+
         type(source),   
         relationshipType,   
         type(destination)  
     )  
     relationship.with additionalProperties  
-    **this**.**relationships**.add(relationship)  
-    **return** relationship  
+```groovy
+    this.relationships.add(relationship)
+    return relationship
 }
+```
+
 
 > The common mistake is to forget setting `strategy` to `Closure.DELEGATE_FIRST` as the default `strategy` of the `DelegatesTo` annotation is `Closure.OWNER_FIRST`.
 
 Fluent part of the DSL uses some helper objects to keep the rhythm method-parameter-method-parameter -\*. For example `Type` now provides method `inherits` which returns`InheritanceBuilder`
 
 InheritanceBuilder inherits(From from) {  
-    **return new** InheritanceBuilder(**diagram**, **this**)  
+```groovy
+    return new InheritanceBuilder(diagram, this)
 }
+```
+
 
 The `InheritanceBuilder` class is pretty simple:
 
-@CompileStatic  
-**class** InheritanceBuilder {  
-  
-    **private final** Type **source  
-    private final** Diagram **diagram**    InheritanceBuilder(Diagram diagram, Type destination) {  
-        **this**.**source** \= destination  
-        **this**.**diagram** \= diagram  
-    }  
+```groovy
+@CompileStatic
+class InheritanceBuilder {
+
+    private final Type source
+    private final Diagram diagram    InheritanceBuilder(Diagram diagram, Type destination) {
+        this.source = destination
+        this.diagram = diagram
+    }
+```
+
   
     Relationship type(String destination) {  
-        **return diagram**.inheritance(**source**.name, destination)  
-    }  
+```groovy
+        return diagram.inheritance(source.name, destination)
+    }
 }
+```
+
 
 These helper classes always needs to keep some back reference to help to build the desired object.
 
 The last pieces of the puzzle are methods in the `Diagram` class which return the keywords such as `from`:
 
-**static** From getFrom() {  
-    **return** From.**_FROM  
-_**}
+```groovy
+static From getFrom() {
+    return From._FROM
+_}
+```
+
 
 * * *
 
@@ -127,7 +148,10 @@ In the next part [The Disguise: _Hiding the implementation of the builder API_](
 
 1.  [The Concept: _The core concept of builders_](https://medium.com/p/2d5a97fa0a51)
 2.  [The Essence: _The closures’ basics_](https://medium.com/p/fda1f2ebe657)
-3.  [**The Aid: _Using the annotations for static compilation_**](https://medium.com/p/df2e9a02557a)
+```groovy
+3.  [The Aid: _Using the annotations for static compilation_](https://medium.com/p/df2e9a02557a)
+```
+
 4.  [The Disguise: _Hiding the implementation of the builder API_](https://medium.com/p/1e2edc2311f8)
 5.  [The Desiccation: _Keeping the code DRY_](https://medium.com/p/afb47ebbf89d)
 6.  [The Expectations: _The importance of handling closures’ owner properly_](https://medium.com/p/83ced4b8f2b)

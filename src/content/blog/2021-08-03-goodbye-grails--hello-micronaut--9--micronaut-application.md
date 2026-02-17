@@ -75,7 +75,10 @@ _Although the Micronaut application is up and running there is the very last ste
 
 #### Sources & Discussion
 
-[**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
+```yaml
+[GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut
+```
+
 [github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
 

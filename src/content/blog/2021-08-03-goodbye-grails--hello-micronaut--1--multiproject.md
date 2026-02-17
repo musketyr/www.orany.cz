@@ -16,7 +16,10 @@ _This is the first post in a series that will guide you through the migration fr
 
 In this series, we will migrate various parts of the Grails application one by one. To be able to achieve that, we need to be able to extract parts of the current Grails application into separate libraries. This is best handled by using Gradle's multiproject layout. We'll be using Kordamp Gradle Plugin to achieve an easy-to-change multiproject structure.
 
-[**A collection of opinionated Gradle plugins**  
+```groovy
+[A collection of opinionated Gradle plugins
+```
+
 [kordamp.org](https://kordamp.org/kordamp-gradle-plugins/)
 
 First, move everything specific to your application into `apps/<your-app-name>`. We will use the name `hello` as a placeholder for your application's name in the following texts. So if your application is called `hello` then the new destination should be `apps/hello`. Do not move Gradle related files except the `build.gradle` file which will now take the name of the directory in which you have moved the file, e.g. `hello.gradle`. Grails Wrapper related files can be deleted.
@@ -31,8 +34,11 @@ You will also need to create new`build.gradle` in the root directory. Replace th
 
 At last, explicitly declare the application class such as `hello.Application` in your Grails subproject `apps/hello/hello.gradle` because otherwise there will be a conflict in the Gradle plugins' configuration and that application won't start:
 
-springBoot **{**    mainClassName = 'hello.Application'  
-**}**
+```groovy
+springBoot {    mainClassName = 'hello.Application'
+}
+```
+
 
 You can now run the application with the following command to verify that the application still works.
 
@@ -57,7 +63,10 @@ _In the next step, we will migrate Grails'_ [_configuration_](https://medium.com
 
 #### Sources & Discussion
 
-[**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
+```yaml
+[GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut
+```
+
 [github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
 

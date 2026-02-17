@@ -27,39 +27,57 @@ First of all, let's summarise the situations in which it is meaningful to use `M
 
 There is no relevant method which would benefit for the first use case in our YUML DSL but methods `source` and `destination` inside the`relationship` definition easily fits the second one. It might be more readable if we can specify `cardinality` or `title` as named parameters:
 
-aggregation(**'Customer'**, **'Order'**) {  
-    source **cardinality**: **'1'**    destination **cardinality**: **'0..\*'**, **title**: **'orders'  
-**}
+```groovy
+aggregation('Customer', 'Order') {
+    source cardinality: '1'    destination cardinality: '0..\*', title: 'orders'
+}
+```
+
 
 Now let's take a look at how the new methods are implemented:
 
-**public static** RelationshipDefinition source(  
+```groovy
+public static RelationshipDefinition source(
+```
+
     RelationshipDefinition self,  
-    @NamedParams({  
-        @NamedParam(value = **_CARDINALITY_**, type = String.**class**),  
-        @NamedParam(value = **_TITLE_**, type = String.**class**)  
-    })  
+```groovy
+    @NamedParams({
+        @NamedParam(value = \1, type = String.class),
+        @NamedParam(value = \1, type = String.class)
+    })
+```
+
     Map<String, String> cardinalityAndTitle  
-) {  
-    **return** self.source(  
-        cardinalityAndTitle.get(**_CARDINALITY_**),       
-        cardinalityAndTitle.get(**_TITLE_**)  
-    );  
-}  
-  
-**public static** RelationshipDefinition destination(  
-    RelationshipDefinition self,  
-    @NamedParams({  
-        @NamedParam(value = **_CARDINALITY_**, type = String.**class**),  
-        @NamedParam(value = **_TITLE_**, type = String.**class**)  
-    })  
-        Map<String, String> cardinalityAndTitle  
-) {  
-    **return** self.destination(  
-        cardinalityAndTitle.get(**_CARDINALITY_**),       
-        cardinalityAndTitle.get(**_TITLE_**)  
-    );  
+```groovy
+) {
+    return self.source(
+        cardinalityAndTitle.get(\1),
+        cardinalityAndTitle.get(\1)
+    );
 }
+
+public static RelationshipDefinition destination(
+```
+
+    RelationshipDefinition self,  
+```groovy
+    @NamedParams({
+        @NamedParam(value = \1, type = String.class),
+        @NamedParam(value = \1, type = String.class)
+    })
+```
+
+        Map<String, String> cardinalityAndTitle  
+```groovy
+) {
+    return self.destination(
+        cardinalityAndTitle.get(\1),
+        cardinalityAndTitle.get(\1)
+    );
+}
+```
+
 
 New methods `source` and `destination` were added to the extension class. Although there is more annotations related to named arguments only `NamedParams` and `NamedParam` are the important ones. Annotations such as `NamedDelegate` or `NamedVariant` are just Groovy AST transformation helping to build the list of the named arguments. Using `NamedParams` will bring you additional static compilation checks as you can mark the parameter as required and since Groovy 2.5.5 you should be also able to also mark `NamedParams` not to accept any other keys then the declared ones. But still, for example at the time of writing IntelliJ IDEA doesn't seem to benefit from this feature so it won't give you the desired hints so using named arguments should still be considered as a tool of the last resort.
 
@@ -87,7 +105,10 @@ The last part of this series [The Conclusion: _The checklist for Groovy DSL buil
 6.  [The Expectations: _The importance of handling closures’ owner properly_](https://medium.com/p/83ced4b8f2b)
 7.  [The Extension: _Designing your builder DSL for extendability_](https://medium.com/p/d612fd261471)
 8.  [The Resignation: _Rewriting the Groovy DSL builder into Java_](https://medium.com/p/99bd118538b4)
-9.  [**The Navigation: _Using the annotations for named parameters_**](https://medium.com/p/d065f0253e98)
+```groovy
+9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)
+```
+
 10.  [The Conclusion: _The checklist for Groovy DSL builders’ authors_](https://medium.com/p/9d2b961dbc55)
 
 

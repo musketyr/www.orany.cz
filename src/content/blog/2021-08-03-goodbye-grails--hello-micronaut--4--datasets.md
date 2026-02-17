@@ -16,7 +16,10 @@ _This is the fourth post in a series that will guide you through the migration f
 
 We should cover the crucial parts of the application with tests as things can go wrong very easily during the migration. For the meaningful tests, we will need the meaningful data. In this post, we are going to use Dru framework for this purpose because it already supports Grails and GORM, and Micronaut Data out of the box.
 
-[**Dru - Data Reconstruction Utility**  
+```groovy
+[Dru - Data Reconstruction Utility
+```
+
 agorapulse.github.io](https://agorapulse.github.io/dru/ "https://agorapulse.github.io/dru/")
 
 Dru excels in creating the relationships between different entities but we won't get into too many details. You should rather use the documentation for the full reference.
@@ -58,7 +61,10 @@ _In the next step, we will move towards_ [_decoupling the web layer from the dom
 
 #### Sources & Discussion
 
-[**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
+```yaml
+[GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut
+```
+
 [github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
 

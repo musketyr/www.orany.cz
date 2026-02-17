@@ -22,94 +22,118 @@ Typical examples are security and parameter checks like the following:
 
 Following `CommentController` shows some of the problems. Usually, there is even more code between the method's points of return.
 
-**class** CommentController {  
-  
-    **def securityService  
+```groovy
+class CommentController {
+
+    def securityService
+```
+
     def commentService  
   
-    def** updateComment(String id, String newText) {  
-        **if** (!**securityService**.authorized(request)) {  
-            respond **status**: HttpStatus.**_FORBIDDEN_            return**        }  
-  
-        **if** (!**securityService**.hasRole(request, **'EDITOR'**)) {  
-            respond **status**: HttpStatus.**_UNAUTHORIZED_            return**        }  
-  
-        **if** (!id || !newText) {  
-            respond **status**: HttpStatus.**_BAD\_REQUEST_            return**        }  
-  
-        Comment comment = **commentService**.findById(id)  
-  
-        **if** (!comment) {  
-            respond **status**: HttpStatus.**_NOT\_FOUND_            return**        }  
-  
-        comment = **commentService**.updateComment(comment, newText)  
-  
-        render(comment **as** JSON)  
-    }  
-  
+```groovy
+    def updateComment(String id, String newText) {
+        if (!securityService.authorized(request)) {
+            respond status: HttpStatus.\1            return        }
+
+        if (!securityService.hasRole(request, 'EDITOR')) {
+            respond status: HttpStatus.\1            return        }
+
+        if (!id || !newText) {
+            respond status: HttpStatus.\1            return        }
+
+        Comment comment = commentService.findById(id)
+
+        if (!comment) {
+            respond status: HttpStatus.\1            return        }
+
+        comment = commentService.updateComment(comment, newText)
+
+        render(comment as JSON)
+    }
+
 }
+```
+
 
 To reduce the code we need to adopt multiple approaches. Typically security and similar cross-cutting concerns are best handled with aspect-oriented programming style which means using interceptors in the Grails environment.
 
-**class** SecurityInterceptor {  
-  
-    **def** **securityService**    SecurityInterceptor() {  
+```groovy
+class SecurityInterceptor {
+
+    def securityService    SecurityInterceptor() {
+```
+
         _// just for demo, usually you would use annotations  
-        // or some name conventions_        match(**controller**: **'comment'**, **action**: **'updateComment'**)  
+```groovy
+        // or some name conventions_        match(controller: 'comment', action: 'updateComment')
+```
+
         _// more actions_    }  
   
-    **boolean** before() {  
-        **if** (!securityService.authorized(request)) {  
-            respond **status**: HttpStatus.**_FORBIDDEN_            return false**        }  
-  
-        **if** (!securityService.hasRole(request, **'EDITOR'**)) {  
-            respond **status**: HttpStatus.**_UNAUTHORIZED_            return false**        }  
-        **return true**  
-    }  
-  
-    **boolean** after() {  
-        **return true**    }  
-      
+```groovy
+    boolean before() {
+        if (!securityService.authorized(request)) {
+            respond status: HttpStatus.\1            return false        }
+
+        if (!securityService.hasRole(request, 'EDITOR')) {
+            respond status: HttpStatus.\1            return false        }
+        return true
+    }
+
+    boolean after() {
+        return true    }
+
 }
+```
+
 
 See [Interceptors](http://docs.grails.org/latest/guide/theWebLayer.html#interceptors) for further reference.
 
 For exceptional states, there are exceptions in Java. You can move the code into the service and throw exceptions at the points where would you normally return from the controller action:
 
-**class** CommentService {  
-  
-    **def commentService**    Comment updateComment(String id, String newText) {  
-        _// moved to interceptor_        **if** (!id || !newText) {  
-            **throw new** IllegalArgumentException(**"Details..."**)  
-        }  
+```groovy
+class CommentService {
+
+    def commentService    Comment updateComment(String id, String newText) {
+        _// moved to interceptor_        if (!id || !newText) {
+            throw new IllegalArgumentException("Details...")
+        }
+```
+
   
         Comment comment = findById(id)  
   
-        **if** (!comment) {  
-            **throw new** NoSuchElementException(**"Details..."**)  
-        }  
-  
-        **return** updateComment(comment, newText)  
-    }  
+```groovy
+        if (!comment) {
+            throw new NoSuchElementException("Details...")
+        }
+
+        return updateComment(comment, newText)
+    }
 }
+```
+
 
 The controller will handle the exceptions in an exception handling actions:
 
-**class** CommentController {  
-  
-    **def commentService  
-  
-    def** updateComment(String id, String newText) {  
-        render(**commentService**.updateComment(id, newText) **as** JSON)  
-    }  
-  
-    **def** handleWrongParmeters(IllegalArgumentException e) {  
-        respond **status**: HttpStatus.**_BAD\_REQUEST_**    }  
-  
-    **def** handleMissingComment(NoSuchElementException e) {  
-        respond **status**: HttpStatus.**_NOT\_FOUND_**    }  
-      
+```groovy
+class CommentController {
+
+    def commentService
+
+    def updateComment(String id, String newText) {
+        render(commentService.updateComment(id, newText) as JSON)
+    }
+
+    def handleWrongParmeters(IllegalArgumentException e) {
+        respond status: HttpStatus.\1    }
+
+    def handleMissingComment(NoSuchElementException e) {
+        respond status: HttpStatus.\1    }
+
 }
+```
+
 
 See [Declarative Controller Exception Handling](http://docs.grails.org/latest/guide/theWebLayer.html#controllerExceptionHandling) for further reference.
 

@@ -24,112 +24,157 @@ In Groovy, the simplest possible way how to extend the DSL is to use [extensions
 
 Let's start simple. Following extension class helps you to add `stereotype` method besides the originally provided `type` method:
 
-**public class** StereotypeExtensions {  
-  
-    **public static** TypeDefinition stereotype(  
+```java
+public class StereotypeExtensions {
+
+    public static TypeDefinition stereotype(
+```
+
         DiagramDefinition diagram,   
         String name  
-    ) {  
-        **return** diagram.type(**"<<"** \+ name + **">>"**);  
-    }  
-  
-    **public static** RelationshipDefinition stereotype(  
+```groovy
+    ) {
+        return diagram.type("<<" \+ name + ">>");
+    }
+
+    public static RelationshipDefinition stereotype(
+```
+
         AggregationOrCompositionBuilder builder,   
         String name  
-    ) {  
-        **return** builder.type(**"<<"** \+ name + **">>"**);  
-    }  
-  
-    **public static** RelationshipDefinition stereotype(  
+```groovy
+    ) {
+        return builder.type("<<" \+ name + ">>");
+    }
+
+    public static RelationshipDefinition stereotype(
+```
+
         InheritanceBuilder builder,   
         String name  
-    ) {  
-        **return** builder.type(**"<<"** \+ name + **">>"**);  
-    }  
-  
+```groovy
+    ) {
+        return builder.type("<<" \+ name + ">>");
+    }
+
 }
+```
+
 
 To enable the class as extension module you need to create a file `META-INF/services/org.codehaus.groovy.runtime.ExtensionModule` with the following content:
 
-**moduleName**\=**yuml-extra  
-moduleVersion**\=**0.1.0  
-extensionClasses**\=**cz.orany.yuml.stereotype.StereotypeExtensions  
-staticExtensionClasses**\=
+```groovy
+moduleName=yuml-extra
+moduleVersion=0.1.0
+extensionClasses=cz.orany.yuml.stereotype.StereotypeExtensions
+staticExtensionClasses=
+```
+
 
 Then you are able to use the `stereotype` method within your DSL:
 
-note **'YUML Diagram Components'  
-**stereotype **'Diagram'** has _one_ to _many_ stereotype **'Type'  
-**stereotype **'Diagram'** has _zero_ to _many_ stereotype **'Note'  
-**stereotype **'Diagram'** has _zero_ to _many_ stereotype **'Relationship'  
-  
-**stereotype **'Relationship'** has _one_ stereotype **'Type'** called **'source'  
-**stereotype **'Relationship'** has _one_ stereotype **'Type'** called **'destination'  
-**stereotype **'Relationship'** owns _one_ stereotype **'RelationshipType'**
+```groovy
+note 'YUML Diagram Components'
+stereotype 'Diagram' has _one_ to _many_ stereotype 'Type'
+stereotype 'Diagram' has _zero_ to _many_ stereotype 'Note'
+stereotype 'Diagram' has _zero_ to _many_ stereotype 'Relationship'
+
+stereotype 'Relationship' has _one_ stereotype 'Type' called 'source'
+stereotype 'Relationship' has _one_ stereotype 'Type' called 'destination'
+stereotype 'Relationship' owns _one_ stereotype 'RelationshipType'
+```
+
 
 Which will produce the following output:
 
-**\[note: YUML Diagram Components\]  
+```groovy
+\[note: YUML Diagram Components\]
+```
+
 \[<<Type>>\]<>1..\*->\[<<Diagram>>\]  
 \[<<Note>>\]<>0..\*->\[<<Diagram>>\]  
 \[<<Relationship>>\]<>0..\*->\[<<Diagram>>\]  
 \[<<Type>>\]<>source 1->\[<<Relationship>>\]  
 \[<<Type>>\]<>destination 1->\[<<Relationship>>\]  
-\[<<RelationshipType>>\]++1->\[<<Relationship>>\]**
+```groovy
+\[<<RelationshipType>>\]++1->\[<<Relationship>>\]
+```
+
 
 But what if the new language feature goes beyond the current functionality. In that case, you should create a helper interface which will allow developers to plug into the build mechanism. I have simply called the interface `DiagramHelper`. The diagram will need to store the information provided by the helper in some generic storage such as a plain `Map<String, Object> metadata` map. Finally, you need to expose an extension point for the helpers.
 
 Here are the pieces of code which handle the helpers:
 
-@Override  
-**public** <H **extends** DiagramHelper, R> H configure(  
-    @DelegatesTo.Target(**"helper"**)  
+```groovy
+@Override
+public <H extends DiagramHelper, R> H configure(
+    @DelegatesTo.Target("helper")
+```
+
     Class<H> helper,  
-    @DelegatesTo(  
-        value = DelegatesTo.Target.**class**,   
-        target = **"helper"**,   
-        strategy = Closure.**_DELEGATE\_FIRST_**,   
+```groovy
+    @DelegatesTo(
+        value = DelegatesTo.Target.class,
+        target = "helper",
+        strategy = Closure.\1,
+```
+
         genericTypeIndex = 0  
-    )  
-    @ClosureParams(FirstParam.FirstGenericType.**class**)  
+```groovy
+    )
+    @ClosureParams(FirstParam.FirstGenericType.class)
+```
+
     Closure<R> configuration  
-) {  
-    H helperInstance = (H) **helperMap**.computeIfAbsent(helper, {   
+```groovy
+) {
+    H helperInstance = (H) helperMap.computeIfAbsent(helper, {
+```
+
         helper.newInstance()  
     })  
     DefaultGroovyMethods._with_(helperInstance, configuration)  
-    **return** helperInstance  
-}  
-  
-**void** postprocess() {  
-    **for** (DiagramHelper helper : **helperMap**.values()) {  
-        **metadata**.putAll(helper.metadata)  
-    }  
+```groovy
+    return helperInstance
 }
+
+void postprocess() {
+    for (DiagramHelper helper : helperMap.values()) {
+        metadata.putAll(helper.metadata)
+    }
+}
+```
+
 
 It's actually pretty easy to create such an extension point. In the example, you can see the different usage of `DelegatesTo` annotation, this time using the `Target` and `genericTypeIndex` to point to the generic type of the method. Method `postprocess` is called after the diagram is built, allowing the helpers to supply the metadata.
 
 Now let's say we want to learn our YUML DSL to be able to also define the properties of the classes. This is a feature which is already present in YUML but we haven't implemented it directly to keep the example as trivial as possible. So the desired notation should look like on the following example:
 
-note **'YUML Diagram Components'  
-**type **'Diagram'**, {  
-    has _one_ to _many_ type **'Type'**    has _zero_ to _many_ type _notes_    has _zero_ to _many_ type **'Relationship'  
-**}  
-  
-type **'Relationship'**, {  
-    has _one_ type **'Type'** called **'source'**    has _one_ type **'Type'** called **'destination'**    owns _one_ type **'RelationshipType'  
-**}  
-  
-type **'Type'**, {  
-    property **name**: **'string'  
-**}
+```groovy
+note 'YUML Diagram Components'
+type 'Diagram', {
+    has _one_ to _many_ type 'Type'    has _zero_ to _many_ type _notes_    has _zero_ to _many_ type 'Relationship'
+}
+
+type 'Relationship', {
+    has _one_ type 'Type' called 'source'    has _one_ type 'Type' called 'destination'    owns _one_ type 'RelationshipType'
+}
+
+type 'Type', {
+    property name: 'string'
+}
+```
+
 
 The new `property` method accepts a map having names of the properties as keys and types of the properties as values. To extend the DSL we need to create an yet another extension class:
 
-@CompileStatic  
-**class** PropertiesDiagramHelperExtensions {  
-  
-    **static** TypeDefinition property(  
+```groovy
+@CompileStatic
+class PropertiesDiagramHelperExtensions {
+
+    static TypeDefinition property(
+```
+
         TypeDefinition typeDefinition,  
         String type,  
         String name  
@@ -138,11 +183,14 @@ The new `property` method accepts a map having names of the properties as keys a
             .diagramDefinition  
             .configure(PropertiesDiagramHelper) {  
                 it.addProperty(typeDefinition.name, type, name)  
-            }  
-        **return** typeDefinition  
-    }  
-  
-    **static** TypeDefinition property(  
+```groovy
+            }
+        return typeDefinition
+    }
+
+    static TypeDefinition property(
+```
+
         TypeDefinition typeDefinition,  
         Map<String, String> properties  
     ) {  
@@ -150,32 +198,44 @@ The new `property` method accepts a map having names of the properties as keys a
             .diagramDefinition  
             .configure(PropertiesDiagramHelper) {  
             it.addProperties(typeDefinition.name, properties)  
-        }  
-        **return** typeDefinition  
-    }  
-  
+```groovy
+        }
+        return typeDefinition
+    }
+
 }
+```
+
 
 The extension class uses the extension point method `configure` to configure an instance of `PropertiesDiagramHelper` which will hold the properties for us and during the call to `postprocess` it will add the properties to the diagram as metadata. You may notice that the `TypeDefinition` now holds the reference to the `DiagramDefinition`. If you want to create extendible DSL it is very useful to provide references to objects which are logically one level up in the tree so the developers writing the extensions can traverse the tree more easily.
 
 The extension would be useful without the component which understands the metadata. The `YumlPrinter` can get the information about the properties while printing the type:
 
-**private** String print(Diagram diagram, Type type) {  
+```groovy
+private String print(Diagram diagram, Type type) {
+```
+
     Map<String, String> properties =   
         PropertiesDiagramHelper._getProperties_(diagram, type);  
   
-    **if** (properties.isEmpty()) {  
-        **return** String._format_(**"\[%s\]"**, type.getName());  
-    }  
+```groovy
+    if (properties.isEmpty()) {
+        return String._format_("\[%s\]", type.getName());
+    }
+```
+
   
     String propertiesFormatted = properties  
         .entrySet()  
         .stream()  
-        .map((e) -> e.getKey() + **":"** \+ e.getValue())  
-        .collect(Collectors._joining_(**";"**));  
-  
-    **return** String._format_(  
-        **"\[%s|%s\]"**,   
+```groovy
+        .map((e) -> e.getKey() + ":" \+ e.getValue())
+        .collect(Collectors._joining_(";"));
+
+    return String._format_(
+        "\[%s|%s\]",
+```
+
         type.getName(),   
         propertiesFormatted  
     );  
@@ -183,13 +243,19 @@ The extension would be useful without the component which understands the metada
 
 This would produce the expected output including the properties:
 
-**\[note: YUML Diagram Components\]  
+```groovy
+\[note: YUML Diagram Components\]
+```
+
 \[Type|name:string\]<>1..\*->\[Diagram\]  
 \[Note\]<>0..\*->\[Diagram\]  
 \[Relationship\]<>0..\*->\[Diagram\]  
 \[Type|name:string\]<>source 1->\[Relationship\]  
 \[Type|name:string\]<>destination 1->\[Relationship\]  
-\[RelationshipType\]++1->\[Relationship\]**
+```groovy
+\[RelationshipType\]++1->\[Relationship\]
+```
+
 
 * * *
 
@@ -213,7 +279,10 @@ In the next part [The Resignation: _Rewriting the Groovy DSL builder into Java_]
 4.  [The Disguise: _Hiding the implementation of the builder API_](https://medium.com/p/1e2edc2311f8)
 5.  [The Desiccation: _Keeping the code DRY_](https://medium.com/p/afb47ebbf89d)
 6.  [The Expectations: _The importance of handling closures’ owner properly_](https://medium.com/p/83ced4b8f2b)
-7.  [**The Extension: _Designing your builder DSL for extendability_**](https://medium.com/p/d612fd261471)
+```groovy
+7.  [The Extension: _Designing your builder DSL for extendability_](https://medium.com/p/d612fd261471)
+```
+
 8.  [The Resignation: _Rewriting the Groovy DSL builder into Java_](https://medium.com/p/99bd118538b4)
 9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)
 10.  [The Conclusion: _The checklist for Groovy DSL builders’ authors_](https://medium.com/p/9d2b961dbc55)

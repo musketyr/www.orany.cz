@@ -16,7 +16,10 @@ I have noticed that many great frameworks such as Spring Boot, Grails or Microna
 
 I wanted to bring the same smooth versions' management into our project so I've created a seed project to generate the BOM files easily. Although there is a `[java-platform](https://docs.gradle.org/current/userguide/java_platform_plugin.html)` [Gradle plugin](https://docs.gradle.org/current/userguide/java_platform_plugin.html) which is designed for generating BOM files I got inspired by [the approach taken by Micronaut team](https://github.com/micronaut-projects/micronaut-core/blob/master/bom/build.gradle) and created a project which generated the BOM from a simple properties file and publishes it into GitHub Maven repository using GitHub Actions.
 
-[**musketyr/bom-seed**  
+```groovy
+[musketyr/bom-seed
+```
+
 [github.com](https://github.com/musketyr/bom-seed)
 
 #### Creating BOM

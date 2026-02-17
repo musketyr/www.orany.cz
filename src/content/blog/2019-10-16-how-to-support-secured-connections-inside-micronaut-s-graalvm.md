@@ -30,12 +30,18 @@ The reason is that the function sets up a secured connection to the PostgreSQL i
 
 First, copy `libsunec.so` file into the deployment archive `function.zip`. In `Dockerfile` located in the root of the project replace the line `RUN zip -j function.zip bootstrap server` with following two lines:
 
-**RUN** cp **/**usr**/**lib**/**graalvm**/**jre**/**lib**/**amd64**/**libsunec.so libsunec.so  
-**RUN** zip **\-**j function.zip bootstrap server libsunec.so
+```groovy
+RUN cp /usr/lib/graalvm/jre/lib/amd64/libsunec.so libsunec.so
+RUN zip \-j function.zip bootstrap server libsunec.so
+```
+
 
 Second, replace the last line of `bootstrap` script with following to let the application find `libsunec.so` library file:
 
-./server -Djava.library.path=**$**(pwd)
+```groovy
+./server -Djava.library.path=$(pwd)
+```
+
 
 If you now deploy the function and set up the data source properly in `application.yml` then you should be able to successfully connect to PostgreSQL RDS instance and make calls to your API.
 

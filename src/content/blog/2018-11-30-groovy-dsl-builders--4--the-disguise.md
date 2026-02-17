@@ -27,51 +27,66 @@ At the moment, our objects are breaking the single responsibility principle as t
 As the complexity of the builder grows it is important to keep the code as clean as possible and try to separate these three concerns at least using interfaces. The DSL will remain visually the same:
 
 Diagram._build_ {  
-    note(**'You can stick notes on diagrams too!'**, **'skyblue'**)  
-  
-    aggregation(**'Customer'**, **'Order'**) {  
-        source **'1'**        destination **'0..\*'**, **'orders'**    }  
-  
-    composition(**'Order'**, **'LineItem'**) {  
-        source **'\*'**        destination **'\*'**    }  
-  
-    association(**'Order'**, **'DeliveryMethod'**) {  
-        destination **'1'**    }  
-  
-    association(**'Order'**, **'Product'**) {  
-        source **'\*'**        destination **'\*'**    }  
-  
-    association(**'Category'**, **'Product'**) {  
-        bidirectional **true**    }  
-  
-    type **'National'** inherits _from_ type **'DeliveryMethod'**    type**'International'** inherits _from_ type **'DeliveryMethod'  
-**}
+```groovy
+    note('You can stick notes on diagrams too!', 'skyblue')
+
+    aggregation('Customer', 'Order') {
+        source '1'        destination '0..\*', 'orders'    }
+
+    composition('Order', 'LineItem') {
+        source '\*'        destination '\*'    }
+
+    association('Order', 'DeliveryMethod') {
+        destination '1'    }
+
+    association('Order', 'Product') {
+        source '\*'        destination '\*'    }
+
+    association('Category', 'Product') {
+        bidirectional true    }
+
+    type 'National' inherits _from_ type 'DeliveryMethod'    type'International' inherits _from_ type 'DeliveryMethod'
+}
+```
+
 
 But all the parts of the DSL will be provided by interfaces. I prefer to write interfaces in Java as they are more powerful than their Groovy 2.x counterpart. Here is the example of the builder's diagram definition interface:
 
-**public interface** DiagramDefinition {  
-  
-    **static** From getFrom() {  
-        **return** From.**_FROM_**;  
-    }  
+```groovy
+public interface DiagramDefinition {
+
+    static From getFrom() {
+        return From.\1;
+    }
+```
+
   
     // other keywords  
   
-    **default** Note note(String text) {  
-        **return** note(text, **null**);  
-    }  
+```groovy
+    default Note note(String text) {
+        return note(text, null);
+    }
+```
+
   
     Note note(String text, String color);  
   
-    **default** TypeDefinition type(String name) {  
-        **return** type(name, Closure.**_IDENTITY_**);  
-    }  
+```groovy
+    default TypeDefinition type(String name) {
+        return type(name, Closure.\1);
+    }
+```
+
   
     TypeDefinition type(  
         String name,   
-        @DelegatesTo(  
-            value = TypeDefinition.**class**,   
-            strategy = Closure.**_DELEGATE\_FIRST_**        )  
+```groovy
+        @DelegatesTo(
+            value = TypeDefinition.class,
+            strategy = Closure.\1        )
+```
+
         Closure builder  
     );  
   
@@ -81,113 +96,152 @@ But all the parts of the DSL will be provided by interfaces. I prefer to write i
 
 Data interface, on the other hand, is pretty simple:
 
-**public interface** Diagram {  
-  
-    **static** Diagram build(  
-        @DelegatesTo(  
-            value = DiagramDefinition.**class**,   
-            strategy = Closure.**_DELEGATE\_FIRST_**        )   
+```groovy
+public interface Diagram {
+
+    static Diagram build(
+        @DelegatesTo(
+            value = DiagramDefinition.class,
+            strategy = Closure.\1        )
+```
+
         Closure definition  
-    ) {  
-        **return** DefaultDiagramFactory._build_(definition);  
-    }  
-  
-    Collection<? **extends** Note> getNotes();  
-    Collection<? **extends** Type> getTypes();  
-    Collection<? **extends** Relationship> getRelationships();  
-  
+```groovy
+    ) {
+        return DefaultDiagramFactory._build_(definition);
+    }
+
+    Collection<? extends Note> getNotes();
+    Collection<? extends Type> getTypes();
+    Collection<? extends Relationship> getRelationships();
+
 }
+```
+
 
 As `Diagram` is the centrepiece of the DSL it still provides the `build` method but it delegates it to the other class `DefaultDiagramFactory`. This is also quite a common pattern to provide builder directly from the interface or class under construction.
 
 As most of the helper DSL code now resides in `DiagramDefinition` interface's default methods, the original class is not much simpler:
 
-@ToString  
-@PackageScope  
-@CompileStatic  
-@EqualsAndHashCode  
-**class** DefaultDiagram **implements** Diagram, DiagramDefinition {  
-  
-    **final** Collection<DefaultNote> **notes** \= **new** LinkedHashSet<>()  
-    **final** Collection<DefaultRelationship> **relationships** \=        **new** LinkedHashSet<>()  
-  
-    **private final** Map<String, DefaultType> **typesMap** \=   
+```groovy
+@ToString
+@PackageScope
+@CompileStatic
+@EqualsAndHashCode
+class DefaultDiagram implements Diagram, DiagramDefinition {
+
+    final Collection<DefaultNote> notes = new LinkedHashSet<>()
+    final Collection<DefaultRelationship> relationships =        new LinkedHashSet<>()
+
+    private final Map<String, DefaultType> typesMap =
+```
+
         \[:\].withDefault { key ->   
-            **new** DefaultType(**this**, key.toString())   
-        }  
-  
-    @Override  
-    Collection<? **extends** Type> getTypes() {  
-        **return typesMap**.values()  
-    }  
-  
-    @Override  
+```groovy
+            new DefaultType(this, key.toString())
+        }
+
+    @Override
+    Collection<? extends Type> getTypes() {
+        return typesMap.values()
+    }
+
+    @Override
+```
+
     DefaultNote note(String text, String color) {  
-        Note note = **new** DefaultNote(text, color)  
-        **this**.**notes**.add(note)  
-        **return** note  
-    }  
-  
-    @Override  
+```groovy
+        Note note = new DefaultNote(text, color)
+        this.notes.add(note)
+        return note
+    }
+
+    @Override
+```
+
     DefaultType type(  
         String name,   
         @DelegatesTo(  
             value = TypeDefinition,   
-            strategy = Closure.**_DELEGATE\_FIRST_**        )   
+```groovy
+            strategy = Closure.\1        )
+```
+
         Closure builder  
-    ) {  
-        DefaultType type = **typesMap**\[name\]  
+```groovy
+    ) {
+        DefaultType type = typesMap\[name\]
+```
+
         type.with builder  
-        **return** type  
-    }  
-  
-    @Override  
+```groovy
+        return type
+    }
+
+    @Override
+```
+
     DefaultRelationship relationship(  
         String source,  
         RelationshipType relationshipType,  
         String destination,  
         @DelegatesTo(  
             value = RelationshipDefinition,  
-            strategy = Closure.**_DELEGATE\_FIRST_**        )  
+```groovy
+            strategy = Closure.\1        )
+```
+
         Closure additionalProperties  
-    ) {  
-        DefaultRelationship relationship = **new** DefaultRelationship(  
-            type(source, Closure.**_IDENTITY_**),   
+```groovy
+    ) {
+        DefaultRelationship relationship = new DefaultRelationship(
+            type(source, Closure.\1),
+```
+
             relationshipType,   
-            type(destination, Closure.**_IDENTITY_**)  
-        )  
+```groovy
+            type(destination, Closure.\1)
+        )
+```
+
         relationship.with additionalProperties  
-        **this**.**relationships**.add(relationship)  
-        **return** relationship  
-    }  
-  
+```groovy
+        this.relationships.add(relationship)
+        return relationship
+    }
+
 }
+```
+
 
 In some of the future iterations, you may even make`Diagram` final immutable class.
 
 Clearer separation also helps to extract the YUML exporter completely out of the `Diagaram` class:
 
-**package** cz.orany.yuml.export;  
-  
-**import** cz.orany.yuml.model.Diagram;  
-**import** cz.orany.yuml.model.Note;  
-**import** cz.orany.yuml.model.Relationship;  
-**import** cz.orany.yuml.model.Type;  
-  
-**import** java.io.PrintWriter;  
-**import** java.io.StringWriter;  
-**import** java.util.Map;  
-  
-**import static** java.util.function.Function._identity_;  
-**import static** java.util.stream.Collectors._toMap_;  
-  
-**public class** YumlDiagramPrinter **implements** DiagramPrinter {  
-  
-    @Override **public** String print(Diagram diagram) {  
-        StringWriter stringWriter = **new** StringWriter();  
-        PrintWriter printWriter = **new** PrintWriter(stringWriter);  
-  
-        **for** (Note note : diagram.getNotes()) {  
+```groovy
+package cz.orany.yuml.export;
+
+import cz.orany.yuml.model.Diagram;
+import cz.orany.yuml.model.Note;
+import cz.orany.yuml.model.Relationship;
+import cz.orany.yuml.model.Type;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Map;
+
+import static java.util.function.Function._identity_;
+import static java.util.stream.Collectors._toMap_;
+
+public class YumlDiagramPrinter implements DiagramPrinter {
+
+    @Override public String print(Diagram diagram) {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        for (Note note : diagram.getNotes()) {
+```
+
             printWriter.println(print(note));  
         }  
   
@@ -196,19 +250,26 @@ Clearer separation also helps to extract the YUML exporter completely out of the
             .stream()  
             .collect(_toMap_(Type::getName, _identity_()));  
   
-        **for** (Relationship r : diagram.getRelationships()) {  
+```groovy
+        for (Relationship r : diagram.getRelationships()) {
+```
+
             orphanTypes.remove(r.getSource().getName());  
             orphanTypes.remove(r.getDestination().getName());  
   
             printWriter.println(print(r));  
         }  
-  
-        **for** (Type type : orphanTypes.values()) {  
+```groovy
+        for (Type type : orphanTypes.values()) {
+```
+
             printWriter.println(print(type));  
         }  
-  
-        **return** stringWriter.toString();  
-    }  
+```groovy
+        return stringWriter.toString();
+    }
+```
+
   
     // print parts  
 }
@@ -234,7 +295,10 @@ Next post [The Desiccation: _Keeping the code DRY_](https://medium.com/p/afb47eb
 1.  [The Concept: _The core concept of builders_](https://medium.com/p/2d5a97fa0a51)
 2.  [The Essence: _The closures’ basics_](https://medium.com/p/fda1f2ebe657)
 3.  [The Aid: _Using the annotations for static compilation_](https://medium.com/p/df2e9a02557a)
-4.  [**The Disguise: _Hiding the implementation of the builder API_**](https://medium.com/p/1e2edc2311f8)
+```groovy
+4.  [The Disguise: _Hiding the implementation of the builder API_](https://medium.com/p/1e2edc2311f8)
+```
+
 5.  [The Desiccation: _Keeping the code DRY_](https://medium.com/p/afb47ebbf89d)
 6.  [The Expectations: _The importance of handling closures’ owner properly_](https://medium.com/p/83ced4b8f2b)
 7.  [The Extension: _Designing your builder DSL for extendability_](https://medium.com/p/d612fd261471)

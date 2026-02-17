@@ -55,7 +55,10 @@ You need to update all the remaining injection points in the Grails application.
 
 As GORM is now called from Micronaut beans instead of Grails services and controllers, we need to let Micronaut know which packages should be scanned. Sadly, the default `GrailsApp` implementation does not propagate the packages into the Micronaut context but there is [Micronaut Grails](https://agorapulse.github.io/micronaut-grails/) library for a rescue:
 
-[**Grails Integration for Micronaut**  
+```groovy
+[Grails Integration for Micronaut
+```
+
 [agorapulse.github.io](https://agorapulse.github.io/micronaut-grails/)
 
 We need to add two more dependencies into the Grails application's build file `hello.gradle`:
@@ -79,13 +82,22 @@ Then we can get the mock injected into the specification using Spring's `Autowir
 
 Even this step looks pretty simple, it is usually one of the most difficult tasks. of the migration process. Your services usually use some Grails plugins and you need to find their Micronaut counterparts. You can find inspiration in the Micronaut Documentation, Agorapulse OSS Hub, or Awesome Micronaut catalog:
 
-[**Docs - Micronaut Framework**  
+```groovy
+[Docs - Micronaut Framework
+```
+
 [micronaut.io](https://micronaut.io/docs/)
 
-[**Agorapulse OSS Hub**  
+```groovy
+[Agorapulse OSS Hub
+```
+
 [agorapulse.github.io](https://agorapulse.github.io/agorapulse-oss/)
 
-[**GitHub - JonasHavers/awesome-micronaut: A curated list of resources for the Micronaut JVM framework**  
+```yaml
+[GitHub - JonasHavers/awesome-micronaut: A curated list of resources for the Micronaut JVM framework
+```
+
 [github.com](https://github.com/JonasHavers/awesome-micronaut)
 
 _In the next step, we will migrate the controllers themselves._
@@ -105,7 +117,10 @@ _In the next step, we will migrate the controllers themselves._
 
 #### Sources & Discussion
 
-[**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
+```yaml
+[GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut
+```
+
 [github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
 

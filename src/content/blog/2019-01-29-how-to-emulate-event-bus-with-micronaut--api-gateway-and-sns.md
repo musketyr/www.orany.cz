@@ -14,10 +14,16 @@ mediumId: "7a6404461b44"
 
 It has been nearly two years since [Benoit Hediard](https://medium.com/u/368024b1dcc0) published [an article on how to build a real-time web application with Angular, Ngrx and Vert.x](https://medium.com/agorapulse-stories/building-a-realtime-web-app-with-angular-ngrx-and-vert-x-a5381c0397a1). My last post was about [creating WebSocket backed with Micronaut and API Gateway](https://medium.com/agorapulse-stories/how-to-create-websocket-backend-with-api-gateway-and-micronaut-20c6683f5916). Let’s combine these two approaches and replace the Vert.X part of the real-time web application example with AWS Lambda with Micronaut approach.
 
-[**Building a real-time web app with Angular/Ngrx and Vert.x**  
+```groovy
+[Building a real-time web app with Angular/Ngrx and Vert.x
+```
+
 [medium.com](https://medium.com/agorapulse-stories/building-a-realtime-web-app-with-angular-ngrx-and-vert-x-a5381c0397a1)
 
-[**How to Create WebSocket Backend with API Gateway and Micronaut**  
+```groovy
+[How to Create WebSocket Backend with API Gateway and Micronaut
+```
+
 [medium.com](https://medium.com/agorapulse-stories/how-to-create-websocket-backend-with-api-gateway-and-micronaut-20c6683f5916)
 
 _Please, get familiar with the two posts above before continuing reading as we are going to combine these two approaches together._
@@ -36,12 +42,15 @@ The service is using the subscription to the `state` to manage the connection st
 
 The most trivial implementation of event bus in Micronaut can leverage the already present event mechanism. In this case, the incoming function just publishes the `WebSocketRequest` event using `ApplicationEventPublisher`.
 
-@Inject @Field ApplicationEventPublisher **publisher  
-  
-**WebSocketResponse produce**(**WebSocketRequest event**) {  
-    publisher**.publishEvent**(**event**)  
-    return** WebSocketResponse.**OK  
-}**
+```groovy
+@Inject @Field ApplicationEventPublisher publisher
+
+WebSocketResponse produce(WebSocketRequest event) {
+    publisher.publishEvent(event)
+    return WebSocketResponse.OK
+}
+```
+
 
 The event is propagated to all beans which implement`ApplicationEventListener<WebSocketRequest>`. We can create two such listeners:
 
@@ -56,62 +65,77 @@ Simple Notification Service can act very nicely as an event bus for our purpose.
 
 We can create [SNS notification client](https://agorapulse.github.io/micronaut-libraries/#_publishing_with_notificationclient) which will publish the requests into a topic:
 
-@CompileStatic  
-@NotificationClient  
-**interface** WebSocketRequestPublisher **{  
-  
-    void** publishEvent**(**WebSocketRequest request**)  
-  
-}**
+```groovy
+@CompileStatic
+@NotificationClient
+interface WebSocketRequestPublisher {
+
+    void publishEvent(WebSocketRequest request)
+
+}
+```
+
 
 Then we can use the client to publish incoming requests into the desired topic:
 
-@Inject @Field WebSocketRequestPublisher **publisher  
-  
-**WebSocketResponse produce**_(_**WebSocketRequest event**_) {_    publisher**.publishEvent**_(_**event**_)_    return** WebSocketResponse.**_OK  
-}_**
+```groovy
+@Inject @Field WebSocketRequestPublisher publisher
+
+WebSocketResponse produce_(_WebSocketRequest event_) {_    publisher.publishEvent_(_event_)_    return WebSocketResponse._OK
+}_
+```
+
 
 The topic is created automatically but we need to declare its name in the configuration `application.yml` file:
 
-**aws**:  
-    **sns**:  
-        **topic**: WebSocketRequests
+```yaml
+aws:
+    sns:
+        topic: WebSocketRequests
+```
+
 
 Then we need to create a function which will react on incoming SNS messages. We can keep the event driven mechanism or make a specific function for each responsibility.
 
-@Inject @Field ApplicationEventPublisher **publisher  
-**@Inject @Field ObjectMapper **mapper  
-  
-void** consume**(**SNSEvent event**) {**    event.records.each **{** record ->  
-        **publisher**.publishEvent**(  
-            mapper**.readValue**(**record.SNS.message, WebSocketRequest**)  
-        )  
-    }  
-}**
+```groovy
+@Inject @Field ApplicationEventPublisher publisher
+@Inject @Field ObjectMapper mapper
+
+void consume(SNSEvent event) {    event.records.each { record ->
+        publisher.publishEvent(
+            mapper.readValue(record.SNS.message, WebSocketRequest)
+        )
+    }
+}
+```
+
 
 `CounterService` and `ConnectionManager` reminds the same.
 
 We need to deploy the code into two different functions so we need to update the generated `build.gradle` file:
 
-task deployProducer**_(_    type**: AWSLambdaMigrateFunctionTask,  
-    **dependsOn**: shadowJar  
-**_) {_    functionName** \= **"EventBusProducer"  
-    handler** \= **"lambda.eventbus.EventBusProducerFunction::produce"  
-    role** \= **_"_arn:aws:iam::**$**_{_**aws.accountId**_}_:role/lambda\_ws\_sns_"_    runtime** \= com.amazonaws.services.lambda.model.Runtime.**_Java8_    zipFile** \= shadowJar.archivePath  
-    **memorySize** \= 512  
-    **timeout** \= 60  
-**_}  
-  
-_**task deployConsumer**_(_    type**: AWSLambdaMigrateFunctionTask,  
-    **dependsOn**: shadowJar  
-**_) {_    functionName** \= **"EventBusConsumer"  
-    handler** \= **"lambda.eventbus.EventBusConsumerFunction::consume"  
-    role** \= **_"_arn:aws:iam::**$**_{_**aws.accountId**_}_:role/lambda\_ws\_sns_"_    runtime** \= com.amazonaws.services.lambda.model.Runtime.**_Java8_    zipFile** \= shadowJar.archivePath  
-    **memorySize** \= 512  
-    **timeout** \= 60  
-**_}  
-  
-_**task deploy**_(_dependsOn**: **_\[_**deployProducer, deployConsumer**_\])_**
+```groovy
+task deployProducer_(_    type: AWSLambdaMigrateFunctionTask,
+    dependsOn: shadowJar
+_) {_    functionName = "EventBusProducer"
+    handler = "lambda.eventbus.EventBusProducerFunction::produce"
+    role = _"_arn:aws:iam::$_{_aws.accountId_}_:role/lambda_ws_sns_"_    runtime = com.amazonaws.services.lambda.model.Runtime._Java8_    zipFile = shadowJar.archivePath
+    memorySize = 512
+    timeout = 60
+_}
+
+_task deployConsumer_(_    type: AWSLambdaMigrateFunctionTask,
+    dependsOn: shadowJar
+_) {_    functionName = "EventBusConsumer"
+    handler = "lambda.eventbus.EventBusConsumerFunction::consume"
+    role = _"_arn:aws:iam::$_{_aws.accountId_}_:role/lambda_ws_sns_"_    runtime = com.amazonaws.services.lambda.model.Runtime._Java8_    zipFile = shadowJar.archivePath
+    memorySize = 512
+    timeout = 60
+_}
+
+_task deploy_(_dependsOn: _\[_deployProducer, deployConsumer_\])_
+```
+
 
 Ensure that the functions' role has access to the particular SNS topic.
 

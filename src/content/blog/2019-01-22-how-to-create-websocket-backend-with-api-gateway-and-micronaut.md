@@ -28,38 +28,50 @@ mn create-function mn-ws-echo
 
 First of all, you need to open `build.gradle` file and add a new dependency on [AgoraPulse](https://medium.com/u/494db8002165) [Micronaut Libraries](https://agorapulse.github.io/micronaut-libraries/#_installation):
 
-dependencies {    compile **'com.agorapulse:micronaut-aws-sdk:1.0.4.4'  
+```groovy
+dependencies {    compile 'com.agorapulse:micronaut-aws-sdk:1.0.4.4'
+```
+
   
 **    // .. rest of the default dependencies}
 
 Once you have the dependency in place you can update the generated function bean class `MnWsEchoFunction`:
 
-@FunctionBean**("mn-ws-echo")  
-public class** MnWsEchoFunction   
-        **extends** FunctionInitializer  
-        **implements** Function**<**WebSocketRequest, WebSocketResponse**\> {  
-  
-    @Inject** MessageSenderFactory **factory**;    @Override  
-    **public** WebSocketResponse apply**(**WebSocketRequest event**) {**        RequestContext ctx = event.getRequestContext**()**;  
-        MessageSender sender = **factory**.create**(**ctx**)**;  
-        String connectionId = ctx.getConnectionId**()**;  
-  
-        **switch (**ctx.getEventType**()) {  
-            case CONNECT**:  
+```java
+@FunctionBean("mn-ws-echo")
+public class MnWsEchoFunction
+        extends FunctionInitializer
+        implements Function<WebSocketRequest, WebSocketResponse\> {
+
+    @Inject MessageSenderFactory factory;    @Override
+    public WebSocketResponse apply(WebSocketRequest event) {        RequestContext ctx = event.getRequestContext();
+        MessageSender sender = factory.create(ctx);
+        String connectionId = ctx.getConnectionId();
+
+        switch (ctx.getEventType()) {
+            case CONNECT:
+```
+
                 // e.g. register new connection in cache  
-                **break**;  
-            **case MESSAGE**:  
-                sender.send**(**connectionId, event.getBody**())**;  
-                **break**;  
-            **case DISCONNECT**:  
+```groovy
+                break;
+            case MESSAGE:
+                sender.send(connectionId, event.getBody());
+                break;
+            case DISCONNECT:
+```
+
                 // e.g unregister connection from cache  
-                **break**;  
-        **}  
-  
-        return** WebSocketResponse.**OK**;  
-    **}  
-  
-}**
+```groovy
+                break;
+        }
+
+        return WebSocketResponse.OK;
+    }
+
+}
+```
+
 
 There is a couple of changes which needs to be done
 
@@ -86,8 +98,11 @@ The role is using the policy created in the previous step and also `AWSLambdaBas
 
 task deploy**_(_/\* ... \*/_) {  
     // .._  
-    role** \= **"arn:aws:iam::794392443626:role/mn-ws-echo-role    _// ..._    memorySize** \= 512    **_// ..._**  
-**_}_**
+```groovy
+    role = "arn:aws:iam::794392443626:role/mn-ws-echo-role    _// ..._    memorySize = 512    _// ..._
+_}_
+```
+
 
 Be sure you supply your AWS credentials [using the credentials file](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html). Then you can run Gradle `deploy`task to deploy the function:
 
@@ -101,13 +116,19 @@ Once set we can deploy the API using the dropdown _Actions_ button.
 
 ![](https://cdn-images-1.medium.com/max/800/1*VP1hP_aIPHS3wCiNoswa1A.png)
 
-Select the new stage and call it `test`. When the stage is deployed you can see the **WebSocket URL** and **Connection URL** in the detail page**.**
+```groovy
+Select the new stage and call it `test`. When the stage is deployed you can see the WebSocket URL and Connection URL in the detail page.
+```
+
 
 ![](https://cdn-images-1.medium.com/max/800/1*AuzS2gC3WQZKbA7EExH-oA.png)
 
 You can use the WebSocket URL to test if everything is working as expected using this simple WebSocket tester:
 
-[**WebSocket Test**  
+```groovy
+[WebSocket Test
+```
+
 output.jsbin.com](https://output.jsbin.com/fatenun "https://output.jsbin.com/fatenun")
 
 Paste the WebSocket URL into endpoint input and click _Connect_. As soon as you see the text `CONNECTED` which may take a while you can write some text into the message text area and click _Send_. If everything was set up properly you should see the text starting with `SEND` followed by the same text starting with `MESSAGE`.

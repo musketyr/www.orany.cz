@@ -22,25 +22,39 @@ Using DSL has its benefits but also some drawbacks. One of them is that builders
 
 One of the popular refactoring to remove duplicates is extracting methods. Inside nested builders, this can be a problem as we need to access the object being configured. The solution is actually pretty simple, we can explicitly pass the definition object into the nested closure:
 
-@CompileStatic  
-**private static** Diagram buildDiagramDiagramUsingHelperMethods() {  
+```groovy
+@CompileStatic
+private static Diagram buildDiagramDiagramUsingHelperMethods() {
+```
+
     Diagram._build_ { DiagramDefinition diagram ->  
-        note **'YUML Diagram Components'**        _buildDiagramRelationships_(diagram)  
+```groovy
+        note 'YUML Diagram Components'        _buildDiagramRelationships_(diagram)
+```
+
         _buildRelationshipRelationship_(diagram)  
     }  
 }  
-  
-@CompileStatic  
-**private static** DiagramContentDefinition buildDiagramRelationships(DiagramDefinition diagram) {  
+```groovy
+@CompileStatic
+private static DiagramContentDefinition buildDiagramRelationships(DiagramDefinition diagram) {
+```
+
     diagram.with {  
-        type **'Diagram'** has _one_ to _many_ type **'Type'**        type **'Diagram'** has _zero_ to _many_ type **'Note'**        type **'Diagram'** has _zero_ to _many_ type **'Relationship'**    }  
-}  
-  
-@CompileStatic  
-**private static** DiagramContentDefinition buildRelationshipRelationship(DiagramDefinition diagram) {  
-    diagram.with {  
-        type **'Relationship'** has _one_ type **'Type'** called **'source'**        type **'Relationship'** has _one_ type **'Type'** called **'destination'**        type **'Relationship'** owns _one_ type **'RelationshipType'**    }  
+```groovy
+        type 'Diagram' has _one_ to _many_ type 'Type'        type 'Diagram' has _zero_ to _many_ type 'Note'        type 'Diagram' has _zero_ to _many_ type 'Relationship'    }
 }
+
+@CompileStatic
+private static DiagramContentDefinition buildRelationshipRelationship(DiagramDefinition diagram) {
+```
+
+    diagram.with {  
+```groovy
+        type 'Relationship' has _one_ type 'Type' called 'source'        type 'Relationship' has _one_ type 'Type' called 'destination'        type 'Relationship' owns _one_ type 'RelationshipType'    }
+}
+```
+
 
 In this trivial example, you can see that `DiagramDefinition` object is passed as a first optional argument of the builder closure so we can use it in a separate method. And we can use good old `with` method to continue using the DSL inside the method themselves.
 
@@ -48,14 +62,17 @@ We need to make a small update in the interfaces to let Groovy compiler know wha
 
 TypeDefinition type(  
     String name,  
-    @DelegatesTo(  
-        value = TypeDefinition.**class**,   
-        strategy = Closure.**_DELEGATE\_FIRST_**    )  
-    @ClosureParams(  
-        value = SimpleType.**class**,   
-        options = **"cz.orany.yuml.model.dsl.TypeDefinition"**    )  
-    Closure<? **extends** DiagramContentDefinition> builder  
+```groovy
+    @DelegatesTo(
+        value = TypeDefinition.class,
+        strategy = Closure.\1    )
+    @ClosureParams(
+        value = SimpleType.class,
+        options = "cz.orany.yuml.model.dsl.TypeDefinition"    )
+    Closure<? extends DiagramContentDefinition> builder
 );
+```
+
 
 `ClosureParams` annotation helps static compiler to determine the types of the closure parameters. Although it is not useful in our situation, you may also defined multiple expected parameters. As we still use the method `with` internally we don't need any further change in our code as this method already calls the closure with the self object as a single parameter.
 
@@ -96,7 +113,10 @@ In the next part [The Expectations: _The importance of handling closures’ owne
 2.  [The Essence: _The closures’ basics_](https://medium.com/p/fda1f2ebe657)
 3.  [The Aid: _Using the annotations for static compilation_](https://medium.com/p/df2e9a02557a)
 4.  [The Disguise: _Hiding the implementation of the builder API_](https://medium.com/p/1e2edc2311f8)
-5.  [**The Desiccation: _Keeping the code DRY_**](https://medium.com/p/afb47ebbf89d)
+```groovy
+5.  [The Desiccation: _Keeping the code DRY_](https://medium.com/p/afb47ebbf89d)
+```
+
 6.  [The Expectations: _The importance of handling closures’ owner properly_](https://medium.com/p/83ced4b8f2b)
 7.  [The Extension: _Designing your builder DSL for extendability_](https://medium.com/p/d612fd261471)
 8.  [The Resignation: _Rewriting the Groovy DSL builder into Java_](https://medium.com/p/99bd118538b4)

@@ -18,18 +18,26 @@ When I was trying to find out why this useful feature disappeared during the mig
 
 So what is the solution? If you were using [Joda Time](http://www.joda.org/joda-time/) already you should probably just stick with it. If you want to use Java 8 `java.time` API you end up with similar static holder such as following:
 
-**class** Now {  
-  
-    **private static** ThreadLocal<Clock> _clock_ \=  
+```groovy
+class Now {
+
+    private static ThreadLocal<Clock> _clock_ =
+```
+
             ThreadLocal._withInitial_(Clock::_systemUTC_);  
   
-    **public static void** setClock(Clock clock) {  
+```groovy
+    public static void setClock(Clock clock) {
+```
+
         Now._clock_.set(clock);  
     }  
-  
-    **public static** Instant instant() {  
-        **return** Instant._now_(_clock_.get());  
-    }  
+```groovy
+    public static Instant instant() {
+        return Instant._now_(_clock_.get());
+    }
+```
+
   
     _// ...  
 _}

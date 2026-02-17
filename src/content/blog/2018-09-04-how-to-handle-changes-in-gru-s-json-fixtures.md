@@ -15,18 +15,21 @@ It has been more than a year already since we open-sourced [Gru](https://agorapu
 Imagine you are having a simple endpoint returning information about natural satellites of a planet which used to return JSON matching the following content:
 
 \[  
-  {  
-    **"id"**: 2,  
-    **"name"**: **"Moon"**,  
-    **"planet"**: **"Earth"**,  
-    **"created"**: **"${json-unit.matches:isoDate}"**,  
-    **"terraformed"**: **false**,  
-    **"visited\_by"**: {  
-      **"name"** : **"Eugene Cernan"**,  
-      **"nickname"**: **"Gene"**    },  
-    **"missed\_by"**: \[  
-      {  
-        **"name"** : **"Appolo 13"**      }  
+```json
+  {
+    "id": 2,
+    "name": "Moon",
+    "planet": "Earth",
+    "created": "${json-unit.matches:isoDate}",
+    "terraformed": false,
+    "visited_by": {
+      "name" : "Eugene Cernan",
+      "nickname": "Gene"    },
+    "missed_by": \[
+      {
+        "name" : "Appolo 13"      }
+```
+
     \]  
   }  
 \]
@@ -36,20 +39,26 @@ You can notice `${json-unit.matches:isoDate}` placeholder which replaced the gen
 Now, the API has changed to return slightly different JSON:
 
 \[  
-  {  
-    **"id"**: 1,  
-    **"name"**: **"Moon"**,  
-    **"planet"**: **"Earth"**,  
-    **"created"**: **"2013-12-04T16:04:48+0000"**,  
-    **"colonised"**: **false**,  
-    **"visited\_by"**: \[  
-      {  
-        **"name"**: **"Neil Armstrong"**,  
-        **"nickname"**: **null**      }  
+```json
+  {
+    "id": 1,
+    "name": "Moon",
+    "planet": "Earth",
+    "created": "2013-12-04T16:04:48+0000",
+    "colonised": false,
+    "visited_by": \[
+      {
+        "name": "Neil Armstrong",
+        "nickname": null      }
+```
+
     \],  
-    **"missed\_by"**: {  
-      **"name"**: **"Appolo 13"**    }  
-  }  
+```groovy
+    "missed_by": {
+      "name": "Appolo 13"    }
+  }
+```
+
 \]
 
 Before version `0.6.5`, we used to update the fixtures using the following process:
@@ -69,20 +78,26 @@ unset COM\_AGORAPULSE\_GRU\_REWRITE
 After running in rewrite mode the fixture file will be updated with a result of merging the old fixture file with a new response:
 
 \[  
-  {  
-    **"id"**: 1,  
-    **"name"**: **"Moon"**,  
-    **"planet"**: **"Earth"**,  
-    **"created"**: **"${json-unit.matches:isoDate}"**,  
-    **"visited\_by"**: \[  
-      {  
-        **"name"**: **"Neil Armstrong"**,  
-        **"nickname"**: **null**      }  
+```json
+  {
+    "id": 1,
+    "name": "Moon",
+    "planet": "Earth",
+    "created": "${json-unit.matches:isoDate}",
+    "visited_by": \[
+      {
+        "name": "Neil Armstrong",
+        "nickname": null      }
+```
+
     \],  
-    **"colonised"**: **false**,  
-    **"missed\_by"**: {  
-      **"name"**: **"Appolo 13"**    }  
-  }  
+```groovy
+    "colonised": false,
+    "missed_by": {
+      "name": "Appolo 13"    }
+  }
+```
+
 \]
 
 The rewrite process is smart enough, for example, to replace the `id` of the first satellite and also to keep the JSON unit placeholder as `created` property value. Also it ignores the files which don't need any change.

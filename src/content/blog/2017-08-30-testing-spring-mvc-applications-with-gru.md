@@ -18,7 +18,10 @@ New [Spring Boot](https://projects.spring.io/spring-boot/) application can be ea
 
 Creating new Spring Boot project with Groovy and Gradle
 
-Go to [http://start.spring.io/](http://start.spring.io/) and select **_Gradle Project_** with **_Groovy_**. From dependencies selection pick **_Web_** and then **_Generate Project_**. The downloaded archive file contains everything you get started. Extracted archive can be easily imported to you favourite IDE such as [IntelliJ IDEA](https://www.jetbrains.com/idea/).
+```groovy
+Go to [http://start.spring.io/](http://start.spring.io/) and select _Gradle Project_ with _Groovy_. From dependencies selection pick _Web_ and then _Generate Project_. The downloaded archive file contains everything you get started. Extracted archive can be easily imported to you favourite IDE such as [IntelliJ IDEA](https://www.jetbrains.com/idea/).
+```
+
 
 First of all, we should add [Gru](https://agorapulse.github.io/gru/) by adding following lines into `build.gradle` file which can be found in the root directory of the generated project:
 
@@ -27,10 +30,13 @@ repositories {
 }  
   
 dependencies {  
-    String spockVersion = **'1.1-groovy-2.4'**    testCompile(**"org.spockframework:spock-spring:**$spockVersion**"**)  
-    testCompile(**"org.spockframework:spock-core:**$spockVersion**"**)  
-    testCompile **"com.agorapulse:gru-spring:0.2.0"  
-**}
+```groovy
+    String spockVersion = '1.1-groovy-2.4'    testCompile("org.spockframework:spock-spring:$spockVersion")
+    testCompile("org.spockframework:spock-core:$spockVersion")
+    testCompile "com.agorapulse:gru-spring:0.2.0"
+}
+```
+
 
 Then we can create very simple domain class and controller in `src/main/resources/com/example/demo`:
 
@@ -48,21 +54,27 @@ Moon Controller Gru Spec
 
 Gru tests are very readable. For example method `show the moon` describes that if we issue GET request to the URL `/moon/earth/moon` you should get the JSON response similar to one described in `moonResponse.json` file. The file is created after first test run in `src/test/resources/com/example/demo/MoonControllerSpec` directory with content similar to following snippet
 
-{  
-    **"planet"**: **"Earth"**,  
-    **"name"**: **"Moon"**,  
-    **"created"**: 1504063858788,  
-    **"url"**: **"https://en.wikipedia.org/wiki/Moon"  
-**}
+```groovy
+{
+    "planet": "Earth",
+    "name": "Moon",
+    "created": 1504063858788,
+    "url": "https://en.wikipedia.org/wiki/Moon"
+}
+```
+
 
 You can see `created` property is rendered as number of milliseconds from the epoch. This value is obviously going to change after each run causing the test to fail but we can use [one of the builtin placeholders offered by Gru](https://agorapulse.github.io/gru/#_jsonunit_primer).
 
-{  
-  **"planet"**: **"Earth"**,  
-  **"name"**: **"Moon"**,  
-  **"created"**: **"${json-unit.matches:positiveIntegerString}"**,  
-  **"url"**: **"https://en.wikipedia.org/wiki/Moon"  
-**}
+```groovy
+{
+  "planet": "Earth",
+  "name": "Moon",
+  "created": "${json-unit.matches:positiveIntegerString}",
+  "url": "https://en.wikipedia.org/wiki/Moon"
+}
+```
+
 
 When we run the specification again all tests should pass.
 

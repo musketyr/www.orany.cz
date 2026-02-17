@@ -22,80 +22,118 @@ There is actually yet another player than `delegate` in the game of closure's pr
 
 Let's take a look at simple example. Current DSL also allows the following notation:
 
-@CompileStatic  
-**private static** Diagram buildDiagramWithInternalMethodCalls() {  
+```groovy
+@CompileStatic
+private static Diagram buildDiagramWithInternalMethodCalls() {
+```
+
     Diagram._build_ {  
-        note **'YUML Diagram Components'**        type **'Diagram'**, {  
-            has _one_ to _many_ type **'Type'**            _// "notes" is defined in the owner_            has _zero_ to _many_ type _notes_            has _zero_ to _many_ type **'Relationship'**        }  
-  
-        type **'Relationship'**, {  
-            has _one_ type **'Type'** called **'source'**            has _one_ type **'Type'** called **'destination'**            owns _one_ type **'RelationshipType'**        }  
-    }  
-}  
-  
-**private static** String getNotes() {  
+```groovy
+        note 'YUML Diagram Components'        type 'Diagram', {
+            has _one_ to _many_ type 'Type'            _// "notes" is defined in the owner_            has _zero_ to _many_ type _notes_            has _zero_ to _many_ type 'Relationship'        }
+
+        type 'Relationship', {
+            has _one_ type 'Type' called 'source'            has _one_ type 'Type' called 'destination'            owns _one_ type 'RelationshipType'        }
+    }
+}
+
+private static String getNotes() {
+```
+
     **return 'Note'  
-**}
+```groovy
+}
+```
+
 
 Using references to properties and methods from the outer scope such as the property`notes` is very natural but it may result in unexpected behaviour if you don't pay attention to what is the actual `owner` of the closure. Unless you handle the nested closures carefully then by default the `owner` of the nested closure passed into `type` method is actually the delegate of the surrounding closure which means `DefaultDiagram`in our situation. And `DefaultDiagram` already defines property `notes` even it is not visible through `DiagramDefinition` interface.
 
 To work around this you need to forward the top level owner to any nested closure:
 
-**public static** Diagram build(  
-    @DelegatesTo(  
-        value = cz.orany.yuml.model.dsl.DiagramDefinition.**class**,   
-        strategy = Closure.**_DELEGATE\_FIRST_**    )  
+```groovy
+public static Diagram build(
+    @DelegatesTo(
+        value = cz.orany.yuml.model.dsl.DiagramDefinition.class,
+        strategy = Closure.\1    )
+```
+
     Closure d  
-) {  
-    DefaultDiagram diagram = **new** DefaultDiagram(d.getOwner());  
+```groovy
+) {
+    DefaultDiagram diagram = new DefaultDiagram(d.getOwner());
+```
+
     DefaultGroovyMethods._with_(diagram, d);  
-    **return** diagram;  
+```groovy
+    return diagram;
 }
+```
+
 
 We keep the original owner and we will pass it to the any nested closure:
 
-@ToString  
-@PackageScope  
-@CompileStatic  
-@EqualsAndHashCode  
-**class** DefaultDiagram **implements** Diagram, DiagramDefinition {
+```groovy
+@ToString
+@PackageScope
+@CompileStatic
+@EqualsAndHashCode
+class DefaultDiagram implements Diagram, DiagramDefinition {
 
-    **private final** Object **owner**;  
+    private final Object owner;
+```
+
     **// other fields**
 
     DefaultDiagram(Object owner) {  
-        **this**.**owner** \= owner  
-    }  
+```groovy
+        this.owner = owner
+    }
+```
+
   
     // other methods  
   
     @Override  
     DefaultType type(  
         String name,  
-        @DelegatesTo(  
-            value = TypeDefinition.**class**,   
-            strategy = Closure.**_DELEGATE\_FIRST_**        )  
-        @ClosureParams(  
-            value = SimpleType.**class**,   
-            options = **"cz.orany.yuml.model.dsl.TypeDefinition"**        )  
-        Closure<? **extends** DiagramContentDefinition> builder  
-    ) {  
-        DefaultType type = **typesMap**\[name\]  
+```groovy
+        @DelegatesTo(
+            value = TypeDefinition.class,
+            strategy = Closure.\1        )
+        @ClosureParams(
+            value = SimpleType.class,
+            options = "cz.orany.yuml.model.dsl.TypeDefinition"        )
+        Closure<? extends DiagramContentDefinition> builder
+    ) {
+        DefaultType type = typesMap\[name\]
+```
+
         withSameOwner type, builder  
-        **return** type  
-    }  
-  
-    **protected** <V, T> V withSameOwner(T self, Closure<V> closure) {  
-        **final** Closure<V> clonedClosure = closure.rehydrate(  
+```groovy
+        return type
+    }
+
+    protected <V, T> V withSameOwner(T self, Closure<V> closure) {
+        final Closure<V> clonedClosure = closure.rehydrate(
+```
+
             self,   
-            **owner**,   
+```groovy
+            owner,
+```
+
             closure.thisObject  
-        )  
-        clonedClosure.setResolveStrategy(Closure.**_DELEGATE\_FIRST_**);  
+```groovy
+        )
+        clonedClosure.setResolveStrategy(Closure.\1);
+```
+
         clonedClosure.call(self)  
     }  
-  
+```groovy
 }
+```
+
 
 We can use method `rehydrate` which was created for very different reasons but it is very helpful to create a clone of the closure with a different `owner` than the original one. You can use it to change the `owner` of the nested closure calls. After this change, the original snippet would return expected results bypassing the `notes` property in `DefaultDiagram` and using `getNotes` method in the surrounding class.
 
@@ -120,7 +158,10 @@ In the next part [The Extension: _Designing your builder DSL for extendability_]
 3.  [The Aid: _Using the annotations for static compilation_](https://medium.com/p/df2e9a02557a)
 4.  [The Disguise: _Hiding the implementation of the builder API_](https://medium.com/p/1e2edc2311f8)
 5.  [The Desiccation: _Keeping the code DRY_](https://medium.com/p/afb47ebbf89d)
-6.  [**The Expectations: _The importance of handling closures’ owner properly_**](https://medium.com/p/83ced4b8f2b)
+```groovy
+6.  [The Expectations: _The importance of handling closures’ owner properly_](https://medium.com/p/83ced4b8f2b)
+```
+
 7.  [The Extension: _Designing your builder DSL for extendability_](https://medium.com/p/d612fd261471)
 8.  [The Resignation: _Rewriting the Groovy DSL builder into Java_](https://medium.com/p/99bd118538b4)
 9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)

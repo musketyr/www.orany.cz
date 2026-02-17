@@ -63,7 +63,10 @@ As the last step, we leave the Grails ecosystem completely by migrating from GOR
 
 #### Sources & Discussion
 
-[**GitHub - agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
+```yaml
+[GitHub - agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut
+```
+
 [github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
 

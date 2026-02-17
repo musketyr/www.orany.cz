@@ -18,13 +18,19 @@ With great expectations may come also great disappointments. When I have first s
 
 Would be great if we can just define `HelloController` like following one:
 
-@Controller(**"/hello"**)  
-**class** HelloController {  
-  
-    @Get(**"/"**)  
+```groovy
+@Controller("/hello")
+class HelloController {
+
+    @Get("/")
+```
+
     String index() {  
-        **return "Hello World"**    }  
+```groovy
+        return "Hello World"    }
 }
+```
+
 
 Then there would be a dispatcher which will read the [AWS API Proxy](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-http.html) request path, method and other request properties and execute the controller action but there would be an option to run the server locally using the default Micronaut's HTTP server.
 

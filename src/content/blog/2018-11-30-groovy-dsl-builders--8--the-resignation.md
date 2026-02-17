@@ -23,34 +23,37 @@ Groovy is a good citizen in a JVM country but still, the Java developer communit
 Java interface `Consumer` can act as a solid replacement of Groovy's `Closure`. Following example shows the DSL rewritten to Java using `Consumer` lambdas:
 
 Diagram._create_(d -> {  
-    d.note(**"You can stick notes on diagrams too!"**, **"skyblue"**);
+```groovy
+    d.note("You can stick notes on diagrams too!", "skyblue");
 
-    d.aggregation(**"Customer"**, **"Order"**, r -> {  
-        r.source(**"1"**);  
-        r.destination(**"0..\*"**, **"orders"**);  
+    d.aggregation("Customer", "Order", r -> {
+        r.source("1");
+        r.destination("0..\*", "orders");
     });
 
-    d.composition(**"Order"**, **"LineItem"**, r -> {  
-        r.source(**"\*"**);  
-        r.destination(**"\*"**);  
+    d.composition("Order", "LineItem", r -> {
+        r.source("\*");
+        r.destination("\*");
     });
 
-    d.association(**"Order"**, **"DeliveryMethod"**, r -> {  
-        r.destination(**"1"**);  
+    d.association("Order", "DeliveryMethod", r -> {
+        r.destination("1");
     });
 
-    d.association(**"Order"**, **"Product"**, r -> {  
-        r.source(**"\*"**);  
-        r.destination(**"\*"**);  
+    d.association("Order", "Product", r -> {
+        r.source("\*");
+        r.destination("\*");
     });
 
-    d.association(**"Category"**, **"Product"**, r -> {  
-        r.bidirectional(**true**);  
+    d.association("Category", "Product", r -> {
+        r.bidirectional(true);
     });
 
-    d.type(**"National"**).inherits(**_from_**).type(**"DeliveryMethod"**);  
-    d.type(**"International"**).inherits(**_from_**).type(**"DeliveryMethod"**);  
+    d.type("National").inherits(_from_).type("DeliveryMethod");
+    d.type("International").inherits(_from_).type("DeliveryMethod");
 })
+```
+
 
 Builder interfaces are now having methods similar to the following one:
 
@@ -67,20 +70,26 @@ I believe it is a good practise not to mix Java and Groovy parts of the DSL. As 
 
 We have already used extension modules for adding more functionality to the builder. Now we can use it to completely extract the methods using closures. Each of the methods using `Consumer` will have its counterpart in an extension class:
 
-**public static** RelationshipDefinition relationship(  
+```groovy
+public static RelationshipDefinition relationship(
+```
+
     DiagramDefinition self,  
     String source,  
     RelationshipType relationshipType,  
     String destination,  
-    @DelegatesTo(  
-        value = RelationshipDefinition.**class**,  
-        strategy = Closure.**_DELEGATE\_FIRST_**    )  
-    @ClosureParams(  
-        value = SimpleType.**class**,  
-        options = **"cz.orany.yuml.model.dsl.RelationshipDefinition"**    )  
-    Closure<? **extends** DiagramContentDefinition> additionalProperties  
-) {  
-    **return** self.relationship(  
+```groovy
+    @DelegatesTo(
+        value = RelationshipDefinition.class,
+        strategy = Closure.\1    )
+    @ClosureParams(
+        value = SimpleType.class,
+        options = "cz.orany.yuml.model.dsl.RelationshipDefinition"    )
+    Closure<? extends DiagramContentDefinition> additionalProperties
+) {
+    return self.relationship(
+```
+
         source,  
         relationshipType,  
         destination,  
@@ -92,14 +101,17 @@ We have already used extension modules for adding more functionality to the buil
 
 You also need to change the way how the keywords are introduced into the DSL. Previously the keywords have been provided as static getters on the interfaces but this won't be very practical from the Java code. The easiest possible solution is to extract all the keywords into a single holder class which we can import as static import.
 
-**public class** DiagramKeywords {  
-  
-    **public static final** From **_from_** \= From.**_FROM_**;  
-    **public static final** Integer **_zero_** \= 0;  
-    **public static final** Integer **_one_** \= 1;  
-    **public static final** String **_many_** \= **"\*"**;  
-  
+```groovy
+public class DiagramKeywords {
+
+    public static final From _from_ = From.\1;
+    public static final Integer _zero_ = 0;
+    public static final Integer _one_ = 1;
+    public static final String _many_ = "\*";
+
 }
+```
+
 
 * * *
 
@@ -124,7 +136,10 @@ In the next part [The Navigation: _Using the annotations for named parameters_](
 5.  [The Desiccation: _Keeping the code DRY_](https://medium.com/p/afb47ebbf89d)
 6.  [The Expectations: _The importance of handling closures’ owner properly_](https://medium.com/p/83ced4b8f2b)
 7.  [The Extension: _Designing your builder DSL for extendability_](https://medium.com/p/d612fd261471)
-8.  [**The Resignation: _Rewriting the Groovy DSL builder into Java_**](https://medium.com/p/99bd118538b4)
+```groovy
+8.  [The Resignation: _Rewriting the Groovy DSL builder into Java_](https://medium.com/p/99bd118538b4)
+```
+
 9.  [The Navigation: _Using the annotations for named parameters_](https://medium.com/p/d065f0253e98)
 10.  [The Conclusion: _The checklist for Groovy DSL builders’ authors_](https://medium.com/p/9d2b961dbc55)
 

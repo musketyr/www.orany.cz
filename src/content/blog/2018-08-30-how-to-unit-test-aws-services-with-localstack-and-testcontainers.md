@@ -14,12 +14,18 @@ mediumId: "1d39fe5dc6c2"
 
 When you decide to use Amazon Web Services (AWS) in your project then you voluntarily lock yourself up with Amazon. By default, most of the services have no official local alternative for unit or integration testing. Luckily for most of the services, there is an open-source variant which fills the gap. And most of them were reunited inside [Localstack](https://localstack.cloud) — docker image to serve most of the AWS services locally:
 
-[**LocalStack**  
+```groovy
+[LocalStack
+```
+
 [localstack.cloud](https://localstack.cloud/)
 
 As another piece of the puzzle, [Testcontainers](https://www.testcontainers.org/) provides an easy way how to run docker images in your unit tests:
 
-[**Introduction · Testcontainers**  
+```groovy
+[Introduction · Testcontainers
+```
+
 [www.testcontainers.org](https://www.testcontainers.org/)
 
 It is very easy to test application using AWS services when we use these two tools together.
@@ -30,23 +36,29 @@ I will use [Grails AWS SDK SQS](https://github.com/agorapulse/grails-aws-sdk) Pl
 
 We start with adding necessary dependencies to the project — Grails AWS SDK SQS plugin and Testcontainers' support for Localstack and Spock. Edit `build.gradle` and add following dependencies at the end of `dependencies` definition.
 
-compile **'org.grails.plugins:aws-sdk-sqs:2.2.4'**
+```groovy
+compile 'org.grails.plugins:aws-sdk-sqs:2.2.4'
 
-testCompile **'org.testcontainers:spock:1.8.3'  
-**testCompile **'org.testcontainers:localstack:1.8.3'**
+testCompile 'org.testcontainers:spock:1.8.3'
+testCompile 'org.testcontainers:localstack:1.8.3'
+```
+
 
 Then you can create new Grails service in `grails-app/services/example` directory.
 
-**package** example  
-  
-**import** grails.plugin.awssdk.sqs.AmazonSQSService  
-  
-**class** QueueService {  
-  
-    AmazonSQSService **amazonSQSService**    String createMainQueue() {  
-        **amazonSQSService**.createQueue(**'Main'**)  
-    }  
+```groovy
+package example
+
+import grails.plugin.awssdk.sqs.AmazonSQSService
+
+class QueueService {
+
+    AmazonSQSService amazonSQSService    String createMainQueue() {
+        amazonSQSService.createQueue('Main')
+    }
 }
+```
+
 
 The service has only one simple method which uses `AmazonSQSService` provided by the plugin to create new queue called`Main`.
 
@@ -71,7 +83,10 @@ In that case, you have to untick _Securely store Docker logins in macOS keychain
 
 The example application can be found on GitHub:
 
-[**musketyr/grails-aws-plugin-with-localstack**  
+```groovy
+[musketyr/grails-aws-plugin-with-localstack
+```
+
 [github.com](https://github.com/musketyr/grails-aws-plugin-with-localstack)
 
 * * *

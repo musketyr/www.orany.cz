@@ -32,24 +32,36 @@ There is quite a simple fix for this issue — just visit all your services 
 If you have previously set Hibernate configurations such as `hibernate.hibernateDirtyChecking: true` or `hibernate.flush.mode: AUTO` you may consider finally fixing the causes for these overrides and remove the settings. Otherwise, you may face some [corner cases](https://github.com/grails/grails-core/issues/11376) where transactional behaviour can't be guaranteed or where a property update is not propagated to the database. In that case, you should edit your `application.yml` as follows:
 
 \# XXX: only required if you have no choice to remove the overrides   
-\# especially **hibernateDirtyChecking** seems to cause problems   
+```groovy
+\# especially hibernateDirtyChecking seems to cause problems
+```
+
 \# with propagating updates into the database  
 #  
 \# (see above)  
-**hibernate**:  
+```yaml
+hibernate:
+```
+
     # ...    _\# To keep default behavior_    **hibernateDirtyChecking**: true    **flush**:  
         _\# To keep default bevahior after Grails 3.2.4+ upgrade_          
-        **mode**: AUTO _#_ [_https://github.com/grails/grails-core/issues/11376_](https://github.com/grails/grails-core/issues/11376)    **allow\_update\_outside\_transaction**: true **grails**:  
-    **gorm**:  
-        **flushMode**: MANUAL
+```yaml
+        mode: AUTO _#_ [_https://github.com/grails/grails-core/issues/11376_](https://github.com/grails/grails-core/issues/11376)    allow_update_outside_transaction: true grails:
+    gorm:
+        flushMode: MANUAL
+```
+
 
 #### Empty Strings are Automatically Converted to Null
 
 If you have `nullable` `String` properties which you set to empty string to avoid `null` then your code will break as empty strings will be set to `null` during the properties binding. You can revert to the old behaviour by using the following configuration:
 
-**grails**:  
-    **databinding**:  
-        **convert-empty-strings-to-null**: false
+```yaml
+grails:
+    databinding:
+        convert-empty-strings-to-null: false
+```
+
 
 #### Old Version of Micronaut and Missing Micronaut Dependencies' Versions
 
@@ -106,8 +118,10 @@ class AwesomeController {
 
         render status: HttpStatus.OK  
     }
-
+```groovy
 }
+```
+
 
 #### Using Micronaut Beans
 

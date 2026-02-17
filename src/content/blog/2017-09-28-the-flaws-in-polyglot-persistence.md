@@ -26,27 +26,39 @@ Let's take a look at a simple example. An application stores orders in relationa
 2.  save an order into the relational database
 3.  save an order item with new product id and new order id into the relation database
 
-One usually doesn't perform these steps at the low level but uses some framework instead but the steps would look pretty similar. Actually, I would say that **_by choosing to use_** [**_Polyglot Persistence_**](https://martinfowler.com/bliki/PolyglotPersistence.html) **_you force yourself into preparing the test data using your application logic_**. Here is a pseudocode showing test order creation:
+```groovy
+One usually doesn't perform these steps at the low level but uses some framework instead but the steps would look pretty similar. Actually, I would say that _by choosing to use_ [_Polyglot Persistence_](https://martinfowler.com/bliki/PolyglotPersistence.html) _you force yourself into preparing the test data using your application logic_. Here is a pseudocode showing test order creation:
 
-**public** Order populateAndSaveOrder() {  
-    Order order = **new** Order();  
+public Order populateAndSaveOrder() {
+    Order order = new Order();
+```
+
     order.addItem(buildOrderItem());  
     orderService.save(order);  
-    **return** order;  
-}  
-  
-**public** OrderItem buildOrderItem() {  
-    OrderItem item = **new** OrderItem();  
-    item.setProductId(populateAndSaveProduct().getId());  
-    **return** item;  
-}  
-  
-**public** Product populateAndSaveProduct() {  
-    Product product = **new** Product();  
-    product.setName(**"Java 9 Modules in a Year of Lunches"**);  
-    productService.save(product);  
-    **return** product;  
+```groovy
+    return order;
 }
+
+public OrderItem buildOrderItem() {
+    OrderItem item = new OrderItem();
+```
+
+    item.setProductId(populateAndSaveProduct().getId());  
+```groovy
+    return item;
+}
+
+public Product populateAndSaveProduct() {
+    Product product = new Product();
+    product.setName("Java 9 Modules in a Year of Lunches");
+```
+
+    productService.save(product);  
+```groovy
+    return product;
+}
+```
+
 
 Another horrible implication is that you have to keep your test data inside source files. The test data should be stored in a format which is easily editable and updatable.
 
@@ -58,15 +70,18 @@ There is an ultimate source of test data which is called _production database._ 
 
 For example, if your application is [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application) you are probably already generating JSON response similar to following one:
 
-{  
-  **"id"**: 12345,  
-  **"lines"**: \[  
-    {  
-      **"id"**: 67890,  
-      **"product"**: {  
-        **"id"**: **"xyz-abc-rur"**,  
-        **"name"**: **"Java 9 Modules in a Year of Lunches"**      }  
-    }  
+```json
+{
+  "id": 12345,
+  "lines": \[
+    {
+      "id": 67890,
+      "product": {
+        "id": "xyz-abc-rur",
+        "name": "Java 9 Modules in a Year of Lunches"      }
+    }
+```
+
   \]  
 }
 
@@ -79,26 +94,38 @@ Simply said, [Data Reconstruction Utility (Dru)](https://agorapulse.github.io/dr
 Only thing [Dru](https://agorapulse.github.io/dru/) requires is to map the content of the JSON file
 
 Dru dru = Dru._plan_ {  
-    from (**'order.json'**) {  
+```groovy
+    from ('order.json') {
+```
+
         map {  
             to (Order) {  
-                map (**'lines'**) {  
+```groovy
+                map ('lines') {
+```
+
                     to (OrderLine) {  
-                        map (**'product'**) {  
-                            to (**productId**: Product)  
-                        }  
-                    }  
-                }  
-            }  
-        }  
-    }  
+```groovy
+                        map ('product') {
+                            to (productId: Product)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+```
+
 
 Once you load the test data file such as the JSON mentioned you can access the entities by their type or original identifiers.
 
 String productId = dru.findByType(Order).lines\[0\].productId  
 assert productId == dru.findByType(Product).id  
-assert productId == dru.findByTypeAndOriginalId('**xyz-abc-rur**').id
+```groovy
+assert productId == dru.findByTypeAndOriginalId('xyz-abc-rur').id
+```
+
 
 [Dru](https://agorapulse.github.io/dru/) currently reflects our technology stack so it is written in Java and Groovy and it initially supports GORM and Amazon DynamoDB. Test data can be specified as JSON or YAML files. Both new clients and parsers can be also developed easily.
 

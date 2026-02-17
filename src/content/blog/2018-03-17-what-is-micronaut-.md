@@ -10,7 +10,10 @@ mediumId: "37a6565f217d"
 
 ### What is Micronaut?
 
-[**Micronaut: A Modern Microservice Framework for the JVM**  
+```yaml
+[Micronaut: A Modern Microservice Framework for the JVM
+```
+
 [micronaut.io](http://micronaut.io/)
 
 [Micronaut](http://micronaut.io/) is a new full-stack framework build from the ground by the [Grails](https://grails.org/) team officially announced at [Greach 2018](http://2018.greachconf.com/). It focuses on modularity, minimal memory footprint and startup time which makes it a perfect solution for running on [AWS](https://hackernoon.com/tagged/aws) lambda or similar environments. Server written in [Java](https://hackernoon.com/tagged/java) requires less than one second to start with minimal JAR size of 8 MB. [Micronaut](http://micronaut.io/) supports Java, Groovy and Kotlin language.
@@ -26,8 +29,10 @@ The main advantage of [Micronaut](http://micronaut.io/) is that there are no run
 _Controller Example_
 
 @Controller("/") class HelloController {  
-      
-    @Get("/hello/{name}") String hello(String name) {  
+```groovy
+    @Get("/hello/{name}") String hello(String name) {
+```
+
         return "Hello $name"  
     }  
 }
@@ -63,12 +68,18 @@ mn -version
 
 _The_ [_documentation_](https://docs.micronaut.io/latest/guide/index.html) _is already very comprehensive:_
 
-[**Micronaut**  
+```groovy
+[Micronaut
+```
+
 [docs.micronaut.io](https://docs.micronaut.io/latest/guide/index.html)
 
 _There are also_ [_several guides_](http://guides.micronaut.io/) _available already:_
 
-[**Micronaut: A Modern Microservice Framework for the JVM**  
+```yaml
+[Micronaut: A Modern Microservice Framework for the JVM
+```
+
 [guides.micronaut.io](http://guides.micronaut.io/)
 
 

@@ -14,15 +14,24 @@ mediumId: "980816119534"
 
 Groovy was created as a dynamic language, but it also offers static compilation for a long time. Myself, I prefer the static compilation, especially in large projects. It's also a must-have if the test coverage is low. There is a project called Enterprise Groovy which can help you set up static compilation for the whole project. It also supports Grails static compilation out of the box.
 
-[**Statically Compiled Groovy: Give Groovy a Chance - DZone Java**  
+```groovy
+[Statically Compiled Groovy: Give Groovy a Chance - DZone Java
+```
+
 [dzone.com](https://dzone.com/articles/statically-compiled-groovy-or-time-to-give-groovy)
 
-[**virtualdogbert/enterprise-groovy**  
+```groovy
+[virtualdogbert/enterprise-groovy
+```
+
 [github.com](https://github.com/virtualdogbert/enterprise-groovy)
 
 There is a companion Gradle plugin that is sadly broken in the latest Gradle releases (6+).
 
-[**Introduction Enterprise Groovy Gradle Plugin**  
+```groovy
+[Introduction Enterprise Groovy Gradle Plugin
+```
+
 [virtualdogbert.github.io](https://virtualdogbert.github.io/enterprise-groovy-plugin/)
 
 Luckily there is quite a simple way how to apply Enterprise Groovy to your project manually. First, add a compile-only dependency on the Enterprise Groovy library (not the plugin):

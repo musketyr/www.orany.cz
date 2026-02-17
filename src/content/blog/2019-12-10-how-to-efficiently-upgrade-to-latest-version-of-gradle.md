@@ -26,17 +26,20 @@ The idea is to run your project against every possible minor version of Gradle b
 
 We start with a workflow file located in `.github/workflows/gradle.yml`:
 
-**name**: Java CI  
-  
-**on**: \[push, pull\_request\]  
-  
-**jobs**:  
-  **build**:  
-  
-    **strategy**:  
-      **fail-fast**: false    # run all parallel jobs  
-      **matrix**:  
-        **gradle**:  
+```yaml
+name: Java CI
+
+on: \[push, pull_request\]
+
+jobs:
+  build:
+
+    strategy:
+      fail-fast: false    # run all parallel jobs
+      matrix:
+        gradle:
+```
+
           - 6.6.1         _\# latest version_          \- 6.5.1  
           - 6.4.1  
           - 6.3  
@@ -54,22 +57,25 @@ We start with a workflow file located in `.github/workflows/gradle.yml`:
           - 4.8.1  
           - 4.7           # current version  
   
-    **runs-on**: ubuntu-latest  
-  
-    **env**:  
-      **GRADLE\_OPTS**: **"-Xmx6g -Xms4g"  
-  
-    steps**:  
-      - **uses**: actions/checkout@v1  
-  
-      - **name**: Set up JDK 1.8  
-        **uses**: actions/setup-java@v1  
-        **with**:  
-          **java-version**: 1.8  
-      - **uses**: eskatos/gradle-command-action@v1  
-        **with**:  
-          **arguments**: check  
-          **gradle-version**: ${{ matrix.gradle }}
+```groovy
+    runs-on: ubuntu-latest
+
+    env:
+      GRADLE_OPTS: "-Xmx6g -Xms4g"
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: check
+          gradle-version: ${{ matrix.gradle }}
+```
+
 
 The workflow checks out the code then it installs Java and it runs Gradle `check` task for all versions we are interested in. This may not fully guarantee that the other tasks such as deployment will work but it should detect most of the problems.
 
@@ -84,17 +90,20 @@ gradle wrapper
 
 You should also remove the already passing version numbers from the matrix because they are no longer needed:
 
-**name**: Java CI  
-  
-**on**: \[push, pull\_request\]  
-  
-**jobs**:  
-  **build**:  
-  
-    **strategy**:  
-      **fail-fast**: false  
-      **matrix**:  
-        **gradle**:  
+```yaml
+name: Java CI
+
+on: \[push, pull_request\]
+
+jobs:
+  build:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        gradle:
+```
+
           - 6.0.1  
           - 5.6.4  
           - 5.5.1  
@@ -104,22 +113,25 @@ You should also remove the already passing version numbers from the matrix becau
           - 5.1.1  
           - 4.10.3        # newest passing version  
   
-    **runs-on**: ubuntu-latest  
-  
-    **env**:  
-      **GRADLE\_OPTS**: **"-Xmx6g -Xms4g"  
-  
-    steps**:  
-      - **uses**: actions/checkout@v1  
-  
-      - **name**: Set up JDK 1.8  
-        **uses**: actions/setup-java@v1  
-        **with**:  
-          **java-version**: 1.8  
-      - **uses**: eskatos/gradle-command-action@v1  
-        **with**:  
-          **arguments**: check  
-          **gradle-version**: ${{ matrix.gradle }}
+```groovy
+    runs-on: ubuntu-latest
+
+    env:
+      GRADLE_OPTS: "-Xmx6g -Xms4g"
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: check
+          gradle-version: ${{ matrix.gradle }}
+```
+
 
 Then commit the changes in case of that you will need to revert some changes.
 
@@ -144,50 +156,56 @@ You repeat the steps unless you reach only the currently latest released version
 
 Once you reach the latest version you can easily remove the `matrix` and `gradle-version` from the workflow file:
 
-**name**: Java CI  
-  
-**on**:  
-  **push**:                       # run on push  
-  **pull\_request**:               # run on PR**  
-  
-jobs**:  
-  **build**:    **runs-on**: ubuntu-latest  
-    **env**:  
-      **GRADLE\_OPTS**: **"-Xmx6g -Xms4g  
-**    **steps:**  
-    - **uses**: actions/checkout@v1  
-  
-    - **name**: Set up JDK 1.8  
-      **uses**: actions/setup-java@v1  
-      **with**:  
-        **java-version**: 1.8  
-    - **uses**: eskatos/gradle-command-action@v1  
-      **with**:  
-        **arguments**: check --stacktrace
+```yaml
+name: Java CI
+
+on:
+  push:                       # run on push
+  pull_request:               # run on PR
+
+jobs:
+  build:    runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: "-Xmx6g -Xms4g
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - uses: eskatos/gradle-command-action@v1
+      with:
+        arguments: check --stacktrace
+```
+
 
 To be sure that you won't fall behind the Gradle releases I would suggest you create a separate workflow file `gradle-versions-watchdog.yml` which will be triggered regularly. `scheduled` configuration will run once a month which is useful for projects which barely changes but you still want to keep Gradle versions up to date as `rc` is the latest release candidate version which is currently available.
 
-**name**: Gradle RC Watchdog  
-  
-**on**:  
-  **schedule**:  
-    - **cron**:  **'0 0 1 \* \*'**      \# run once a month**  
-  
-jobs**:  
-  **build**:    **runs-on**: ubuntu-latest  
-    **env**:  
-      **GRADLE\_OPTS**: **"-Xmx6g -Xms4g  
-**    **steps:**  
-    - **uses**: actions/checkout@v1  
-  
-    - **name**: Set up JDK 1.8  
-      **uses**: actions/setup-java@v1  
-      **with**:  
-        **java-version**: 1.8  
-    - **uses**: eskatos/gradle-command-action@v1  
-      **with**:  
-        **arguments**: check --stacktrace  
-        **gradle-version**: rc
+```yaml
+name: Gradle RC Watchdog
+
+on:
+  schedule:
+    - cron:  '0 0 1 \* \*'      \# run once a month
+
+jobs:
+  build:    runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: "-Xmx6g -Xms4g
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - uses: eskatos/gradle-command-action@v1
+      with:
+        arguments: check --stacktrace
+        gradle-version: rc
+```
+
 
 ### The Story of One Upgrade
 
@@ -230,7 +248,10 @@ I'm currently putting hope to the [Kordamp](https://aalmiray.github.io/kordamp-g
 
 #### **Revision History**
 
-**2019–12–12**: Suggested to create separate workflow file for regular Gradle RC checks.
+```groovy
+2019–12–12: Suggested to create separate workflow file for regular Gradle RC checks.
+```
+
 
 * * *
 

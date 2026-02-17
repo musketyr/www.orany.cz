@@ -16,7 +16,10 @@ _This is the tenth and the last post in a series that will guide you through the
 
 So far, we have been using Micronaut with GORM entities. This combination is very suboptimal, but as the migration from GORM to Micronaut Data seems to be the most difficult part of the Grails to Micronaut migration, it is better to keep the migration of the data layer as the very last step.
 
-[**Micronaut Data**  
+```groovy
+[Micronaut Data
+```
+
 [micronaut-projects.github.io](https://micronaut-projects.github.io/micronaut-data/latest/guide/)
 
 Micronaut Data provides two implementations — Micronaut Data JPA and Micronaut Data JDBC. Let’s first explain these two, starting with the more lightweight one — Micronaut Data JDBC
@@ -54,7 +57,10 @@ Micronaut Data JPA is more powerful and a good fit if you require some advanced 
 
 Either you choose Micronaut Data JPA or Micronaut Data JDBC there is a generator library that can help us with the migration.
 
-[**Grails Integration for Micronaut**  
+```groovy
+[Grails Integration for Micronaut
+```
+
 agorapulse.github.io](https://agorapulse.github.io/micronaut-grails/#_gorm_to_micronaut_data_jpa_generator "https://agorapulse.github.io/micronaut-grails/#_gorm_to_micronaut_data_jpa_generator")
 
 First of all, let's add a `-legacy` suffix to the data project's directory and its build file. For example, `hello-data` directory will become `hello-data-legacy` and `hello-data.gradle` will become `hello-data-legacy.gradle`. Don't forget to also update the new name of the project in the other build files.
@@ -109,7 +115,10 @@ This is the last post in the series. Your feedback is highly appreciated. Feel f
 
 What next? So far the Micronaut version was limited by Grails so the next step should be upgrading the Micronaut version to the latest one but this is out of the scope of this series but you may find the following article helpful if you find yourself using libraries which were created for Micronaut 1.x.
 
-[**How to Resolve Conflicts in Micronaut 1.x and 2.x Library Versions in Gradle**  
+```groovy
+[How to Resolve Conflicts in Micronaut 1.x and 2.x Library Versions in Gradle
+```
+
 [medium.com](https://medium.com/agorapulse-stories/how-to-resolve-conflicts-in-micronaut-1-x-and-2-x-library-versions-in-gradle-b0b5992ce4ce)
 
 #### Table of Contents
@@ -127,7 +136,10 @@ What next? So far the Micronaut version was limited by Grails so the next step s
 
 #### Sources & Discussion
 
-[**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
+```yaml
+[GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut
+```
+
 [github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
 

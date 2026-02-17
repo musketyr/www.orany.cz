@@ -16,7 +16,10 @@ _This is the fifth post in a series that will guide you through the migration fr
 
 Controllers are responsible for the communication with other applications, including your frontend. We need to ensure that your API won't change and the application will be able to consume the same inputs and produce the same outputs as before the migration. Gru testing framework is exactly the tool we are looking for. Gru evaluates the responses from the controllers and it supports Grails and Micronaut out of the box.
 
-[**Gru - Groovy HTTP Testing Framework**  
+```groovy
+[Gru - Groovy HTTP Testing Framework
+```
+
 agorapulse.github.io](https://agorapulse.github.io/gru/ "https://agorapulse.github.io/gru/")
 
 You can add Gru into your project by providing the following dependency in your application's subproject Gradle file:
@@ -54,7 +57,10 @@ _In the next step, we will extract_ [_the domain classes_](https://medium.com/p/
 
 #### Sources & Discussion
 
-[**GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut**  
+```yaml
+[GitHub — agorapulse/goodbye-grails-hello-micronaut: Goodbye Grails, Hello Micronaut
+```
+
 [github.com](https://github.com/agorapulse/goodbye-grails-hello-micronaut)
 
 

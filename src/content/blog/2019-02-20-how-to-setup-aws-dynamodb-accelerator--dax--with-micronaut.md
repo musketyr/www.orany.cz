@@ -14,39 +14,57 @@ mediumId: "5b3ade1e3945"
 
 AWS DynamoDB Accelerator (DAX) is a fully managed, in-memory cache for DynamoDB. In Java, using DAX can be completely hidden from the developer as DAX Java Client implements the same `AmazonDynamoDB` interface as the direct client. [Agorapulse Micronaut Libraries](https://agorapulse.github.io/micronaut-libraries/#_dynamodb) provides out-of-the-box support with a single configuration property switching between DAX and direct DynamoDB.
 
-[**Agorapulse Micronaut Libraries**  
+```groovy
+[Agorapulse Micronaut Libraries
+```
+
 [agorapulse.github.io](https://agorapulse.github.io/micronaut-libraries/#_dynamodb)
 
 #### Setting up the Cluster
 
 There is excellent documentation which describes how to create a new DAX cluster. Please, follow the necessary steps to set up your own cluster first.
 
-[**Creating a DAX Cluster - Amazon DynamoDB**  
+```groovy
+[Creating a DAX Cluster - Amazon DynamoDB
+```
+
 [docs.aws.amazon.com](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.create-cluster.html)
 
 DAX is only available inside VPC so using DAX automatically implies running your applications and functions inside very same VPC. You will also need to create DAX subnet which may only access the private subnets of your VPC.
 
 Access control itself is based on IAM roles and policies. Pay attention to the roles your application or function is assuming. Follow the instruction in this article to set up the roles properly:
 
-[**DAX Access Control - Amazon DynamoDB**  
+```groovy
+[DAX Access Control - Amazon DynamoDB
+```
+
 [docs.aws.amazon.com](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.access-control.html)
 
 This is the sample policy taken from the article above which allows running DAX command against given cluster:
 
-**{  
-  "Version"**: **"2012-10-17"**,  
-  **"Statement"**: **\[  
-    {  
-      "Action"**: **\[  
+```groovy
+{
+  "Version": "2012-10-17",
+  "Statement": \[
+    {
+      "Action": \[
+```
+
         "dax:\*"  
-      \]**,  
-      **"Effect"**: **"Allow"**,  
-      **"Resource"**: **\[  
+```groovy
+      \],
+      "Effect": "Allow",
+      "Resource": \[
+```
+
         "arn:aws:dax:us-west-2:123456789012:cache/DAXCluster01"  
       \]  
     }  
   \]  
-}**
+```groovy
+}
+```
+
 
 #### Writing Micronaut Function Working with DAX Cluster
 
@@ -56,57 +74,69 @@ mn create-function dax-tester
 
 Micronaut AWS library provides easy switching between DynamoDB and DAX with a single configuration property `aws.dax.endpoints` but first, we need to update `build.gradle` file to include the required libraries:
 
-dependencies **_{_**    compile **'com.agorapulse:micronaut-aws-sdk:1.0.4.1'**    compile **'com.amazonaws:aws-java-sdk-dynamodb:1.11.500'**    compile **'com.amazonaws:amazon-dax-client:1.0.202017.0'  
-_}_**
+```groovy
+dependencies _{_    compile 'com.agorapulse:micronaut-aws-sdk:1.0.4.1'    compile 'com.amazonaws:aws-java-sdk-dynamodb:1.11.500'    compile 'com.amazonaws:amazon-dax-client:1.0.202017.0'
+_}_
+```
+
 
 With the dependencies in place, we can create a simple entity:
 
-@DynamoDBTable**_(_**tableName = **"DaxTestEntity"_)  
-_public class** DaxTestEntity **_{_**    @DynamoDBHashKey  
-    **private** String **hashKey**;  
-  
-    @DynamoDBRangeKey  
-    **private** String **range**;  
-  
-    **public** String getHashKey**_() {_        return hashKey**;  
-    **_}_    public void** setHashKey**_(_**String hashKey**_) {_        this**.**hashKey** \= hashKey;  
-    **_}_    public** DaxTestEntity withHashKey**_(_**String hashKey**_) {_        this**.**hashKey** \= hashKey;  
-        **return this**;  
-    **_}_    public** String getRange**_() {_        return range**;  
-    **_}_    public void** setRange**_(_**String range**_) {_        this**.**range** \= range;  
-    **_}_    public** DaxTestEntity withRange**_(_**String range**_) {_        this**.**range** \= range;  
-        **return this**;  
-    **_}  
-}_**
+```java
+@DynamoDBTable_(_tableName = "DaxTestEntity"_)
+_public class DaxTestEntity _{_    @DynamoDBHashKey
+    private String hashKey;
+
+    @DynamoDBRangeKey
+    private String range;
+
+    public String getHashKey_() {_        return hashKey;
+    _}_    public void setHashKey_(_String hashKey_) {_        this.hashKey = hashKey;
+    _}_    public DaxTestEntity withHashKey_(_String hashKey_) {_        this.hashKey = hashKey;
+        return this;
+    _}_    public String getRange_() {_        return range;
+    _}_    public void setRange_(_String range_) {_        this.range = range;
+    _}_    public DaxTestEntity withRange_(_String range_) {_        this.range = range;
+        return this;
+    _}
+}_
+```
+
 
 Micronaut AWS SDK integration provides [DynamoDB data services](https://agorapulse.github.io/micronaut-libraries/#_dynamodb_service) which simplify working with entities. Let's create one for the `DaxTestEntity` as well:
 
-@Service**_(_**DaxTestEntity.**class_)  
-_public interface** DaxTestEntityService **_{_**    DaxTestEntity save**_(_**DaxTestEntity entity**_)_**;  
-    DaxTestEntity load**_(_**String hashKey, String rangeKey**_)_**;  
-  
-**_}_**
+```java
+@Service_(_DaxTestEntity.class_)
+_public interface DaxTestEntityService _{_    DaxTestEntity save_(_DaxTestEntity entity_)_;
+    DaxTestEntity load_(_String hashKey, String rangeKey_)_;
+
+_}_
+```
+
 
 And finally, we can implement the simple function to test the working setup
 
-@FunctionBean**_(_"dax-tester"_)  
-_public class** DaxTesterFunction **implements** Supplier**_<_**String**_\> {_    private final** DaxTestEntityService **testEntityService**;  
-  
-    **public** DaxTesterFunction**_(_**DaxTestEntityService service**_) {_        this**.**testEntityService** \= service;  
-    **_}_**    @Override  
-    **public** String get**_() {_        long** start = System._currentTimeMillis_**_()_**;  
-  
-  
-        DaxTestEntity entity = **new** DaxTestEntity**_()_**            .withHashKey**_(_"hash"_)_**            .withRange**_(_"range"_)_**;
+```java
+@FunctionBean_(_"dax-tester"_)
+_public class DaxTesterFunction implements Supplier_<_String_\> {_    private final DaxTestEntityService testEntityService;
 
-        **testEntityService**.save**_(_**entity**_)_**;  
-  
-        **for _(_int** i = 0; i < 1000 ; i++**_) {_**            _requireNonNull_**_(_testEntityService**.load**_(_"hash"**, **"range"_))_**;  
-        **_}_        long** finish = System._currentTimeMillis_**_()_**;  
-  
-        **return "Loaded entity in "** \+ **_(_**finish - start**_)_** \+ **" ms."**;  
-    **_}  
-}_**
+    public DaxTesterFunction_(_DaxTestEntityService service_) {_        this.testEntityService = service;
+    _}_    @Override
+    public String get_() {_        long start = System._currentTimeMillis__()_;
+
+
+        DaxTestEntity entity = new DaxTestEntity_()_            .withHashKey_(_"hash"_)_            .withRange_(_"range"_)_;
+
+        testEntityService.save_(_entity_)_;
+
+        for _(_int i = 0; i < 1000 ; i++_) {_            _requireNonNull__(_testEntityService.load_(_"hash", "range"_))_;
+        _}_        long finish = System._currentTimeMillis__()_;
+
+        return "Loaded entity in " \+ _(_finish - start_)_ \+ " ms.";
+    _}
+}_
+```
+
 
 The test function will first save the entity and then it is loading it 1000 times. You can see there is nothing DAX specific in the sample code.
 
@@ -134,7 +164,10 @@ You can try yourself to run the function using any test payload. You can also tr
 
 You can check the whole sample project on GitHub:
 
-[**musketyr/dax-tester**  
+```groovy
+[musketyr/dax-tester
+```
+
 [github.com](https://github.com/musketyr/dax-tester)
 
 * * *
