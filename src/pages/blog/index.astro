@@ -35,6 +35,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
         <div class="post-list">
           {sortedPosts.map((post) => (
             <article class="post-card">
+              <div class="traffic-lights"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
               <time datetime={post.data.date.toISOString()}>
                 {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
@@ -117,9 +118,9 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
   }
 
   .post-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
   }
 
   .post-card {
@@ -143,7 +144,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
   .post-card h2 {
     margin-top: 0.5rem;
     margin-bottom: 0.75rem;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
   }
 
   .tags {

@@ -34,7 +34,7 @@ const { title, description = "The Telegraphic Developer â€” Tech blog by VladimÃ
   <body>
     <nav>
       <div class="container">
-        <a href="/" class="logo"><img src="/logo-256.png" alt="Telegraphic" class="logo-img" />telegraphic.dev</a>
+        <a href="/" class="logo"><span class="terminal-prompt">&gt;_</span><img src="/logo-256.png" alt="Telegraphic" class="logo-img" />telegraphic.dev</a>
         <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -78,8 +78,8 @@ const { title, description = "The Telegraphic Developer â€” Tech blog by VladimÃ
     --bg-tertiary: #1c2128;
     --text-primary: #e6edf3;
     --text-secondary: #8b949e;
-    --accent: #58a6ff;
-    --accent-hover: #79c0ff;
+    --accent: #4ade80;
+    --accent-hover: #6ee7a0;
     --border: #30363d;
     --code-bg: #161b22;
   }
@@ -171,6 +171,39 @@ const { title, description = "The Telegraphic Developer â€” Tech blog by VladimÃ
     justify-content: space-between;
     align-items: center;
   }
+
+  .terminal-prompt {
+    color: var(--accent);
+    margin-right: 0.35rem;
+    font-size: 1rem;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .blinking-cursor::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+    color: var(--accent);
+  }
+
+  /* Traffic light dots */
+  .traffic-lights {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 0.75rem;
+  }
+  .traffic-lights span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .traffic-lights .red { background: #ff5f56; }
+  .traffic-lights .yellow { background: #ffbd2e; }
+  .traffic-lights .green { background: #27c93f; }
 
   nav .logo {
     font-family: 'JetBrains Mono', monospace;

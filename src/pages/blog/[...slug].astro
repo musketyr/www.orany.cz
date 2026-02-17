@@ -17,6 +17,7 @@ const { Content } = await post.render();
 <BaseLayout title={`${post.data.title} - The Telegraphic Developer`} description={post.data.title}>
   <article class="container">
     <header class="post-header">
+      <div class="traffic-lights" style="justify-content:center"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
       <time datetime={post.data.date.toISOString()}>
         {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
       </time>
