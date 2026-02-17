@@ -18,6 +18,12 @@ const { title, description = "The Telegraphic Developer â€” Tech blog by VladimÃ
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
       gtag('js', new Date());
       gtag('config', 'G-GZQSMJ77WC');
     </script>
