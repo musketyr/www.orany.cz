@@ -2,7 +2,7 @@
 title: "OpenClaw vs Claude Code: Why Memory Makes All the Difference"
 date: 2026-02-19
 tags: ["openclaw", "ai", "claude"]
-source: compose
+source: substack
 ---
 
 # OpenClaw vs Claude Code
