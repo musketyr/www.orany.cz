@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const siteUrl = 'https://telegraphic.dev';
+const feedUrl = `${siteUrl}/rss.xml`;
+const channelDescription = 'Notes on agentic AI workflows, JVM craft, and shipping products with Claude Code and OpenClaw.';
+
+const items = sortedPosts.map((post) => {
+  const rawSlug = post.slug ?? post.id ?? '';
+  const slug = rawSlug.split('/').pop() ?? '';
+  const url = `${siteUrl}/blog/${slug}`;
+  return {
+    title: post.data.title,
+    url,
+    pubDate: post.data.date.toUTCString(),
+    description: `Telegraphic Developer entry: ${post.data.title}.`,
+  };
+});
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Telegraphic Developer</title>
+    <link>{`${siteUrl}/blog`}</link>
+    <description>{channelDescription}</description>
+    <language>en-US</language>
+    <atom:link href={feedUrl} rel="self" type="application/rss+xml" />
+    {items.map((item) => (
+      <item>
+        <title>{item.title}</title>
+        <link>{item.url}</link>
+        <guid isPermaLink="true">{item.url}</guid>
+        <pubDate>{item.pubDate}</pubDate>
+        <description>{item.description}</description>
+      </item>
+    ))}
+  </channel>
+</rss>
