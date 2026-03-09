@@ -7,7 +7,7 @@ source: substack
 
 In the [previous post](/blog/2026-02-01-how-i-became-a-telegraphic-developer), I introduced Jean - my AI assistant running on OpenClaw that handles everything from coding tasks to scraping Reddit and delivering daily news summaries. Jean was doing great, but I wanted to automate away more pain points in my life. And one of my biggest nemeses is Discord.
 
-![Jean in his tiny warehouse](https://assets.orany.cz/images/jean-new-home-hero.jpg)
+![Jean in his tiny warehouse](https://pub-66d4db7a73794adcbc7ad13895347ed9.r2.dev/jean-new-home-hero.jpg)
 
 I'm trying to follow news in OpenClaw and MCP Protocol communities, but the volume of messages in their Discord servers is overwhelming. There's no practical way to read Discord programmatically, so the only option seemed to be browser automation with my own logged-in session. And to make that work, I'd need a proper desktop environment - something that definitely wouldn't fly on my tiny EC2 instance.
 
@@ -19,7 +19,7 @@ The solution was straightforward - I asked Jean to move to his new home himself.
 
 Everything looked shiny. At one point, both instances were running and it was a bit of a mess - neither of them could communicate with me properly. So the brave Jean from EC2 just told me he was going to stop himself so the new Hetzner one could take over the conversation. And then everyone went silent.
 
-![The moment of silence](https://assets.orany.cz/images/jean-new-home-silent.png)
+![The moment of silence](https://pub-66d4db7a73794adcbc7ad13895347ed9.r2.dev/jean-new-home-silent.png)
 
 Of course, I was already lying in bed and I'd left my computer at the office, as I usually do. So it was a bit of a night of horror - but when I got back to the office, I only had to restart the EC2 instance and it was working again. The second switch went smoothly and Jean finally got his new, shiny, big home.
 
