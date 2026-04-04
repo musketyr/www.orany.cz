@@ -28,11 +28,42 @@ But that was only one layer of the problem. To understand why those weeks were s
 
 Now let’s get back in time. The first few days, maybe even the first two weeks, were a complete nightmare, and I blamed the Codex model a lot. But eventually, it became clear that the real problems were on the OpenClaw side. Many times, I did not get any answer from Jean after assigning him a task. I tried a few different things - including disabling the websocket transport for Codex - but in the end the issues were related to OpenClaw releases from around that time rather than the switch to Codex itself. The tightened security had completely cut me off from tool execution without even giving me a chance to approve anything, because approvals were not set up for any channel.
 
-For some reason I tend to run into these issues before other people do, so it took me a long time to figure out how to get back to a productive setup again. Jean was desperate, and so was I. The documentation did not help, so I used one of the tricks I learned during my software engineering career: go read the source. Well, it was not me but Jean who read the whole OpenClaw codebase and helped me understand the sandbox and execution issues.
+For some reason I tend to run into these issues before other people do, so it took me a long time to figure out how to get back to productive you-only-live-once settings with everything enabled. Jean was desperate, and so was I. The documentation did not help, so I used one of the tricks I learned during my software engineering career: go read the source. Well, it was not me but Jean who read the whole OpenClaw codebase and helped me fix the sandbox and execution issues.
 
-I am intentionally not copying the exact config we used during that period, because the point was never “turn everything off and hope for the best.” The real lesson was that I had to understand how approvals, execution, and sandboxing were wired together in the actual codebase instead of guessing from outdated assumptions.
+> I don’t need a sandbox. Tell me how to configure OpenClaw to disable it. Don’t rely only on the documentation. Clone the [https://github.com/openclaw/openclaw](https://github.com/openclaw/openclaw) repository and reverse engineer the code to understand how the configuration works.
 
-So if you run into similar issues, my advice is not to disable safeguards blindly. It is to inspect your real setup, verify how approvals are routed in your channel, and make deliberate changes you actually understand.
+Once that was fixed, Jean came back with a solution that worked at the time, and we could finally get back to working together without having to approve almost every single command.
+
+```json
+{
+  "tools": {
+    "profile": "full",
+    "sessions": {
+      "visibility": "all"
+    },
+    "elevated": {
+      "enabled": true,
+      "allowFrom": {
+        "telegram": [
+          23456789
+        ],
+        "discord": [
+          "user:1234567890987654321"
+        ]
+      }
+    },
+    "exec": {
+      "security": "full",
+      "ask": "off"
+    },
+    "sandbox": {
+      "tools": {
+        "deny": []
+      }
+    }
+  }
+}
+```
 
 Fixing tool execution got us back into the game. But it still did not make the setup reliable.
 
