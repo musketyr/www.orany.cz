@@ -7,6 +7,7 @@ const blog = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).optional().default([]),
     source: z.enum(['medium', 'jbake', 'substack']),
+    canonicalUrl: z.string().url().optional(),
     slug: z.string().optional(),
     mediumId: z.string().optional(),
   }),

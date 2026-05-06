@@ -2,9 +2,10 @@
 interface Props {
   title: string;
   description?: string;
+  canonicalUrl?: string;
 }
 
-const { title, description = "The Telegraphic Developer — Tech blog by Vladimír Oraný" } = Astro.props;
+const { title, description = "The Telegraphic Developer — Tech blog by Vladimír Oraný", canonicalUrl } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,6 +14,7 @@ const { title, description = "The Telegraphic Developer — Tech blog by Vladim�
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <!-- Google Analytics - replace G-XXXXXXXXXX with actual measurement ID -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GZQSMJ77WC"></script>
     <script is:inline>
