@@ -6,6 +6,29 @@ const allPosts = await getCollection('blog');
 const recentPosts = allPosts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 5);
+
+const featuredProjects = [
+  {
+    name: 'jbx',
+    url: 'https://jbx.telegraphic.dev/',
+    description: 'Rust-native Java script runner and agent-friendly toolbox for JBang-style workflows',
+  },
+  {
+    name: 'Brick Directory',
+    url: 'https://brick.directory/',
+    description: 'LEGO parts, sets, and minifig reference directory built for serious AFOL searching',
+  },
+  {
+    name: 'ClawBuddy',
+    url: 'https://clawbuddy.help/',
+    description: 'OpenClaw mentoring companion with practical skills for building better AI-agent workflows',
+  },
+  {
+    name: 'Pikarama',
+    url: 'https://www.pikarama.com/',
+    description: 'Group decision app with blind submissions, karma-weighted voting, and memory',
+  },
+];
 ---
 
 <BaseLayout title="The Telegraphic Developer — Tech Blog by Vladimír Oraný">
@@ -52,35 +75,17 @@ const recentPosts = allPosts
     <section class="featured-projects">
       <h2>Featured Projects</h2>
       <div class="projects-grid">
-        <div class="project-card">
-          <div class="traffic-lights"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
-          <h3>
-            <a href="https://github.com/agorapulse/micronaut-aws-sdk" target="_blank" rel="noopener">
-              micronaut-aws-sdk
-            </a>
-          </h3>
-          <p>Micronaut libraries for AWS — DynamoDB, S3, SES, SNS, SQS and more</p>
-          <span class="stars">⭐ 39</span>
-        </div>
-        <div class="project-card">
-          <div class="traffic-lights"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
-          <h3>
-            <a href="https://github.com/agorapulse/micronaut-worker" target="_blank" rel="noopener">
-              micronaut-worker
-            </a>
-          </h3>
-          <p>Advanced scheduling and work distribution for Micronaut</p>
-          <span class="stars">⭐ 9</span>
-        </div>
-        <div class="project-card">
-          <div class="traffic-lights"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
-          <h3>
-            <a href="https://github.com/agorapulse/gru" target="_blank" rel="noopener">
-              Gru
-            </a>
-          </h3>
-          <p>HTTP interaction testing framework for Micronaut, Grails & Spring</p>
-        </div>
+        {featuredProjects.map((project) => (
+          <div class="project-card">
+            <div class="traffic-lights"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+            <h3>
+              <a href={project.url} target="_blank" rel="noopener">
+                {project.name}
+              </a>
+            </h3>
+            <p>{project.description}</p>
+          </div>
+        ))}
       </div>
       <a href="/projects" class="view-all">View all projects →</a>
     </section>
