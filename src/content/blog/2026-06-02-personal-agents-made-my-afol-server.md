@@ -7,8 +7,6 @@ canonicalUrl: "https://telegraphic.substack.com/p/personal-agents-made-my-afol-s
 ---
 *Why you should expose your application to personal agents instead of trapping AI inside it*
 
-![](https://substack-post-media.s3.amazonaws.com/public/images/c60e2ef1-eb90-4c24-9f02-b115a421f881_1376x768.jpeg)
-
 ## Letting Claude organize my LEGO collection
 
 ![](https://substackcdn.com/image/fetch/$s_!c_bP!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F23835aec-4bb0-4824-a1a2-3293f776775e_1376x768.jpeg)
