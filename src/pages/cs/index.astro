@@ -1,0 +1,107 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allPosts = await getCollection('cz');
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Česky - The Telegraphic Developer" description="České verze článků z Telegraphic Developer" lang="cs">
+  <div class="container">
+    <header class="page-header">
+      <h1>Česky</h1>
+      <p>České verze článků publikovaných na Substacku.</p>
+    </header>
+
+    <main class="posts-main">
+      <div class="post-list">
+        {sortedPosts.map((post) => (
+          <article class="post-card">
+            <div class="traffic-lights"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+            <time datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString('cs-CZ', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+            <h2>
+              <a href={`/cs/${post.slug}`}>{post.data.title}</a>
+            </h2>
+            {post.data.tags.length > 0 && (
+              <div class="tags">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+  }
+
+  .posts-main {
+    margin-top: 3rem;
+  }
+
+  .post-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+
+  .post-card:hover {
+    border-color: var(--accent);
+  }
+
+  .post-card time {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .post-card h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .tag {
+    background: var(--bg-tertiary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>
